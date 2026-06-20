@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+
+# IEEE standards (copyrighted — do not redistribute)
+1451.1.6-2025.pdf
+2992-2025.pdf
+P1451.0D2.5.pdf
+
+# local backups / runtime snapshots
+*.bak
+*.m5bak
+flows.live.prev.json
+NodeRED.json.bak

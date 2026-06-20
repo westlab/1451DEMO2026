@@ -1,0 +1,150 @@
+### localhost
+#mqtthost: 127.0.0.1
+### hivemq
+mqtthost: broker.hivemq.com
+### coe@jp
+#mqtthost: plugfest.west.sd.keio.ac.jp
+#username: plugfest
+#password: plugfest1451
+mqttport: 1883
+# needs / in the end
+spfx: _1451.1.6/
+tomdop: D/
+tomcop: C/
+tomcaop: C.A
+tomd0op: D0/
+tomd0aop: D0.A
+# Does not need / in the end
+#loc: OUC-LEC/2023/west/ncap0
+#locclient: OUC-LEC/2023/west/application0
+ncapname: ncap0
+#appname: appl0
+appname: ncap0
+# do not include last / it is concatinated with ncap or appname with '/'
+loc: PTTEST
+locclient: PTTEST
+
+# ---- timing (seconds). all optional; defaults are applied if omitted ----
+sampling_interval: 3.0       # how often sensors are read / D-OP data is published
+NS_NCAPanno_interval: 5.0    # NCAP announcement interval   (used with -a)
+NS_TIManno_interval: 5.0     # TIM announcement interval    (used with -a)
+NS_CHanno_interval: 5.0      # channel announcement interval(used with -a)
+# mqtttls: true              # uncomment to use TLS
+
+# ---- M5Core2 + SCD41 端末（WiFi/MQTT ブリッジ） --------------------- #
+#  これらの端末は WiFi で同じ MQTT ブローカ(mqtthost)に接続し、下記 prefix の
+#  別トピックで temperature/humidity/CO2 を publish、gauge コマンドを subscribe する。
+#  1台 = 1 TIM(4ch: ch1温度 ch2湿度 ch3CO2 ch4ゲージ)。台数は m5_devices で増減。
+#  契約トピック（M5 ファーム側と一致させること）:
+#    <prefix><id>/telemetry  (M5->NCAP) JSON {"temp":℃,"humid":%,"co2":ppm,"gauge":0-100}
+#    <prefix><id>/gauge      (NCAP->M5) 平文 0-100
+#    <prefix><id>/status     (M5->NCAP) "online"/"offline"（retained + LWT）
+m5_enable: true
+m5_topic_prefix: 'm5iot/'
+m5_devices:
+  - {id: 'm5-01', tim: 'UUIDTIM3', name: 'NAMETIM3'}
+  - {id: 'm5-02', tim: 'UUIDTIM4', name: 'NAMETIM4'}
+
+# TEDS
+TEMPTEDS: '<?xml version="1.0" encoding="UTF-8"?> <TEDS ID="[v03]"> <BasicTEDS> <Manufacturer>Dewesoft</Manufacturer> <Model>1</Model> <VersionLetter>A</VersionLetter> <VersionNumber>1</VersionNumber> <SerialNumber>1</SerialNumber> </BasicTEDS> <TEDS-Code length="40">6A4000200401000098D0421F00000000 00000012040000120400001204000000 C34800000000E000</TEDS-Code> <Info-Section EditorVersion="Dewesoft TedsEditor V2.2.12"> <InfoLine16>2023/05/22 0:25:06: Templates cleared by User.</InfoLine16> <InfoLine17>2023/05/22 0:25:28: Base template [#38] Thermistor created.</InfoLine17> </EditorActivity> <DEBUG>TEMP</DEBUG> </Info-Section> </TEDS>'
+HUMIDTEDS: '<?xml version="1.0" encoding="UTF-8"?> <TEDS ID="[v03]"> <BasicTEDS> <Manufacturer>UnknownID(109)</Manufacturer> <Model>1</Model> <VersionLetter>A</VersionLetter> <VersionNumber>1</VersionNumber> <SerialNumber>2</SerialNumber> </BasicTEDS> <TEDS-Code length="31">6D4000200402000080A0000000000000 C8420000000000869100000000C001</TEDS-Code> <Info-Section EditorVersion="Dewesoft TedsEditor V2.2.12"> </EditorActivity> <DEBUG>HUMID</DEBUG> </Info-Section> </TEDS>'
+SERVOTEDS: '<?xml version="1.0" encoding="UTF-8"?> <TEDS ID="[v03]"> <BasicTEDS> <Manufacturer>UnknownID(109)</Manufacturer> <Model>1</Model> <VersionLetter>A</VersionLetter> <VersionNumber>1</VersionNumber> <SerialNumber>3</SerialNumber> </BasicTEDS> <TEDS-Code length="69">6D4000200403000080A0000000000000 C8420000000000869100000000806AC0 82757A6CE560CDE450FA6C4D8B52EBB3 F9A43EA5050C00000280000034430300 00FE041C00</TEDS-Code> <Info-Section EditorVersion="Dewesoft TedsEditor V2.2.12"> <InfoLine16>2023/05/22 0:25:06: Templates cleared by User.</InfoLine16> <InfoLine17>2023/05/22 0:25:28: Base template [#38] Thermistor created.</InfoLine17> <InfoLine18>2023/05/22 0:25:38: TEDS write ChNr.1 started...</InfoLine18> <InfoLine19>2023/05/22 0:25:42: TEDS write to file [IEEE1451_4_106_1_A_1_1.tedsxml] done.</InfoLine19> <InfoLine22>2023/05/22 0:28:21: Templates cleared by User.</InfoLine22> </EditorActivity> <DEBUG>SERVO</DEBUG> </Info-Section> </TEDS>'
+SECURITYTEDS: '<?xml version="1.0" encoding="UTF-8"?> <TEDS><SecurityTEDSDataBlock><Level>E</Level> <NumOfStandards>3</NumOfStandards> <SecurityStdName1>10</SecurityStdName1><SecurityStdVersion1>4</SecurityStdVersion1> <SecurityStdName2>12</SecurityStdName2><SecurityStdVersion2>1</SecurityStdVersion2> <SecurityStdName3>128</SecurityStdName3> <SecurityStdVersion3>1</SecurityStdVersion3> </SecurityTEDSDataBlock></TEDS>'
+
+UUIDNCAP: '0x2400250026002700280029003a010f0f'
+UUIDTIM0: '0x2400250026002700280029003a020f00'
+UUIDTIM1: '0x2400250026002700280029003a020f01'
+UUIDTIM2: '0x2400250026002700280029003a020f02'
+UUIDTIM3: '0x2400250026002700280029003a020f03'
+UUIDTIM4: '0x2400250026002700280029003a020f04'
+UUIDAPP0: '0x2400250026002700280029003a030f0f'
+NAMETIM0: 'JPN-TEXT-TEMP'
+NAMETIM1: 'JPN-TEXT-HUMID'
+NAMETIM2: 'JPN-TEXT-SERVO'
+NAMETIM3: 'JPN-M5-UNIT1'
+NAMETIM4: 'JPN-M5-UNIT2'
+#                  ClLeFaSuClVeTl UUID                                   MAXCH
+TEMPBINMETATEDS:  '030500FF010201 04 10 2400250026002700280029003A010F0F 0D 02 0001'
+#                  ClLeFaSuClVeTl CALKEY ChType PhyUnit(K)                 LowLim-20    HiLim+60     Unce+-2.0    SelTST Smpl-Max4Str             DatMdl
+TEMPBINCHANTEDS:  '030500FF030201 0A0100 0B0100 0C0B0080808080808082808000 0D04437D3334 0E0443A62668 0F0440000000 100100 12062801012901042A020004 28010E'
+#                  ClLeFaSuClVeTl FormID Name(JPN-TEXT-TEMP)
+TEMPBINNAMETEDS:  '030500FF0C0201 040100 050D4A504E2D544553542D54454D50'
+#                  ClLeFaSuClVeTl NoLocation
+TEMPBINPHYTEDS:   '030500FF0D0201'
+
+#                  ClLeFaSuClVeTl UUID                                   MAXCH
+HUMIDBINMETATEDS: '030500FF010201 04 10 2400250026002700280029003A010F0F 0D 02 0001'
+#                  ClLeFaSuClVeTl CALKEY ChType PhyUnit(%-None)            LowLim+5     HiLim+95     Unce+-2.0    SelTST Smpl-Max4Str             DatMdl
+HUMIDBINCHANTEDS: '030500FF030201 0A0100 0B0100 0C0B0180808080808080808000 0D0440A00000 0E0442B40000 0F0440A00000 100100 12062801012901042A020004 28010E'
+#                  ClLeFaSuClVeTl FormID Name(JPN-TEXT-HUMID)
+HUMIDBINNAMETEDS: '030500FF0C0201 040100 050F4A504E2D544553542D48554D4944'
+#                  ClLeFaSuClVeTl NoLocation
+HUMIDBINPHYTEDS:  '030500FF0D0201'
+
+#                  ClLeFaSuClVeTl UUID                                   MAXCH
+SERVOBINMETATEDS: '030500FF010201 04 10 2400250026002700280029003A010F0F 0D 02 0001'
+#                  ClLeFaSuClVeTl CALKEY ChType PhyUnit(Deg-None)          LowLim+0     HiLim+160    Unce+-3.0    SelTST Smpl-Max3Str             DatMdl
+SERVOBINCHANTEDS: '030500FF030201 0A0100 0B0101 0C0B0180808080808080808000 0D0400000000 0E0443280000 0F0440400000 100100 12062801012901032A020004 280101'
+#                  ClLeFaSuClVeTl FormID Name(JPN-TEXT-SERVO)
+SERVOBINNAMETEDS: '030500FF0C0201 040100 050E4A504E2D544553542D534552564F'
+#                  ClLeFaSuClVeTl NoLocation
+SERVOBINPHYTEDS:  '030500FF0D0201'
+
+#                  CLLEFASUCL VE TL SecOpn
+SECURITYBINTEDS:  '030500FF0E 02 01 0A014F 0B0100'
+
+# ===================================================================== #
+#  M5Core2 + SCD41 端末用 TEDS（TIM3/TIM4 が共有。チャネル種別ごとに1組）
+#  各 TIM は 4 チャネル: ch1=M5TEMP ch2=M5HUMID ch3=M5CO2 ch4=M5GAUGE。
+#  meta TEDS の MAXCH は 0004（4チャネル）。物理単位コードはデモ用の近似値。
+# ===================================================================== #
+# 温度 (ch1, ℃ を K で報告)
+#                  ClLeFaSuClVeTl UUID                                   MAXCH=4
+M5TEMPBINMETATEDS:  '030500FF010201 04 10 2400250026002700280029003A010F0F 0D 02 0004'
+#                  ClLeFaSuClVeTl CALKEY ChType(sens) PhyUnit(K)                LowLim-20    HiLim+60     Unce+-2.0    SelTST Smpl                     DatMdl
+M5TEMPBINCHANTEDS:  '030500FF030201 0A0100 0B0100 0C0B0080808080808082808000 0D04437D3334 0E0443A62668 0F0440000000 100100 12062801012901042A020004 28010E'
+#                  ClLeFaSuClVeTl FormID Name("TEMP")
+M5TEMPBINNAMETEDS:  '030500FF0C0201 040100 05 04 54454D50'
+M5TEMPBINPHYTEDS:   '030500FF0D0201'
+
+# 湿度 (ch2, %)
+M5HUMIDBINMETATEDS: '030500FF010201 04 10 2400250026002700280029003A010F0F 0D 02 0004'
+M5HUMIDBINCHANTEDS: '030500FF030201 0A0100 0B0100 0C0B0180808080808080808000 0D0440A00000 0E0442B40000 0F0440A00000 100100 12062801012901042A020004 28010E'
+#                  ClLeFaSuClVeTl FormID Name("HUMID")
+M5HUMIDBINNAMETEDS: '030500FF0C0201 040100 05 05 48554D4944'
+M5HUMIDBINPHYTEDS:  '030500FF0D0201'
+
+# CO2 (ch3, ppm)   LowLim+400(43C80000) HiLim+5000(459C4000) Unce+-50(42480000)
+M5CO2BINMETATEDS:   '030500FF010201 04 10 2400250026002700280029003A010F0F 0D 02 0004'
+M5CO2BINCHANTEDS:   '030500FF030201 0A0100 0B0100 0C0B0080808080808080808000 0D0443C80000 0E04459C4000 0F0442480000 100100 12062801012901042A020004 28010E'
+#                  ClLeFaSuClVeTl FormID Name("CO2")
+M5CO2BINNAMETEDS:   '030500FF0C0201 040100 05 03 434F32'
+M5CO2BINPHYTEDS:    '030500FF0D0201'
+
+# ゲージ (ch4, 0-100, アクチュエータ)  Low+0 Hi+100(42C80000) Unce+-1.0(3F800000)
+M5GAUGEBINMETATEDS: '030500FF010201 04 10 2400250026002700280029003A010F0F 0D 02 0004'
+#                  ClLeFaSuClVeTl CALKEY ChType(act)  PhyUnit(none)             LowLim+0     HiLim+100    Unce+-1.0    SelTST Smpl                     DatMdl
+M5GAUGEBINCHANTEDS: '030500FF030201 0A0100 0B0101 0C0B0180808080808080808000 0D0400000000 0E0442C80000 0F043F800000 100100 12062801012901032A020004 280101'
+#                  ClLeFaSuClVeTl FormID Name("GAUGE")
+M5GAUGEBINNAMETEDS: '030500FF0C0201 040100 05 05 4741554745'
+M5GAUGEBINPHYTEDS:  '030500FF0D0201'
+
+# C-OP 用テキスト TEDS（簡易）
+M5TEMPTEDS:  '<?xml version="1.0" encoding="UTF-8"?> <TEDS><BasicTEDS><Manufacturer>M5Stack</Manufacturer><Model>SCD41</Model><VersionLetter>A</VersionLetter><VersionNumber>1</VersionNumber></BasicTEDS><DEBUG>M5TEMP</DEBUG></TEDS>'
+M5HUMIDTEDS: '<?xml version="1.0" encoding="UTF-8"?> <TEDS><BasicTEDS><Manufacturer>M5Stack</Manufacturer><Model>SCD41</Model><VersionLetter>A</VersionLetter><VersionNumber>1</VersionNumber></BasicTEDS><DEBUG>M5HUMID</DEBUG></TEDS>'
+M5CO2TEDS:   '<?xml version="1.0" encoding="UTF-8"?> <TEDS><BasicTEDS><Manufacturer>M5Stack</Manufacturer><Model>SCD41</Model><VersionLetter>A</VersionLetter><VersionNumber>1</VersionNumber></BasicTEDS><DEBUG>M5CO2</DEBUG></TEDS>'
+M5GAUGETEDS: '<?xml version="1.0" encoding="UTF-8"?> <TEDS><BasicTEDS><Manufacturer>M5Stack</Manufacturer><Model>Core2-Gauge</Model><VersionLetter>A</VersionLetter><VersionNumber>1</VersionNumber></BasicTEDS><DEBUG>M5GAUGE</DEBUG></TEDS>'
+
+# ===================================================================== #
+#  実センサ(TIM)を追加する例（コメントを外して使う）
+#  この3つ(+TEDS)を足し、NCAP.py の SENSOR_DEFS に対応する1行を追加する。
+#  prefix を 'PRESS' にした場合、PRESSTEDS / PRESSBINMETATEDS ... が読まれる。
+# ===================================================================== #
+# UUIDTIM3: '0x2400250026002700280029003a020f03'
+# NAMETIM3: 'JPN-TEXT-PRESS'
+# PRESSTEDS: '<?xml version="1.0" encoding="UTF-8"?> <TEDS> ... </TEDS>'
+# PRESSBINMETATEDS: '030500FF010201 04 10 2400250026002700280029003A010F0F 0D 02 0001'
+# PRESSBINCHANTEDS: '030500FF030201 ...'
+# PRESSBINNAMETEDS: '030500FF0C0201 ...'
+# PRESSBINPHYTEDS:  '030500FF0D0201'
+
