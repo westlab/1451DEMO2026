@@ -39,3 +39,4 @@ _fix_cop_length.py
 _rebuild_legacy.py
 _arrange_d0.py
 _unify_d0_encode.py
+_dup_monitor_timesync.py

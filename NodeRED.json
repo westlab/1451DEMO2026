@@ -561,28 +561,6 @@
         "className": ""
     },
     {
-        "id": "c90000000000002c",
-        "type": "ui_group",
-        "name": "Time-sync svc (9)",
-        "tab": "86483328.1e604",
-        "order": 45,
-        "disp": true,
-        "width": "6",
-        "collapse": true,
-        "className": ""
-    },
-    {
-        "id": "c90000000000002f",
-        "type": "ui_group",
-        "name": "Service replies (monitor)",
-        "tab": "86483328.1e604",
-        "order": 46,
-        "disp": true,
-        "width": "6",
-        "collapse": true,
-        "className": ""
-    },
-    {
         "id": "ca00000000000002",
         "type": "ui_group",
         "name": "TEDS svc D0 (3,x)",
@@ -635,17 +613,6 @@
         "disp": true,
         "width": "6",
         "collapse": true,
-        "className": ""
-    },
-    {
-        "id": "cb00000000000001",
-        "type": "ui_group",
-        "name": "Message monitor (sent / received)",
-        "tab": "86483328.1e604",
-        "order": 80,
-        "disp": true,
-        "width": "12",
-        "collapse": false,
         "className": ""
     },
     {
@@ -3177,290 +3144,6 @@
         "wires": [
             [
                 "c90000000000002a"
-            ]
-        ]
-    },
-    {
-        "id": "c90000000000002d",
-        "type": "function",
-        "z": "ef00000000000001",
-        "name": "RR-Sync request",
-        "func": "msg.topic='_1451.1.6/RRS/REQ';\nmsg.payload='PTTEST/ncap0,'+(Date.now()/1000).toFixed(6);\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 80,
-        "wires": [
-            [
-                "f000000000000001"
-            ]
-        ]
-    },
-    {
-        "id": "c90000000000002e",
-        "type": "ui_button",
-        "z": "ef00000000000001",
-        "group": "c90000000000002c",
-        "order": 1,
-        "width": "6",
-        "height": "1",
-        "passthru": false,
-        "label": "RR-Sync request (9.3)",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 140,
-        "y": 80,
-        "wires": [
-            [
-                "c90000000000002d"
-            ]
-        ]
-    },
-    {
-        "id": "c900000000000030",
-        "type": "ui_text",
-        "z": "ef00000000000001",
-        "group": "c90000000000002f",
-        "order": 1,
-        "width": "6",
-        "height": "3",
-        "name": "",
-        "label": "Last C-OP reply",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "className": "",
-        "x": 820,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "c900000000000031",
-        "type": "ui_text",
-        "z": "ef00000000000001",
-        "group": "c90000000000002f",
-        "order": 2,
-        "width": "6",
-        "height": "1",
-        "name": "",
-        "label": "RR-Sync offset/delay",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "className": "",
-        "x": 820,
-        "y": 150,
-        "wires": []
-    },
-    {
-        "id": "c900000000000032",
-        "type": "ui_text",
-        "z": "ef00000000000001",
-        "group": "c90000000000002f",
-        "order": 3,
-        "width": "6",
-        "height": "1",
-        "name": "",
-        "label": "BR-Sync epoch",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "className": "",
-        "x": 820,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "c900000000000033",
-        "type": "function",
-        "z": "ef00000000000001",
-        "name": "raw C reply",
-        "func": "var s=(''+msg.payload).trim();var f=s.split(',');\nif(f.length>=3 && (f[2]==='2'||f[2]==='4')){msg.payload=s;return msg;}\nreturn null;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 150,
-        "wires": [
-            [
-                "c900000000000030"
-            ]
-        ]
-    },
-    {
-        "id": "c900000000000034",
-        "type": "mqtt in",
-        "z": "ef00000000000001",
-        "name": "C reply mon",
-        "topic": "_1451.1.6/C/PTTEST/ncap0",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "39d5aa93d6951ccb",
-        "nl": false,
-        "rap": false,
-        "rh": 0,
-        "inputs": 0,
-        "x": 140,
-        "y": 150,
-        "wires": [
-            [
-                "c900000000000033"
-            ]
-        ]
-    },
-    {
-        "id": "c900000000000035",
-        "type": "function",
-        "z": "ef00000000000001",
-        "name": "RR-Sync calc",
-        "func": "var t4=Date.now()/1000;var f=(''+msg.payload).split(',');\nvar t1=parseFloat(f[0]),t2=parseFloat(f[1]),t3=parseFloat(f[2]),srv=f[3]||'?';\nvar off=((t2-t1)+(t3-t4))/2, dly=(t4-t1)-(t3-t2);\nmsg.payload='server='+srv+'  offset='+off.toFixed(6)+'s  delay='+dly.toFixed(6)+'s';return msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 220,
-        "wires": [
-            [
-                "c900000000000031"
-            ]
-        ]
-    },
-    {
-        "id": "c900000000000036",
-        "type": "mqtt in",
-        "z": "ef00000000000001",
-        "name": "RR-Sync RES",
-        "topic": "_1451.1.6/RRS/PTTEST/ncap0/RES",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "39d5aa93d6951ccb",
-        "nl": false,
-        "rap": false,
-        "rh": 0,
-        "inputs": 0,
-        "x": 140,
-        "y": 220,
-        "wires": [
-            [
-                "c900000000000035"
-            ]
-        ]
-    },
-    {
-        "id": "c900000000000037",
-        "type": "mqtt in",
-        "z": "ef00000000000001",
-        "name": "BR-Sync SYN",
-        "topic": "_1451.1.6/BRSU/SYN",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "39d5aa93d6951ccb",
-        "nl": false,
-        "rap": false,
-        "rh": 0,
-        "inputs": 0,
-        "x": 140,
-        "y": 290,
-        "wires": [
-            [
-                "c900000000000032"
-            ]
-        ]
-    },
-    {
-        "id": "cb00000000000002",
-        "type": "ui_template",
-        "z": "ef00000000000001",
-        "group": "cb00000000000001",
-        "name": "msg log",
-        "order": 1,
-        "width": "12",
-        "height": "9",
-        "format": "<div style=\"font-family:monospace;font-size:11px;white-space:pre-wrap;line-height:1.35;height:400px;overflow-y:auto;width:100%;text-align:left\">{{msg.payload}}</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 820,
-        "y": 290,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "cb00000000000003",
-        "type": "function",
-        "z": "ef00000000000001",
-        "name": "msg monitor fmt",
-        "func": "var p=msg.payload,bin=Buffer.isBuffer(p),h,raw;\nif(bin){if(p.length<3)return null;h=[p[0],p[1],p[2]];raw='0x'+p.toString('hex');}\nelse{var f=(''+p).split(',');if(f.length<3)return null;h=[parseInt(f[0]),parseInt(f[1]),parseInt(f[2])];raw=''+p;}\nvar NAMES={\"2,14,4\": \"async_read_block1_cbk\", \"2,13,1\": \"async_read_block1_cmd\", \"2,13,2\": \"async_read_block1_rep\", \"2,18,4\": \"async_read_block_multi1tim_cbk\", \"2,17,1\": \"async_read_block_multi1tim_cmd\", \"2,17,2\": \"async_read_block_multi1tim_rep\", \"2,20,4\": \"async_read_block_multi_cbk\", \"2,19,1\": \"async_read_block_multi_cmd\", \"2,19,2\": \"async_read_block_multi_rep\", \"2,16,4\": \"async_read_stream1_cbk\", \"2,15,1\": \"async_read_stream1_cmd\", \"2,15,2\": \"async_read_stream1_rep\", \"4,1,4\": \"event_notify\", \"4,1,1\": \"event_subscribe_cmd\", \"4,4,1\": \"event_subscribe_multich_cmd\", \"4,4,2\": \"event_subscribe_multich_rep\", \"4,7,1\": \"event_subscribe_multitim_cmd\", \"4,7,2\": \"event_subscribe_multitim_rep\", \"4,1,2\": \"event_subscribe_rep\", \"4,3,1\": \"event_unsubscribe_cmd\", \"4,6,1\": \"event_unsubscribe_multich_cmd\", \"4,6,2\": \"event_unsubscribe_multich_rep\", \"4,9,1\": \"event_unsubscribe_multitim_cmd\", \"4,9,2\": \"event_unsubscribe_multitim_rep\", \"4,3,2\": \"event_unsubscribe_rep\", \"4,10,1\": \"heartbeat_cmd\", \"4,10,4\": \"heartbeat_notify\", \"4,10,2\": \"heartbeat_rep\", \"4,12,1\": \"heartbeat_unsubscribe_cmd\", \"4,12,2\": \"heartbeat_unsubscribe_rep\", \"1,1,8\": \"ncap_abandonment\", \"1,1,3\": \"ncap_announcement\", \"1,1,2\": \"ncap_departure\", \"1,8,1\": \"ncap_discovery_cmd\", \"1,8,2\": \"ncap_discovery_rep\", \"1,1,4\": \"ncap_tim_announcement\", \"1,1,5\": \"ncap_tim_departure\", \"1,9,1\": \"ncap_tim_discovery_cmd\", \"1,9,2\": \"ncap_tim_discovery_rep\", \"1,1,6\": \"ncap_tim_transducer_announcement\", \"1,1,7\": \"ncap_tim_transducer_departure\", \"1,10,1\": \"ncap_tim_transducer_discovery_cmd\", \"1,10,2\": \"ncap_tim_transducer_discovery_rep\", \"3,1,1\": \"query_teds_cmd\", \"3,1,2\": \"query_teds_rep\", \"3,2,1\": \"read_teds_cmd\", \"3,2,2\": \"read_teds_rep\", \"2,2,1\": \"sync_read_block1_cmd\", \"2,2,2\": \"sync_read_block1_rep\", \"2,6,1\": \"sync_read_block_cmd\", \"2,4,1\": \"sync_read_block_multi1tim_cmd\", \"2,4,2\": \"sync_read_block_multi1tim_rep\", \"2,6,2\": \"sync_read_block_rep\", \"2,1,1\": \"sync_read_cmd\", \"2,3,1\": \"sync_read_multi1tim_cmd\", \"2,3,2\": \"sync_read_multi1tim_rep\", \"2,5,1\": \"sync_read_multi_cmd\", \"2,5,2\": \"sync_read_multi_rep\", \"2,1,2\": \"sync_read_rep\", \"2,8,1\": \"sync_write_block1_cmd\", \"2,8,2\": \"sync_write_block1_rep\", \"2,10,1\": \"sync_write_block_multi1tim_cmd\", \"2,10,2\": \"sync_write_block_multi1tim_rep\", \"2,12,1\": \"sync_write_block_multi_cmd\", \"2,12,2\": \"sync_write_block_multi_rep\", \"2,7,1\": \"sync_write_cmd\", \"2,9,1\": \"sync_write_multi1tim_cmd\", \"2,9,2\": \"sync_write_multi1tim_rep\", \"2,11,1\": \"sync_write_multi_cmd\", \"2,11,2\": \"sync_write_multi_rep\", \"2,7,2\": \"sync_write_rep\", \"3,4,1\": \"update_teds_cmd\", \"3,4,2\": \"update_teds_rep\", \"3,3,1\": \"write_teds_cmd\", \"3,3,2\": \"write_teds_rep\"};\nvar nm=NAMES[h.join(',')]||('svc '+h.join(','));\nvar mt=h[2];var dir=mt===1?'REQ \\u2192':(mt===4?'NTF \\u2190':'REP \\u2190');\nvar enc=bin?'D0 ':'D0C';\nvar d=new Date();function z(n){return ('0'+n).slice(-2);}\nvar ts=z(d.getHours())+':'+z(d.getMinutes())+':'+z(d.getSeconds());\nvar line=ts+'  '+enc+'  '+dir+'  '+nm+'\\n            '+raw.substring(0,220);\nvar log=flow.get('msgmon')||[];log.unshift(line);if(log.length>40)log.length=40;flow.set('msgmon',log);\nmsg.payload=log.join('\\n');return msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 290,
-        "wires": [
-            [
-                "cb00000000000002"
-            ]
-        ]
-    },
-    {
-        "id": "cb00000000000004",
-        "type": "mqtt in",
-        "z": "ef00000000000001",
-        "name": "mon C",
-        "topic": "_1451.1.6/C/PTTEST/ncap0",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "39d5aa93d6951ccb",
-        "nl": false,
-        "rap": false,
-        "rh": 0,
-        "inputs": 0,
-        "x": 140,
-        "y": 360,
-        "wires": [
-            [
-                "cb00000000000003"
-            ]
-        ]
-    },
-    {
-        "id": "cb00000000000005",
-        "type": "mqtt in",
-        "z": "ef00000000000001",
-        "name": "mon D0",
-        "topic": "_1451.1.6/D0/PTTEST/ncap0",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "39d5aa93d6951ccb",
-        "nl": false,
-        "rap": false,
-        "rh": 0,
-        "inputs": 0,
-        "x": 140,
-        "y": 430,
-        "wires": [
-            [
-                "cb00000000000003"
             ]
         ]
     },
@@ -8327,21 +8010,101 @@
         ]
     },
     {
-        "id": "ce00000000000001",
+        "id": "f100000000000001",
         "type": "ui_group",
-        "name": "Time-sync svc D0 (9)",
+        "name": "Monitor & Time-sync (D0C)",
         "tab": "86483328.1e604",
-        "order": 65,
+        "order": 90,
         "disp": true,
-        "width": "6",
+        "width": "12",
         "collapse": true,
         "className": ""
     },
     {
-        "id": "ce00000000000002",
+        "id": "f100000000000002",
+        "type": "ui_template",
+        "z": "0c7a731dc303bfda",
+        "group": "f100000000000001",
+        "name": "msg log D0C",
+        "order": 1,
+        "width": "12",
+        "height": "7",
+        "format": "<div style=\"font-family:monospace;font-size:11px;white-space:pre-wrap;line-height:1.35;height:330px;overflow-y:auto;width:100%;text-align:left\">{{msg.payload}}</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 900,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f100000000000003",
         "type": "function",
-        "z": "ef00000000000001",
-        "name": "RR-Sync request [D0]",
+        "z": "0c7a731dc303bfda",
+        "name": "msg monitor fmt D0C",
+        "func": "context.set('side','D0C');\nvar p=msg.payload,bin=Buffer.isBuffer(p),h,raw;\nif(bin){if(p.length<3)return null;h=[p[0],p[1],p[2]];raw='0x'+p.toString('hex');}\nelse{var f=(''+p).split(',');if(f.length<3)return null;h=[parseInt(f[0]),parseInt(f[1]),parseInt(f[2])];raw=''+p;}\nvar NAMES={\"2,14,4\": \"async_read_block1_cbk\", \"2,13,1\": \"async_read_block1_cmd\", \"2,13,2\": \"async_read_block1_rep\", \"2,18,4\": \"async_read_block_multi1tim_cbk\", \"2,17,1\": \"async_read_block_multi1tim_cmd\", \"2,17,2\": \"async_read_block_multi1tim_rep\", \"2,20,4\": \"async_read_block_multi_cbk\", \"2,19,1\": \"async_read_block_multi_cmd\", \"2,19,2\": \"async_read_block_multi_rep\", \"2,16,4\": \"async_read_stream1_cbk\", \"2,15,1\": \"async_read_stream1_cmd\", \"2,15,2\": \"async_read_stream1_rep\", \"4,1,4\": \"event_notify\", \"4,1,1\": \"event_subscribe_cmd\", \"4,4,1\": \"event_subscribe_multich_cmd\", \"4,4,2\": \"event_subscribe_multich_rep\", \"4,7,1\": \"event_subscribe_multitim_cmd\", \"4,7,2\": \"event_subscribe_multitim_rep\", \"4,1,2\": \"event_subscribe_rep\", \"4,3,1\": \"event_unsubscribe_cmd\", \"4,6,1\": \"event_unsubscribe_multich_cmd\", \"4,6,2\": \"event_unsubscribe_multich_rep\", \"4,9,1\": \"event_unsubscribe_multitim_cmd\", \"4,9,2\": \"event_unsubscribe_multitim_rep\", \"4,3,2\": \"event_unsubscribe_rep\", \"4,10,1\": \"heartbeat_cmd\", \"4,10,4\": \"heartbeat_notify\", \"4,10,2\": \"heartbeat_rep\", \"4,12,1\": \"heartbeat_unsubscribe_cmd\", \"4,12,2\": \"heartbeat_unsubscribe_rep\", \"1,1,8\": \"ncap_abandonment\", \"1,1,3\": \"ncap_announcement\", \"1,1,2\": \"ncap_departure\", \"1,8,1\": \"ncap_discovery_cmd\", \"1,8,2\": \"ncap_discovery_rep\", \"1,1,4\": \"ncap_tim_announcement\", \"1,1,5\": \"ncap_tim_departure\", \"1,9,1\": \"ncap_tim_discovery_cmd\", \"1,9,2\": \"ncap_tim_discovery_rep\", \"1,1,6\": \"ncap_tim_transducer_announcement\", \"1,1,7\": \"ncap_tim_transducer_departure\", \"1,10,1\": \"ncap_tim_transducer_discovery_cmd\", \"1,10,2\": \"ncap_tim_transducer_discovery_rep\", \"3,1,1\": \"query_teds_cmd\", \"3,1,2\": \"query_teds_rep\", \"3,2,1\": \"read_teds_cmd\", \"3,2,2\": \"read_teds_rep\", \"2,2,1\": \"sync_read_block1_cmd\", \"2,2,2\": \"sync_read_block1_rep\", \"2,6,1\": \"sync_read_block_cmd\", \"2,4,1\": \"sync_read_block_multi1tim_cmd\", \"2,4,2\": \"sync_read_block_multi1tim_rep\", \"2,6,2\": \"sync_read_block_rep\", \"2,1,1\": \"sync_read_cmd\", \"2,3,1\": \"sync_read_multi1tim_cmd\", \"2,3,2\": \"sync_read_multi1tim_rep\", \"2,5,1\": \"sync_read_multi_cmd\", \"2,5,2\": \"sync_read_multi_rep\", \"2,1,2\": \"sync_read_rep\", \"2,8,1\": \"sync_write_block1_cmd\", \"2,8,2\": \"sync_write_block1_rep\", \"2,10,1\": \"sync_write_block_multi1tim_cmd\", \"2,10,2\": \"sync_write_block_multi1tim_rep\", \"2,12,1\": \"sync_write_block_multi_cmd\", \"2,12,2\": \"sync_write_block_multi_rep\", \"2,7,1\": \"sync_write_cmd\", \"2,9,1\": \"sync_write_multi1tim_cmd\", \"2,9,2\": \"sync_write_multi1tim_rep\", \"2,11,1\": \"sync_write_multi_cmd\", \"2,11,2\": \"sync_write_multi_rep\", \"2,7,2\": \"sync_write_rep\", \"3,4,1\": \"update_teds_cmd\", \"3,4,2\": \"update_teds_rep\", \"3,3,1\": \"write_teds_cmd\", \"3,3,2\": \"write_teds_rep\"};\nvar nm=NAMES[h.join(',')]||('svc '+h.join(','));var mt=h[2];\nvar dir=mt===1?'REQ \\u2192':(mt===4?'NTF \\u2190':'REP \\u2190');\nvar d=new Date();function z(n){return ('0'+n).slice(-2);}\nvar ts=z(d.getHours())+':'+z(d.getMinutes())+':'+z(d.getSeconds());\nvar line=ts+'  '+dir+'  '+nm+'\\n            '+raw.substring(0,200);\nvar KEY='msgmon_'+context.get('side');var log=flow.get(KEY)||[];log.unshift(line);if(log.length>40)log.length=40;flow.set(KEY,log);\nmsg.payload=log.join('\\n');return msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 200,
+        "wires": [
+            [
+                "f100000000000002"
+            ]
+        ]
+    },
+    {
+        "id": "f100000000000004",
+        "type": "mqtt in",
+        "z": "0c7a731dc303bfda",
+        "name": "mon D0C",
+        "topic": "_1451.1.6/C/PTTEST/ncap0",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "39d5aa93d6951ccb",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "f100000000000003"
+            ]
+        ]
+    },
+    {
+        "id": "f100000000000005",
+        "type": "mqtt out",
+        "z": "0c7a731dc303bfda",
+        "name": "RRS publish D0C",
+        "topic": "",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "39d5aa93d6951ccb",
+        "x": 900,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "f100000000000006",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "RR-Sync request D0C",
         "func": "msg.topic='_1451.1.6/RRS/REQ';\nmsg.payload='PTTEST/ncap0,'+(Date.now()/1000).toFixed(6);\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -8349,20 +8112,20 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
-        "y": 360,
+        "x": 640,
+        "y": 320,
         "wires": [
             [
-                "f000000000000001"
+                "f100000000000005"
             ]
         ]
     },
     {
-        "id": "ce00000000000003",
+        "id": "f100000000000007",
         "type": "ui_button",
-        "z": "ef00000000000001",
-        "group": "ce00000000000001",
-        "order": 1,
+        "z": "0c7a731dc303bfda",
+        "group": "f100000000000001",
+        "order": 2,
         "width": "6",
         "height": "1",
         "passthru": false,
@@ -8376,27 +8139,188 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 140,
-        "y": 500,
+        "x": 400,
+        "y": 320,
         "wires": [
             [
-                "ce00000000000002"
+                "f100000000000006"
             ]
         ]
     },
     {
-        "id": "ef00000000000001",
-        "type": "tab",
-        "label": "Monitor & Time-sync",
-        "disabled": false,
-        "info": "",
-        "env": []
+        "id": "f100000000000008",
+        "type": "ui_text",
+        "z": "0c7a731dc303bfda",
+        "group": "f100000000000001",
+        "order": 3,
+        "width": "6",
+        "height": "1",
+        "name": "",
+        "label": "RR-Sync offset/delay",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 900,
+        "y": 400,
+        "wires": []
     },
     {
-        "id": "f000000000000001",
+        "id": "f100000000000009",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "RR-Sync calc D0C",
+        "func": "var t4=Date.now()/1000;var f=(''+msg.payload).split(',');\nvar t1=parseFloat(f[0]),t2=parseFloat(f[1]),t3=parseFloat(f[2]),srv=f[3]||'?';\nvar off=((t2-t1)+(t3-t4))/2, dly=(t4-t1)-(t3-t2);\nmsg.payload='server='+srv+'  offset='+off.toFixed(6)+'s  delay='+dly.toFixed(6)+'s';return msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 400,
+        "wires": [
+            [
+                "f100000000000008"
+            ]
+        ]
+    },
+    {
+        "id": "f10000000000000a",
+        "type": "mqtt in",
+        "z": "0c7a731dc303bfda",
+        "name": "RR-Sync RES D0C",
+        "topic": "_1451.1.6/RRS/PTTEST/ncap0/RES",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "39d5aa93d6951ccb",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 400,
+        "y": 400,
+        "wires": [
+            [
+                "f100000000000009"
+            ]
+        ]
+    },
+    {
+        "id": "f10000000000000b",
+        "type": "ui_text",
+        "z": "0c7a731dc303bfda",
+        "group": "f100000000000001",
+        "order": 4,
+        "width": "6",
+        "height": "1",
+        "name": "",
+        "label": "BR-Sync epoch",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 900,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "f10000000000000c",
+        "type": "mqtt in",
+        "z": "0c7a731dc303bfda",
+        "name": "BR-Sync SYN D0C",
+        "topic": "_1451.1.6/BRSU/SYN",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "39d5aa93d6951ccb",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 400,
+        "y": 460,
+        "wires": [
+            [
+                "f10000000000000b"
+            ]
+        ]
+    },
+    {
+        "id": "f10000000000000d",
+        "type": "ui_group",
+        "name": "Monitor & Time-sync (D0)",
+        "tab": "86483328.1e604",
+        "order": 91,
+        "disp": true,
+        "width": "12",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "f10000000000000e",
+        "type": "ui_template",
+        "z": "a4c183a95164db51",
+        "group": "f10000000000000d",
+        "name": "msg log D0",
+        "order": 1,
+        "width": "12",
+        "height": "7",
+        "format": "<div style=\"font-family:monospace;font-size:11px;white-space:pre-wrap;line-height:1.35;height:330px;overflow-y:auto;width:100%;text-align:left\">{{msg.payload}}</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 900,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f10000000000000f",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "msg monitor fmt D0",
+        "func": "context.set('side','D0');\nvar p=msg.payload,bin=Buffer.isBuffer(p),h,raw;\nif(bin){if(p.length<3)return null;h=[p[0],p[1],p[2]];raw='0x'+p.toString('hex');}\nelse{var f=(''+p).split(',');if(f.length<3)return null;h=[parseInt(f[0]),parseInt(f[1]),parseInt(f[2])];raw=''+p;}\nvar NAMES={\"2,14,4\": \"async_read_block1_cbk\", \"2,13,1\": \"async_read_block1_cmd\", \"2,13,2\": \"async_read_block1_rep\", \"2,18,4\": \"async_read_block_multi1tim_cbk\", \"2,17,1\": \"async_read_block_multi1tim_cmd\", \"2,17,2\": \"async_read_block_multi1tim_rep\", \"2,20,4\": \"async_read_block_multi_cbk\", \"2,19,1\": \"async_read_block_multi_cmd\", \"2,19,2\": \"async_read_block_multi_rep\", \"2,16,4\": \"async_read_stream1_cbk\", \"2,15,1\": \"async_read_stream1_cmd\", \"2,15,2\": \"async_read_stream1_rep\", \"4,1,4\": \"event_notify\", \"4,1,1\": \"event_subscribe_cmd\", \"4,4,1\": \"event_subscribe_multich_cmd\", \"4,4,2\": \"event_subscribe_multich_rep\", \"4,7,1\": \"event_subscribe_multitim_cmd\", \"4,7,2\": \"event_subscribe_multitim_rep\", \"4,1,2\": \"event_subscribe_rep\", \"4,3,1\": \"event_unsubscribe_cmd\", \"4,6,1\": \"event_unsubscribe_multich_cmd\", \"4,6,2\": \"event_unsubscribe_multich_rep\", \"4,9,1\": \"event_unsubscribe_multitim_cmd\", \"4,9,2\": \"event_unsubscribe_multitim_rep\", \"4,3,2\": \"event_unsubscribe_rep\", \"4,10,1\": \"heartbeat_cmd\", \"4,10,4\": \"heartbeat_notify\", \"4,10,2\": \"heartbeat_rep\", \"4,12,1\": \"heartbeat_unsubscribe_cmd\", \"4,12,2\": \"heartbeat_unsubscribe_rep\", \"1,1,8\": \"ncap_abandonment\", \"1,1,3\": \"ncap_announcement\", \"1,1,2\": \"ncap_departure\", \"1,8,1\": \"ncap_discovery_cmd\", \"1,8,2\": \"ncap_discovery_rep\", \"1,1,4\": \"ncap_tim_announcement\", \"1,1,5\": \"ncap_tim_departure\", \"1,9,1\": \"ncap_tim_discovery_cmd\", \"1,9,2\": \"ncap_tim_discovery_rep\", \"1,1,6\": \"ncap_tim_transducer_announcement\", \"1,1,7\": \"ncap_tim_transducer_departure\", \"1,10,1\": \"ncap_tim_transducer_discovery_cmd\", \"1,10,2\": \"ncap_tim_transducer_discovery_rep\", \"3,1,1\": \"query_teds_cmd\", \"3,1,2\": \"query_teds_rep\", \"3,2,1\": \"read_teds_cmd\", \"3,2,2\": \"read_teds_rep\", \"2,2,1\": \"sync_read_block1_cmd\", \"2,2,2\": \"sync_read_block1_rep\", \"2,6,1\": \"sync_read_block_cmd\", \"2,4,1\": \"sync_read_block_multi1tim_cmd\", \"2,4,2\": \"sync_read_block_multi1tim_rep\", \"2,6,2\": \"sync_read_block_rep\", \"2,1,1\": \"sync_read_cmd\", \"2,3,1\": \"sync_read_multi1tim_cmd\", \"2,3,2\": \"sync_read_multi1tim_rep\", \"2,5,1\": \"sync_read_multi_cmd\", \"2,5,2\": \"sync_read_multi_rep\", \"2,1,2\": \"sync_read_rep\", \"2,8,1\": \"sync_write_block1_cmd\", \"2,8,2\": \"sync_write_block1_rep\", \"2,10,1\": \"sync_write_block_multi1tim_cmd\", \"2,10,2\": \"sync_write_block_multi1tim_rep\", \"2,12,1\": \"sync_write_block_multi_cmd\", \"2,12,2\": \"sync_write_block_multi_rep\", \"2,7,1\": \"sync_write_cmd\", \"2,9,1\": \"sync_write_multi1tim_cmd\", \"2,9,2\": \"sync_write_multi1tim_rep\", \"2,11,1\": \"sync_write_multi_cmd\", \"2,11,2\": \"sync_write_multi_rep\", \"2,7,2\": \"sync_write_rep\", \"3,4,1\": \"update_teds_cmd\", \"3,4,2\": \"update_teds_rep\", \"3,3,1\": \"write_teds_cmd\", \"3,3,2\": \"write_teds_rep\"};\nvar nm=NAMES[h.join(',')]||('svc '+h.join(','));var mt=h[2];\nvar dir=mt===1?'REQ \\u2192':(mt===4?'NTF \\u2190':'REP \\u2190');\nvar d=new Date();function z(n){return ('0'+n).slice(-2);}\nvar ts=z(d.getHours())+':'+z(d.getMinutes())+':'+z(d.getSeconds());\nvar line=ts+'  '+dir+'  '+nm+'\\n            '+raw.substring(0,200);\nvar KEY='msgmon_'+context.get('side');var log=flow.get(KEY)||[];log.unshift(line);if(log.length>40)log.length=40;flow.set(KEY,log);\nmsg.payload=log.join('\\n');return msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 200,
+        "wires": [
+            [
+                "f10000000000000e"
+            ]
+        ]
+    },
+    {
+        "id": "f100000000000010",
+        "type": "mqtt in",
+        "z": "a4c183a95164db51",
+        "name": "mon D0",
+        "topic": "_1451.1.6/D0/PTTEST/ncap0",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "39d5aa93d6951ccb",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "f10000000000000f"
+            ]
+        ]
+    },
+    {
+        "id": "f100000000000011",
         "type": "mqtt out",
-        "z": "ef00000000000001",
-        "name": "RRS publish",
+        "z": "a4c183a95164db51",
+        "name": "RRS publish D0",
         "topic": "",
         "qos": "0",
         "retain": "",
@@ -8406,8 +8330,151 @@
         "correl": "",
         "expiry": "",
         "broker": "39d5aa93d6951ccb",
-        "x": 820,
+        "x": 900,
         "y": 320,
         "wires": []
+    },
+    {
+        "id": "f100000000000012",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "RR-Sync request D0",
+        "func": "msg.topic='_1451.1.6/RRS/REQ';\nmsg.payload='PTTEST/ncap0,'+(Date.now()/1000).toFixed(6);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 320,
+        "wires": [
+            [
+                "f100000000000011"
+            ]
+        ]
+    },
+    {
+        "id": "f100000000000013",
+        "type": "ui_button",
+        "z": "a4c183a95164db51",
+        "group": "f10000000000000d",
+        "order": 2,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "RR-Sync request (9.3)",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 400,
+        "y": 320,
+        "wires": [
+            [
+                "f100000000000012"
+            ]
+        ]
+    },
+    {
+        "id": "f100000000000014",
+        "type": "ui_text",
+        "z": "a4c183a95164db51",
+        "group": "f10000000000000d",
+        "order": 3,
+        "width": "6",
+        "height": "1",
+        "name": "",
+        "label": "RR-Sync offset/delay",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 900,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f100000000000015",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "RR-Sync calc D0",
+        "func": "var t4=Date.now()/1000;var f=(''+msg.payload).split(',');\nvar t1=parseFloat(f[0]),t2=parseFloat(f[1]),t3=parseFloat(f[2]),srv=f[3]||'?';\nvar off=((t2-t1)+(t3-t4))/2, dly=(t4-t1)-(t3-t2);\nmsg.payload='server='+srv+'  offset='+off.toFixed(6)+'s  delay='+dly.toFixed(6)+'s';return msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 400,
+        "wires": [
+            [
+                "f100000000000014"
+            ]
+        ]
+    },
+    {
+        "id": "f100000000000016",
+        "type": "mqtt in",
+        "z": "a4c183a95164db51",
+        "name": "RR-Sync RES D0",
+        "topic": "_1451.1.6/RRS/PTTEST/ncap0/RES",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "39d5aa93d6951ccb",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 400,
+        "y": 400,
+        "wires": [
+            [
+                "f100000000000015"
+            ]
+        ]
+    },
+    {
+        "id": "f100000000000017",
+        "type": "ui_text",
+        "z": "a4c183a95164db51",
+        "group": "f10000000000000d",
+        "order": 4,
+        "width": "6",
+        "height": "1",
+        "name": "",
+        "label": "BR-Sync epoch",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 900,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "f100000000000018",
+        "type": "mqtt in",
+        "z": "a4c183a95164db51",
+        "name": "BR-Sync SYN D0",
+        "topic": "_1451.1.6/BRSU/SYN",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "39d5aa93d6951ccb",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 400,
+        "y": 460,
+        "wires": [
+            [
+                "f100000000000017"
+            ]
+        ]
     }
 ]
