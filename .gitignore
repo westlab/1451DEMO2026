@@ -37,3 +37,4 @@ _build_d0_svc_ui.py
 _build_relabel_monitor.py
 _fix_cop_length.py
 _rebuild_legacy.py
+_arrange_d0.py
