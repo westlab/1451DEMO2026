@@ -913,7 +913,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "2,1,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f01,1,0,0",
+        "payload": "",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -921,7 +921,7 @@
         "y": 120,
         "wires": [
             [
-                "f4dc1efa4ddec667"
+                "cc00000000000001"
             ]
         ]
     },
@@ -1179,7 +1179,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "3,2,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f01,1,4,0",
+        "payload": "",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -1187,7 +1187,7 @@
         "y": 220,
         "wires": [
             [
-                "f4dc1efa4ddec667"
+                "cc00000000000002"
             ]
         ]
     },
@@ -1207,7 +1207,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "3,2,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f00,1,4,0",
+        "payload": "",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -1215,7 +1215,7 @@
         "y": 180,
         "wires": [
             [
-                "f4dc1efa4ddec667"
+                "cc00000000000003"
             ]
         ]
     },
@@ -1470,7 +1470,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "2,1,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f00,1,0,0",
+        "payload": "",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -1478,7 +1478,7 @@
         "y": 80,
         "wires": [
             [
-                "f4dc1efa4ddec667"
+                "cc00000000000004"
             ]
         ]
     },
@@ -1586,7 +1586,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "3,2,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f02,1,4,0",
+        "payload": "",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -1594,7 +1594,7 @@
         "y": 260,
         "wires": [
             [
-                "f4dc1efa4ddec667"
+                "cc00000000000005"
             ]
         ]
     },
@@ -1639,7 +1639,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "3,2,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f0f,1,16,0",
+        "payload": "",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -1647,7 +1647,7 @@
         "y": 300,
         "wires": [
             [
-                "f4dc1efa4ddec667"
+                "cc00000000000006"
             ]
         ]
     },
@@ -3641,15 +3641,15 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "dummy",
+        "payload": "",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 380,
-        "y": 60,
+        "x": 160,
+        "y": 140,
         "wires": [
             [
-                "055b25eceac2df9f"
+                "cc00000000000007"
             ]
         ]
     },
@@ -3660,12 +3660,13 @@
         "name": "TEMP D0 BIN",
         "func": "var buf = new Buffer(64); // build the binary array\nbuf[0] = 2;\nbuf[1] = 1;\nbuf[2] = 1;\nbuf[3] = 0;\nbuf[4] = 59;\nbuf[5] = 0x24; // UUID appId 0\nbuf[6] = 0; // 1\nbuf[7] = 0x25; // 2\nbuf[8] = 0; // 3\nbuf[9] = 0x26; // 4\nbuf[10] = 0; // 5\nbuf[11] = 0x27; // 6\nbuf[12] = 0; // 7\nbuf[13] = 0x28; // 8\nbuf[14] = 0; // 9\nbuf[15] = 0x29; // 10\nbuf[16] = 0; // 11\nbuf[17] = 0x3a; // 12\nbuf[18] = 3; // 13\nbuf[19] = 0xf; // 14\nbuf[20] = 0xf; // 15\nbuf[21] = 0x24; // UUID ncapId 0\nbuf[22] = 0; // 1\nbuf[23] = 0x25; // 2\nbuf[24] = 0; // 3\nbuf[25] = 0x26; // 4\nbuf[26] = 0; // 5\nbuf[27] = 0x27; // 6\nbuf[28] = 0; // 7\nbuf[29] = 0x28; // 8\nbuf[30] = 0; // 9\nbuf[31] = 0x29; // 10\nbuf[32] = 0; // 11\nbuf[33] = 0x3a; // 12\nbuf[34] = 1; // 13\nbuf[35] = 0xf; // 14\nbuf[36] = 0xf; // 15\nbuf[37] = 0x24; // UUID timId 0\nbuf[38] = 0; // 1\nbuf[39] = 0x25; // 2\nbuf[40] = 0; // 3\nbuf[41] = 0x26; // 4\nbuf[42] = 0; // 5\nbuf[43] = 0x27; // 6\nbuf[44] = 0; // 7\nbuf[45] = 0x28; // 8\nbuf[46] = 0; // 9\nbuf[47] = 0x29; // 10\nbuf[48] = 0; // 11\nbuf[49] = 0x3a; // 12\nbuf[50] = 2; // 13\nbuf[51] = 0xf; // 14\nbuf[52] = 0; // 15\nbuf[53] = 0; // ChannelId\nbuf[54] = 1; //\nbuf[55] = 0; // samplingMode 0=default\nbuf[56] = 0; // TimeDuration 0\nbuf[57] = 0; // 1\nbuf[58] = 0; // 2\nbuf[59] = 0; // 3\nbuf[60] = 0; // 4\nbuf[61] = 0; // 5\nbuf[62] = 0; // 6\nbuf[63] = 0; // 7\nmsg.payload = buf;\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 640,
-        "y": 60,
+        "y": 140,
         "wires": [
             [
                 "4d79897b5485f473"
@@ -3752,15 +3753,15 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "dummy",
+        "payload": "",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 380,
-        "y": 100,
+        "x": 160,
+        "y": 180,
         "wires": [
             [
-                "2d6bae1e986f897f"
+                "cc00000000000008"
             ]
         ]
     },
@@ -3776,7 +3777,7 @@
         "finalize": "",
         "libs": [],
         "x": 640,
-        "y": 100,
+        "y": 180,
         "wires": [
             [
                 "4d79897b5485f473"
@@ -3799,7 +3800,7 @@
         "topic": "",
         "name": "",
         "x": 1470,
-        "y": 140,
+        "y": 220,
         "wires": []
     },
     {
@@ -3813,7 +3814,7 @@
         "initialize": "",
         "finalize": "",
         "x": 930,
-        "y": 140,
+        "y": 220,
         "wires": [
             [
                 "7ce46b8dbc03ff46",
@@ -3887,7 +3888,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1150,
-        "y": 100,
+        "y": 180,
         "wires": []
     },
     {
@@ -3934,15 +3935,15 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "dummy",
+        "payload": "",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 400,
-        "y": 220,
+        "x": 160,
+        "y": 300,
         "wires": [
             [
-                "3c97b5834c8ee6f3"
+                "cc00000000000009"
             ]
         ]
     },
@@ -3962,15 +3963,15 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "dummy",
+        "payload": "",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 410,
-        "y": 260,
+        "x": 160,
+        "y": 340,
         "wires": [
             [
-                "f28f2897e5d9aa99"
+                "cc0000000000000a"
             ]
         ]
     },
@@ -3986,7 +3987,7 @@
         "finalize": "",
         "libs": [],
         "x": 660,
-        "y": 220,
+        "y": 300,
         "wires": [
             [
                 "4d79897b5485f473"
@@ -4005,7 +4006,7 @@
         "finalize": "",
         "libs": [],
         "x": 660,
-        "y": 260,
+        "y": 340,
         "wires": [
             [
                 "4d79897b5485f473"
@@ -4158,7 +4159,7 @@
         "initialize": "",
         "finalize": "",
         "x": 1140,
-        "y": 140,
+        "y": 220,
         "wires": [
             [
                 "b4b4fbcd349c97ec"
@@ -4203,7 +4204,7 @@
         "step": 1,
         "className": "",
         "x": 350,
-        "y": 140,
+        "y": 220,
         "wires": [
             [
                 "92cdf83959118817",
@@ -4223,7 +4224,7 @@
         "finalize": "",
         "libs": [],
         "x": 640,
-        "y": 140,
+        "y": 220,
         "wires": [
             [
                 "4d79897b5485f473"
@@ -4246,15 +4247,15 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "dummy",
+        "payload": "",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 410,
-        "y": 300,
+        "x": 160,
+        "y": 380,
         "wires": [
             [
-                "59c17793c04c0c67"
+                "cc0000000000000b"
             ]
         ]
     },
@@ -4270,7 +4271,7 @@
         "finalize": "",
         "libs": [],
         "x": 660,
-        "y": 300,
+        "y": 380,
         "wires": [
             [
                 "4d79897b5485f473"
@@ -4293,15 +4294,15 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "dummy",
+        "payload": "",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 420,
-        "y": 340,
+        "x": 170,
+        "y": 420,
         "wires": [
             [
-                "6015d726eac01a03"
+                "cc0000000000000c"
             ]
         ]
     },
@@ -4317,7 +4318,7 @@
         "finalize": "",
         "libs": [],
         "x": 660,
-        "y": 340,
+        "y": 420,
         "wires": [
             [
                 "4d79897b5485f473"
@@ -4419,15 +4420,15 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "3",
+        "payload": "",
         "payloadType": "num",
         "topic": "topic",
         "topicType": "str",
-        "x": 370,
-        "y": 440,
+        "x": 170,
+        "y": 520,
         "wires": [
             [
-                "ec36f0d3366952aa"
+                "cc0000000000000d"
             ]
         ]
     },
@@ -4447,15 +4448,15 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "1",
+        "payload": "",
         "payloadType": "num",
         "topic": "topic",
         "topicType": "str",
-        "x": 370,
-        "y": 400,
+        "x": 160,
+        "y": 480,
         "wires": [
             [
-                "ec36f0d3366952aa"
+                "cc0000000000000e"
             ]
         ]
     },
@@ -4475,15 +4476,15 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "12",
+        "payload": "",
         "payloadType": "num",
         "topic": "topic",
         "topicType": "str",
-        "x": 370,
-        "y": 480,
+        "x": 160,
+        "y": 560,
         "wires": [
             [
-                "ec36f0d3366952aa"
+                "cc0000000000000f"
             ]
         ]
     },
@@ -4499,7 +4500,7 @@
         "finalize": "",
         "libs": [],
         "x": 630,
-        "y": 460,
+        "y": 540,
         "wires": [
             []
         ]
@@ -4593,15 +4594,15 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "13",
+        "payload": "",
         "payloadType": "num",
         "topic": "topic",
         "topicType": "str",
-        "x": 370,
-        "y": 520,
+        "x": 160,
+        "y": 600,
         "wires": [
             [
-                "ec36f0d3366952aa"
+                "cc00000000000010"
             ]
         ]
     },
@@ -4690,7 +4691,7 @@
         "expiry": "",
         "broker": "39d5aa93d6951ccb",
         "x": 1210,
-        "y": 180,
+        "y": 260,
         "wires": []
     },
     {
@@ -4803,8 +4804,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 390,
-        "y": 580,
+        "x": 130,
+        "y": 80,
         "wires": [
             []
         ]
@@ -5264,7 +5265,7 @@
         "diff": false,
         "className": "",
         "x": 640,
-        "y": 180,
+        "y": 260,
         "wires": []
     },
     {
@@ -7776,7 +7777,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "dummy",
+        "payload": "",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
@@ -7784,7 +7785,7 @@
         "y": 80,
         "wires": [
             [
-                "3ea659ec46b4a419"
+                "cc00000000000011"
             ]
         ]
     },
@@ -8445,6 +8446,346 @@
                 "3c7846a5d04959e3",
                 "5bbecfef8939ef31",
                 "cd4dcc3f6c74380f"
+            ]
+        ]
+    },
+    {
+        "id": "cc00000000000001",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "single read Humid [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,1,1,0,0x${APP},0x${NCAP},0x${T1},1,5,0`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 2800,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "cc00000000000002",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "read TEDS Humid [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`3,2,1,0,0x${APP},0x${NCAP},0x${T1},1,1,0,0`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 2800,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "cc00000000000003",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "read TEDS Temp [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`3,2,1,0,0x${APP},0x${NCAP},0x${T0},1,1,0,0`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 2800,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "cc00000000000004",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "single read Temp [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,1,1,0,0x${APP},0x${NCAP},0x${T0},1,5,0`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 2800,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "cc00000000000005",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "read TEDS Servo [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`3,2,1,0,0x${APP},0x${NCAP},0x${T2},1,1,0,0`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 2800,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "cc00000000000006",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "read TEDS Security [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`3,2,1,0,0x${APP},0x${NCAP},0x${T0},1,16,0,0`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 2800,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "cc00000000000007",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "single read Temp [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.spec=[['u8',2],['u8',1],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T0],['u16',1],['u8',5],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 2800,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cc00000000000008",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "single read Humid [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.spec=[['u8',2],['u8',1],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T1],['u16',1],['u8',5],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 2800,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cc00000000000009",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "read TEDS Temp [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.spec=[['u8',3],['u8',2],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T0],['u16',1],['u8',1],['u32',0],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 2800,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cc0000000000000a",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "read TEDS Humid [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.spec=[['u8',3],['u8',2],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T1],['u16',1],['u8',1],['u32',0],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 2800,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cc0000000000000b",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "read TEDS Servo [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.spec=[['u8',3],['u8',2],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T2],['u16',1],['u8',1],['u32',0],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 2800,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cc0000000000000c",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "read TEDS Security [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.spec=[['u8',3],['u8',2],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T0],['u16',1],['u8',16],['u32',0],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 2800,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cc0000000000000d",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "read TEDS Channel [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.spec=[['u8',3],['u8',2],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T0],['u16',1],['u8',3],['u32',0],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 2800,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cc0000000000000e",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "read TEDS Meta [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.spec=[['u8',3],['u8',2],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T0],['u16',1],['u8',1],['u32',0],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 2800,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cc0000000000000f",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "read TEDS Name [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.spec=[['u8',3],['u8',2],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T0],['u16',1],['u8',12],['u32',0],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 2800,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cc00000000000010",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "read TEDS Phys [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.spec=[['u8',3],['u8',2],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T0],['u16',1],['u8',13],['u32',0],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 2800,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cc00000000000011",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "single read Temp [new]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.spec=[['u8',2],['u8',1],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T0],['u16',1],['u8',5],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 2800,
+        "wires": [
+            [
+                "ca00000000000001"
             ]
         ]
     }
