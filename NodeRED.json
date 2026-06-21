@@ -8325,5 +8325,63 @@
                 "cd4dcc3f6c74380f"
             ]
         ]
+    },
+    {
+        "id": "ce00000000000001",
+        "type": "ui_group",
+        "name": "Time-sync svc D0 (9)",
+        "tab": "86483328.1e604",
+        "order": 65,
+        "disp": true,
+        "width": "6",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "ce00000000000002",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "RR-Sync request [D0]",
+        "func": "msg.topic='_1451.1.6/RRS/REQ';\nmsg.payload='PTTEST/ncap0,'+(Date.now()/1000).toFixed(6);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 3320,
+        "wires": [
+            [
+                "00a1510000000004"
+            ]
+        ]
+    },
+    {
+        "id": "ce00000000000003",
+        "type": "ui_button",
+        "z": "a4c183a95164db51",
+        "group": "ce00000000000001",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "RR-Sync request (9.3)",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 160,
+        "y": 3320,
+        "wires": [
+            [
+                "ce00000000000002"
+            ]
+        ]
     }
 ]
