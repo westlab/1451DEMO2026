@@ -773,10 +773,10 @@ class NCAP:
         print('[SUB      ] heartbeat #%d every %.2fs (%s)' % (subId, interval, op))
 
     def h_event_unsubscribe(self, op, cmd):
-        """1451.1.6 (4,3): stop all event subscriptions for this app -> notifications halt."""
+        """1451.1.6 (4,3): stop all event/stream subscriptions for this app -> notifications halt."""
         appId = norm_uuid(cmd['appId'])
         removed = [s['subId'] for s in self.subs.all()
-                   if s['appId'] == appId and s['kind'] == 'event']
+                   if s['appId'] == appId and s['kind'] in ('event', 'stream')]
         for sid in removed:
             self.subs.remove(sid)
         self._publish(op, M.event_unsubscribe_rep, {
