@@ -4072,27 +4072,8 @@
         "y": 2080,
         "wires": [
             [
-                "92cdf83959118817",
+                "cd0000000000000a",
                 "c700000000000008"
-            ]
-        ]
-    },
-    {
-        "id": "92cdf83959118817",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "SERVO D0 BIN",
-        "func": "var buf = new Buffer(66); // build the binary array\nbuf[0] = 2;\nbuf[1] = 7;\nbuf[2] = 1;\nbuf[3] = 0;\nbuf[4] = 59;\nbuf[5] = 0x24; // UUID appId 0\nbuf[6] = 0; // 1\nbuf[7] = 0x25; // 2\nbuf[8] = 0; // 3\nbuf[9] = 0x26; // 4\nbuf[10] = 0; // 5\nbuf[11] = 0x27; // 6\nbuf[12] = 0; // 7\nbuf[13] = 0x28; // 8\nbuf[14] = 0; // 9\nbuf[15] = 0x29; // 10\nbuf[16] = 0; // 11\nbuf[17] = 0x3a; // 12\nbuf[18] = 3; // 13\nbuf[19] = 0xf; // 14\nbuf[20] = 0xf; // 15\nbuf[21] = 0x24; // UUID ncapId 0\nbuf[22] = 0; // 1\nbuf[23] = 0x25; // 2\nbuf[24] = 0; // 3\nbuf[25] = 0x26; // 4\nbuf[26] = 0; // 5\nbuf[27] = 0x27; // 6\nbuf[28] = 0; // 7\nbuf[29] = 0x28; // 8\nbuf[30] = 0; // 9\nbuf[31] = 0x29; // 10\nbuf[32] = 0; // 11\nbuf[33] = 0x3a; // 12\nbuf[34] = 1; // 13\nbuf[35] = 0xf; // 14\nbuf[36] = 0xf; // 15\nbuf[37] = 0x24; // UUID timId 0\nbuf[38] = 0; // 1\nbuf[39] = 0x25; // 2\nbuf[40] = 0; // 3\nbuf[41] = 0x26; // 4\nbuf[42] = 0; // 5\nbuf[43] = 0x27; // 6\nbuf[44] = 0; // 7\nbuf[45] = 0x28; // 8\nbuf[46] = 0; // 9\nbuf[47] = 0x29; // 10\nbuf[48] = 0; // 11\nbuf[49] = 0x3a; // 12\nbuf[50] = 2; // 13\nbuf[51] = 0xf; // 14\nbuf[52] = 3; // 15\nbuf[53] = 0; // ChannelId \nbuf[54] = 4; //\nbuf[55] = 0; // samplingMode 0=default\n// dataValue as ASCII string (NCAP reads 'str' until null), then 8-byte time8\nvar s = '' + Math.max(0, Math.min(100, parseInt(msg.payload, 10) || 0));\nvar out = Buffer.concat([buf.slice(0, 56), Buffer.from(s, 'ascii'), Buffer.from([0,0,0,0,0,0,0,0,0])]);\nout[3] = 0; out[4] = (out.length - 7) & 0xff; // msgLength (informational; str is null-terminated)\nmsg.topic=global.get('reqTopicD0');\nmsg.payload = out;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1780,
-        "y": 2160,
-        "wires": [
-            [
-                "4d79897b5485f473"
             ]
         ]
     },
@@ -4563,26 +4544,6 @@
         "wires": []
     },
     {
-        "id": "00a1510000000005",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 NCAP discovery",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[1,8,1,0,0].concat(hx(APP));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 720,
-        "wires": [
-            [
-                "4d79897b5485f473"
-            ]
-        ]
-    },
-    {
         "id": "00a1510000000006",
         "type": "ui_button",
         "z": "a4c183a95164db51",
@@ -4606,26 +4567,7 @@
         "y": 720,
         "wires": [
             [
-                "00a1510000000005"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000007",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 TIM discovery",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[1,9,1,0,0].concat(hx(APP)).concat(hx(NCAP));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 840,
-        "wires": [
-            [
-                "4d79897b5485f473"
+                "cd00000000000001"
             ]
         ]
     },
@@ -4653,26 +4595,7 @@
         "y": 840,
         "wires": [
             [
-                "00a1510000000007"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000009",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 XDCR discovery",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[1,10,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(hx(T0));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 960,
-        "wires": [
-            [
-                "4d79897b5485f473"
+                "cd00000000000002"
             ]
         ]
     },
@@ -4700,26 +4623,7 @@
         "y": 960,
         "wires": [
             [
-                "00a1510000000009"
-            ]
-        ]
-    },
-    {
-        "id": "00a151000000000b",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 Multi-ch read",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[2,5,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(u16(2)).concat(hx(T0)).concat(hx(T1)).concat(u16(1)).concat(u16(1)).concat(u16(1)).concat(u16(1)).concat([5]).concat(Z8);\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 1020,
-        "wires": [
-            [
-                "4d79897b5485f473"
+                "cd00000000000003"
             ]
         ]
     },
@@ -4747,26 +4651,7 @@
         "y": 1020,
         "wires": [
             [
-                "00a151000000000b"
-            ]
-        ]
-    },
-    {
-        "id": "00a151000000000d",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 Block read",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[2,6,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(u16(1)).concat(hx(T0)).concat(u16(1)).concat(u16(1)).concat(u32(3)).concat(Z8).concat(Z8).concat(Z8);\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 1080,
-        "wires": [
-            [
-                "4d79897b5485f473"
+                "cd00000000000004"
             ]
         ]
     },
@@ -4794,26 +4679,7 @@
         "y": 1080,
         "wires": [
             [
-                "00a151000000000d"
-            ]
-        ]
-    },
-    {
-        "id": "00a151000000000f",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 Event subscribe",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[4,1,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(hx(T0)).concat(u16(1)).concat(s0('')).concat(s0('app0')).concat(Z8).concat(Z8);\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 1140,
-        "wires": [
-            [
-                "4d79897b5485f473"
+                "cd00000000000005"
             ]
         ]
     },
@@ -4841,26 +4707,7 @@
         "y": 1140,
         "wires": [
             [
-                "00a151000000000f"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000011",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 Heartbeat subscribe",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[4,10,1,0,0].concat(hx(APP)).concat(Z8).concat(Z8);\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 1200,
-        "wires": [
-            [
-                "4d79897b5485f473"
+                "cd00000000000006"
             ]
         ]
     },
@@ -4888,7 +4735,7 @@
         "y": 1200,
         "wires": [
             [
-                "00a1510000000011"
+                "cd00000000000007"
             ]
         ]
     },
@@ -5003,26 +4850,6 @@
         "wires": []
     },
     {
-        "id": "c800000000000005",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 Event unsubscribe",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nvar a=[4,3,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(hx(T0)).concat(u16(1)).concat(u16(0));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');msg.payload=Buffer.from(a);return msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 780,
-        "wires": [
-            [
-                "4d79897b5485f473"
-            ]
-        ]
-    },
-    {
         "id": "c800000000000006",
         "type": "ui_button",
         "z": "a4c183a95164db51",
@@ -5045,27 +4872,7 @@
         "y": 780,
         "wires": [
             [
-                "c800000000000005"
-            ]
-        ]
-    },
-    {
-        "id": "c800000000000007",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 Heartbeat unsubscribe",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nvar a=[4,12,1,0,0].concat(hx(APP));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');msg.payload=Buffer.from(a);return msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 900,
-        "wires": [
-            [
-                "4d79897b5485f473"
+                "cd00000000000008"
             ]
         ]
     },
@@ -5092,7 +4899,7 @@
         "y": 900,
         "wires": [
             [
-                "c800000000000007"
+                "cd00000000000009"
             ]
         ]
     },
@@ -8398,6 +8205,206 @@
                 "3c7846a5d04959e3",
                 "5bbecfef8939ef31",
                 "cd4dcc3f6c74380f"
+            ]
+        ]
+    },
+    {
+        "id": "cd00000000000001",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 NCAP discovery [spec]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.spec=[['u8',1],['u8',8],['u8',1],['len'],['uuid',APP]];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 2400,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cd00000000000002",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 TIM discovery [spec]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.spec=[['u8',1],['u8',9],['u8',1],['len'],['uuid',APP],['uuid',NCAP]];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 2400,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cd00000000000003",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 XDCR discovery [spec]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.spec=[['u8',1],['u8',10],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T0]];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 2400,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cd00000000000004",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 Multi-ch read [spec]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.spec=[['u8',2],['u8',5],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['u16',2],['uuida',[T0,T1]],['u16a',[1,1]],['u16a',[1,1]],['u8',5],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 2400,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cd00000000000005",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 Block read [spec]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.spec=[['u8',2],['u8',6],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['u16',1],['uuida',[T0]],['u16a',[1]],['u16a',[1]],['u32',3],['time8'],['time8'],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 2400,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cd00000000000006",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 Event subscribe [spec]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.spec=[['u8',4],['u8',1],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T0],['u16',1],['str',\"\"],['str',\"app0\"],['time8'],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 2400,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cd00000000000007",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 Heartbeat subscribe [spec]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.spec=[['u8',4],['u8',10],['u8',1],['len'],['uuid',APP],['time8'],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 2400,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cd00000000000008",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 Event unsubscribe [spec]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.spec=[['u8',4],['u8',3],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T0],['u16',1],['u16',0]];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 2400,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cd00000000000009",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 Heartbeat unsubscribe [spec]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nmsg.spec=[['u8',4],['u8',12],['u8',1],['len'],['uuid',APP]];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 2400,
+        "wires": [
+            [
+                "ca00000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "cd0000000000000a",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "Gauge write [spec]",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2'),T3=global.get('T3'),T4=global.get('T4');\nvar v=parseInt(msg.payload,10);if(isNaN(v))v=0;v=Math.max(0,Math.min(100,v));\nmsg.spec=[['u8',2],['u8',7],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T3],['u16',4],['u8',0],['str',''+v],['time8']];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 2700,
+        "wires": [
+            [
+                "ca00000000000001"
             ]
         ]
     }
