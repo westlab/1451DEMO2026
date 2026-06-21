@@ -6002,26 +6002,6 @@
         ]
     },
     {
-        "id": "cc00000000000011",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "single read Temp [new]",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.spec=[['u8',2],['u8',1],['u8',1],['len'],['uuid',APP],['uuid',NCAP],['uuid',T0],['u16',1],['u8',5],['time8']];\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1090,
-        "y": 880,
-        "wires": [
-            [
-                "ca00000000000001"
-            ]
-        ]
-    },
-    {
         "id": "cd00000000000001",
         "type": "function",
         "z": "a4c183a95164db51",
@@ -7683,37 +7663,7 @@
         "x": 120,
         "y": 80,
         "wires": [
-            [
-                "75a6f3f6b2993b6a"
-            ]
-        ]
-    },
-    {
-        "id": "75a6f3f6b2993b6a",
-        "type": "ui_button",
-        "z": "d7e9ac85b2d047e7",
-        "name": "",
-        "group": "9e29f48052d20ba3",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "label": "D0 single read (Temp) (2,1)",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 340,
-        "y": 80,
-        "wires": [
-            [
-                "cc00000000000011"
-            ]
+            []
         ]
     },
     {
