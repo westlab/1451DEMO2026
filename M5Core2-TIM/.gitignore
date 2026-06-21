@@ -1,0 +1,8 @@
+# Secrets (plain-text WiFi password etc.) must never be committed.
+secrets.h
+
+# Arduino / PlatformIO build artifacts
+build/
+.pio/
+*.bin
+*.elf
