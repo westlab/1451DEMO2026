@@ -98,35 +98,39 @@ def teds_wrap(teds_body: bytes) -> bytes:
     return full + teds_checksum(full)
 
 
-CK_TRANS = 273.2   # ℃ -> K オフセット（デモの TEDS が K 基準のため）
+CK_TRANS = 273.2   # degC -> K offset (the demo TEDS is K-based)
 
 # ===================================================================== #
-#  ★★★ 実センサ／アクチュエータの接続ポイント ★★★
+#  *** Connection points for real sensors / actuators ***
 #
-#  「実物のセンサを TIM として足したい」ときに編集するのは、このファイル内の
-#  次の2か所だけです:
+#  When you want to add a real sensor as a TIM, you only need to edit the
+#  following 2 places in this file:
 #
-#    (A) 下の  Hardware クラス
-#        … GPIO / I2C / SPI / ADC などの「読み書きの実装」をメソッドで足す。
-#           pseudo=True（-p 起動）のときはダミー値を返すように分岐しておく。
+#    (A) The Hardware class below
+#        ... add the read/write implementation (GPIO / I2C / SPI / ADC etc.)
+#           as a method. When pseudo=True (-p startup), branch so it returns
+#           dummy values.
 #
-#    (B) NCAP._build_sensors() 内の  SENSOR_DEFS テーブル
-#        … 「どの TIM(UUID) の どの channel が、どの読み/書き関数を使うか」を
-#           1行追加するだけ。TEDS は config.yml の <PREFIX>... キーで自動取得。
+#    (B) The SENSOR_DEFS table inside NCAP._build_sensors()
+#        ... just add one line for "which channel of which TIM(UUID) uses
+#           which read/write function". TEDS is fetched automatically from
+#           the <PREFIX>... keys in config.yml.
 #
-#  追加手順まとめ:
-#    1. config.yml に  UUIDTIMn / NAMETIMn と TEDS（<PREFIX>BINMETATEDS 等,
-#       および <PREFIX>TEDS）を追記する。
-#    2. Hardware に読み取り/書き込みメソッドを実装する（実物+pseudo両方）。
-#    3. SENSOR_DEFS に 1 行追加する。
-#  これだけで discovery / read / write / TEDS / 非同期通知すべてに反映されます。
+#  Summary of the steps to add:
+#    1. Add UUIDTIMn / NAMETIMn and TEDS (<PREFIX>BINMETATEDS etc.,
+#       and <PREFIX>TEDS) to config.yml.
+#    2. Implement the read/write methods in Hardware (both real and pseudo).
+#    3. Add one line to SENSOR_DEFS.
+#  That alone is reflected across discovery / read / write / TEDS / async
+#  notification.
 # ===================================================================== #
 
 
 class Hardware:
     """
-    実I/O をまとめた層。pseudo=True ならハードにアクセスせずダミー値を返す。
-    ここに新しいセンサ用の読み/書きメソッドを追加していく。
+    Layer that bundles real I/O. When pseudo=True, returns dummy values
+    without accessing hardware.
+    Add read/write methods for new sensors here.
     """
 
     def __init__(self, pseudo):
@@ -134,21 +138,22 @@ class Hardware:
         self._gpio = None
         self._dht = None
         self._servo = None
-        self._dht_cache = (None, None)   # DHT11 は1回の読みで温度・湿度の両方を得る
-        # ---- M5Core2 + SCD41 ブリッジ（WiFi/MQTT 経由） ------------------ #
-        #  GPIO とは独立。pseudo でも、実機 M5 が telemetry を publish していれば
-        #  そちらの実値を優先し、未受信のときだけダミー値を返す。
+        self._dht_cache = (None, None)   # DHT11 gives both temperature and humidity in one read
+        # ---- M5Core2 + SCD41 bridge (over WiFi/MQTT) ------------------ #
+        #  Independent of GPIO. Even in pseudo, if the real M5 is publishing
+        #  telemetry, prefer those real values; return dummy values only when
+        #  nothing has been received.
         self._m5 = {}            # deviceId -> {'temp','humid','co2','gauge','online','ts'}
-        self._m5_pub = None      # NCAP.run() が設定: publish(topic, payload) callable
-        self._m5_prefix = ''     # 同上: 'm5iot/' 等
+        self._m5_pub = None      # set by NCAP.run(): publish(topic, payload) callable
+        self._m5_prefix = ''     # same as above: 'm5iot/' etc.
         if not pseudo:
-            # ---- 実機(Raspberry Pi)の初期化 -------------------------- #
+            # ---- Real hardware (Raspberry Pi) initialization --------- #
             import RPi.GPIO as GPIO
             import dht11
             self._gpio = GPIO
             GPIO.setwarnings(True)
             GPIO.setmode(GPIO.BCM)
-            GPIO.setup(4, GPIO.OUT)          # サーボ: GPIO4
+            GPIO.setup(4, GPIO.OUT)          # servo: GPIO4
             self._servo = GPIO.PWM(4, 50)
             self._servo.start(0.0)
             self._dht = dht11.DHT11(pin=15)  # DHT11: GPIO15
@@ -159,8 +164,9 @@ class Hardware:
             print('Hardware: pseudo (no GPIO)')
 
     # ------------------------------------------------------------------ #
-    #  サンプリング周期ごとに1回呼ばれる。複数チャネルで共有するセンサ
-    #  （DHT11 のように1読み取りで複数値）はここでキャッシュを更新する。
+    #  Called once per sampling period. Sensors shared across multiple
+    #  channels (like DHT11, which yields multiple values in one read)
+    #  update their cache here.
     # ------------------------------------------------------------------ #
     def refresh(self):
         if self.pseudo:
@@ -170,9 +176,9 @@ class Hardware:
         r = self._dht.read()
         if r.is_valid():
             self._dht_cache = (r.temperature + CK_TRANS, r.humidity)
-        # 無効読み取り時は前回値を保持
+        # On an invalid read, keep the previous value
 
-    # ---- 読み取りメソッド（戻り値=サンプル値, 取得不可なら None）------ #
+    # ---- Read methods (return value = sample value, None if unavailable) ---- #
     def temp(self):
         t = self._dht_cache[0]
         return None if t is None else round(t, 1)
@@ -181,13 +187,13 @@ class Hardware:
         h = self._dht_cache[1]
         return None if h is None else round(h, 1)
 
-    # 例) 新しいアナログセンサを足す場合のひな形:
+    # e.g.) Template for adding a new analog sensor:
     # def adc(self, ch):
     #     if self.pseudo:
     #         return self._random.randrange(0, 1024)
-    #     return my_adc_library.read(ch)          # 実物の読み取り
+    #     return my_adc_library.read(ch)          # real read
 
-    # ---- 書き込み(アクチュエータ)メソッド --------------------------- #
+    # ---- Write (actuator) methods ----------------------------------- #
     def servo(self, value):
         deg = float(value)
         if self.pseudo:
@@ -198,23 +204,24 @@ class Hardware:
         self._servo.ChangeDutyCycle(0.0)
 
     # ================================================================ #
-    #  M5Core2 + SCD41 ブリッジ（WiFi/MQTT）
+    #  M5Core2 + SCD41 bridge (WiFi/MQTT)
     #
-    #  契約（NCAP.py と M5 ファームウェアで共有する取り決め）:
+    #  Contract (the agreement shared between NCAP.py and the M5 firmware):
     #    telemetry  M5  -> NCAP   <prefix><dev>/telemetry  JSON
-    #               {"temp":<℃>,"humid":<%>,"co2":<ppm>,"gauge":<0-100>}
-    #    gauge cmd  NCAP -> M5     <prefix><dev>/gauge      平文の数値 0-100
+    #               {"temp":<degC>,"humid":<%>,"co2":<ppm>,"gauge":<0-100>}
+    #    gauge cmd  NCAP -> M5     <prefix><dev>/gauge      plaintext number 0-100
     #    status     M5  -> NCAP   <prefix><dev>/status     "online"/"offline"
-    #               （retained + LWT。接続監視用）
-    #  温度は ℃ で受け、TEDS に合わせて K(+273.2) に変換して返す。
+    #               (retained + LWT; for connection monitoring)
+    #  Temperature is received in degC and returned converted to K(+273.2)
+    #  to match the TEDS.
     # ================================================================ #
     def m5_set_publisher(self, publish, prefix):
-        """NCAP の MQTT クライアントを gauge 送信用に登録する。"""
+        """Register the NCAP MQTT client for sending gauge commands."""
         self._m5_pub = publish
         self._m5_prefix = prefix
 
     def m5_ingest(self, deviceId, data):
-        """telemetry JSON（dict）を取り込み、最新値をキャッシュする。"""
+        """Ingest telemetry JSON (dict) and cache the latest values."""
         d = self._m5.setdefault(deviceId, {})
         for k in ('temp', 'humid', 'co2', 'gauge'):
             if k in data and data[k] is not None:
@@ -225,14 +232,14 @@ class Hardware:
         d['online'] = True
 
     def m5_status(self, deviceId, text):
-        """status トピック（online/offline）を反映する。"""
+        """Reflect the status topic (online/offline)."""
         self._m5.setdefault(deviceId, {})['online'] = (str(text).strip().lower() == 'online')
 
     def _m5_get(self, deviceId, key):
         v = self._m5.get(deviceId, {}).get(key)
         if v is not None:
             return v
-        # 実機 M5 が未接続でも -p デモが動くようダミー値を返す
+        # Return dummy values so the -p demo runs even if the real M5 is not connected
         if self.pseudo:
             base = {'temp': 250, 'humid': 400, 'co2': 6000, 'gauge': 500}[key]
             return (base + self._random.randrange(-30, 30)) / 10.0
@@ -240,7 +247,7 @@ class Hardware:
 
     def m5_temp(self, deviceId):
         t = self._m5_get(deviceId, 'temp')
-        return None if t is None else round(t + CK_TRANS, 1)   # ℃ -> K
+        return None if t is None else round(t + CK_TRANS, 1)   # degC -> K
 
     def m5_humid(self, deviceId):
         h = self._m5_get(deviceId, 'humid')
@@ -255,13 +262,13 @@ class Hardware:
         return None if g is None else round(g, 1)
 
     def m5_gauge(self, deviceId, value):
-        """ゲージ目標値(0-100)を M5 に送り、画面の針を動かす。"""
+        """Send the gauge target value (0-100) to the M5 to move the on-screen needle."""
         try:
             v = float(value)
         except (TypeError, ValueError):
             v = 0.0
         v = max(0.0, min(100.0, v))
-        self._m5.setdefault(deviceId, {})['gauge'] = v   # read 用に楽観更新
+        self._m5.setdefault(deviceId, {})['gauge'] = v   # optimistic update for read
         if self._m5_pub is not None:
             self._m5_pub('%s%s/gauge' % (self._m5_prefix, deviceId), str(v))
         if self.pseudo:
@@ -288,16 +295,16 @@ class NCAP:
         self.ncapId = norm_uuid(conf['UUIDNCAP'])
         self.ncapName = conf['ncapname']
 
-        # 内部テーブル（_build_sensors() が SENSOR_DEFS から組み立てる）
-        self.readers = {}     # (timId, channelId) -> 読み取り関数 callable() / None
-        self.writers = {}     # (timId, channelId) -> 書き込み関数 callable(value) / None
-        self.binteds = {}     # timId -> {tedsAccessCode: hex文字列(config)}
-        self.textteds = {}    # timId -> XML文字列(config)
-        self.values = {}      # (timId, channelId) -> 最新サンプル値
+        # Internal tables (_build_sensors() assembles them from SENSOR_DEFS)
+        self.readers = {}     # (timId, channelId) -> read function callable() / None
+        self.writers = {}     # (timId, channelId) -> write function callable(value) / None
+        self.binteds = {}     # timId -> {tedsAccessCode: hex string(config)}
+        self.textteds = {}    # timId -> XML string(config)
+        self.values = {}      # (timId, channelId) -> latest sample value
         self.securitytext = conf['SECURITYTEDS']
         self._build_sensors()
 
-        # ---- M5Core2 ブリッジ（WiFi/MQTT）設定 ---------------------- #
+        # ---- M5Core2 bridge (WiFi/MQTT) settings ------------------- #
         self.m5_enable = bool(conf.get('m5_enable'))
         self.m5prefix = conf.get('m5_topic_prefix', 'm5iot/')
 
@@ -322,36 +329,37 @@ class NCAP:
         self.loop = None
 
     # ================================================================ #
-    #  ★ TIM / センサ定義テーブル（実センサ追加はここを1行足すだけ）
+    #  * TIM / sensor definition table (to add a real sensor, just add one line here)
     # ================================================================ #
     def _build_sensors(self):
         conf = self.c
         hw = self.hw
 
-        # 各行 = 1 つの transducer channel:
-        #   uuidKey   : config.yml の UUID キー（その TIM の識別子 UUID）
-        #   nameKey   : config.yml の TIM 名キー
-        #   channel   : channelId（同じ TIM で複数 ch なら行を複数並べる）
-        #   reader    : 読み取り関数 callable()->値 / None（アクチュエータは None）
-        #   writer    : 書き込み関数 callable(値)   / None（センサは None）
-        #   tedsPrefix: TEDS の config キー接頭辞（例 'TEMP' -> TEMPBINMETATEDS,
-        #               TEMPBINCHANTEDS, TEMPBINNAMETEDS, TEMPBINPHYTEDS, TEMPTEDS）
+        # Each row = one transducer channel:
+        #   uuidKey   : UUID key in config.yml (that TIM's identifier UUID)
+        #   nameKey   : TIM name key in config.yml
+        #   channel   : channelId (for multiple ch on the same TIM, list multiple rows)
+        #   reader    : read function callable()->value / None (None for actuators)
+        #   writer    : write function callable(value)  / None (None for sensors)
+        #   tedsPrefix: TEDS config key prefix (e.g. 'TEMP' -> TEMPBINMETATEDS,
+        #               TEMPBINCHANTEDS, TEMPBINNAMETEDS, TEMPBINPHYTEDS, TEMPTEDS)
         #
-        # ↓↓↓ 実センサを追加するときはこのリストに行を足す ↓↓↓
+        # vvv To add a real sensor, add a row to this list vvv
         SENSOR_DEFS = [
             # uuidKey,    nameKey,    ch, reader,    writer,     tedsPrefix
-            ('UUIDTIM0', 'NAMETIM0', 1, hw.temp,   None,       'TEMP'),
-            ('UUIDTIM1', 'NAMETIM1', 1, hw.humid,  None,       'HUMID'),
-            ('UUIDTIM2', 'NAMETIM2', 1, None,      hw.servo,   'SERVO'),
-            # 例) GPIO15/サーボとは別に ADC センサ(TIM3, ch1)を足す場合:
+            # Pseudo TIM0 (temp) / TIM1 (humid) / TIM2 (servo) removed: no real
+            # hardware is wired. The only real transducers are the M5Core2 units
+            # (TIM3/TIM4) added below.
+
+            # e.g.) To add an ADC sensor (TIM3, ch1) separate from GPIO15/servo:
             # ('UUIDTIM3', 'NAMETIM3', 1, lambda: hw.adc(0), None, 'PRESS'),
         ]
 
-        # ---- M5Core2 + SCD41 端末（WiFi/MQTT）を TIM として追加 -------- #
-        #  1端末 = 1 TIM、4 チャネル:
-        #    ch1=温度(K) ch2=湿度(%) ch3=CO2(ppm)  … センサ
-        #    ch4=ゲージ(0-100)                      … read+write アクチュエータ
-        #  端末は config.yml の m5_devices リストで何台でも増やせる。
+        # ---- Add M5Core2 + SCD41 devices (WiFi/MQTT) as TIMs ---------- #
+        #  1 device = 1 TIM, 4 channels:
+        #    ch1=temperature(K) ch2=humidity(%) ch3=CO2(ppm)  ... sensors
+        #    ch4=gauge(0-100)                                  ... read+write actuator
+        #  Add as many devices as you like via the m5_devices list in config.yml.
         if conf.get('m5_enable'):
             for dev in conf.get('m5_devices', []):
                 did = dev['id']
@@ -362,7 +370,7 @@ class NCAP:
                     (tk, nk, 3, (lambda d=did: hw.m5_co2(d)),        None,                            'M5CO2'),
                     (tk, nk, 4, (lambda d=did: hw.m5_gauge_value(d)), (lambda v, d=did: hw.m5_gauge(d, v)), 'M5GAUGE'),
                 ]
-        # ↑↑↑ ここまで。下は自動処理（通常さわらない） ↑↑↑
+        # ^^^ End of editable section. Below is automatic processing (normally untouched) ^^^
 
         sec_bin = conf['SECURITYBINTEDS']
         for uuidKey, nameKey, ch, reader, writer, pfx in SENSOR_DEFS:
@@ -375,14 +383,14 @@ class NCAP:
                 self.readers[(tid, ch)] = reader
             if writer is not None:
                 self.writers[(tid, ch)] = writer
-            # TEDS は (TIM, channel) 単位で保持する（多チャネル TIM 対応）。
-            # config キーが存在するものだけ取り込む。
+            # TEDS is kept per (TIM, channel) (supports multi-channel TIMs).
+            # Only take in config keys that exist.
             self.binteds.setdefault((tid, ch), {})
             for code, key in ((1, pfx + 'BINMETATEDS'), (3, pfx + 'BINCHANTEDS'),
                               (12, pfx + 'BINNAMETEDS'), (13, pfx + 'BINPHYTEDS')):
                 if key in conf:
                     self.binteds[(tid, ch)][code] = conf[key]
-            self.binteds[(tid, ch)][16] = sec_bin      # security TEDS は共通
+            self.binteds[(tid, ch)][16] = sec_bin      # security TEDS is shared
             if pfx + 'TEDS' in conf:
                 self.textteds[(tid, ch)] = conf[pfx + 'TEDS']
 
@@ -490,7 +498,7 @@ class NCAP:
             self._handle_d0op(payload if isinstance(payload, (bytes, bytearray)) else payload.encode('latin-1'))
 
     def _handle_m5(self, topic, payload):
-        """M5Core2 ブリッジ受信: <prefix><dev>/telemetry | /status を取り込む。"""
+        """M5Core2 bridge receive: ingest <prefix><dev>/telemetry | /status."""
         rest = topic[len(self.m5prefix):]
         deviceId, _, kind = rest.partition('/')
         text = payload.decode('utf-8', 'replace') if isinstance(payload, (bytes, bytearray)) else str(payload)
@@ -617,7 +625,7 @@ class NCAP:
         })
 
     def _read_value(self, timId, channelId):
-        """最新サンプル値を返す（task_sampling が self.values を更新している）。"""
+        """Return the latest sample value (task_sampling keeps self.values updated)."""
         return self.values.get((timId, channelId))
 
     def h_sync_read(self, op, cmd):
@@ -694,7 +702,7 @@ class NCAP:
             return self._err_ncap(cmd)
         tid = norm_uuid(cmd['timId'])
         ch = int(cmd['channelId'])
-        writer = self.writers.get((tid, ch))     # SENSOR_DEFS の writer 関数
+        writer = self.writers.get((tid, ch))     # writer function from SENSOR_DEFS
         err = 0
         if writer is not None:
             try:
@@ -703,7 +711,7 @@ class NCAP:
                 print('write error:', repr(e))
                 err = 3
         else:
-            err = 2                                # 書き込み不可（センサ等）
+            err = 2                                # not writable (sensor etc.)
         self._publish(op, M.sync_write_rep, {
             'errorCode': err,
             'appId': cmd['appId'],
@@ -718,7 +726,7 @@ class NCAP:
         tid = norm_uuid(cmd['timId'])
         code = int(cmd['tedsAccessCode'])
         ch = int(cmd['channelId']) if cmd.get('channelId') not in (None, '') else 0
-        # (TIM, channel) 単位で保持。ch 指定なし/0 や未登録 ch は ch1 にフォールバック。
+        # Kept per (TIM, channel). No ch specified / 0 or an unregistered ch falls back to ch1.
         keyc = (tid, ch) if (tid, ch) in self.binteds else (tid, 1)
         if op == 'C':
             raw = self.securitytext if code == 16 else self.textteds.get(keyc, '')
@@ -1124,18 +1132,18 @@ class NCAP:
     #  Background async tasks
     # ================================================================ #
     async def task_sampling(self):
-        """全センサ ch を周期的に読み self.values を更新（+ D-OP データ配信）。"""
+        """Periodically read all sensor channels and update self.values (+ D-OP data publishing)."""
         period = float(self.c.get('sampling_interval', 3.0))
         while True:
             try:
-                # ハード読み取りはブロックし得るので executor で実行
+                # Hardware reads can block, so run them in an executor
                 await self.loop.run_in_executor(None, self.hw.refresh)
                 summary = []
                 for (tid, ch), reader in self.readers.items():
                     val = reader()
                     if val is not None:
                         self.values[(tid, ch)] = val
-                        # D-OP（人間可読データ配信）: SPFX/D/loc/ncap/<TIMname>/<ch>
+                        # D-OP (human-readable data publishing): SPFX/D/loc/ncap/<TIMname>/<ch>
                         if not self.args.ddisable:
                             tname = self.tims.findtim(tid)['name']
                             self.client.publish('%s/%s/%d' % (self.t_dop_data, tname, ch), str(val))
@@ -1289,7 +1297,7 @@ class NCAP:
         self.client.on_message = self.on_message
         self.client.on_disconnect = self.on_disconnect
         if self.m5_enable:
-            # gauge 書き込みを M5 へ送るための publish 口を Hardware に渡す
+            # Pass Hardware the publish handle for sending gauge writes to the M5
             self.hw.m5_set_publisher(self.client.publish, self.m5prefix)
 
         use_tls = bool(self.c.get('mqtttls'))

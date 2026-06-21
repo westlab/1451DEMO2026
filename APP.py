@@ -121,7 +121,7 @@ class App:
 
         self.appId = conf['UUIDAPP0']
         self.ncapId = conf['UUIDNCAP']
-        # 設定にある TIM を順に並べる（TIM3/TIM4 = M5 端末があれば自動で含める）
+        # List the TIMs from the config in order (TIM3/TIM4 = M5 devices are included automatically when present)
         self.tims = []
         for i in range(0, 16):
             key = 'UUIDTIM%d' % i
@@ -223,7 +223,7 @@ class App:
                    'samplingMode': 5, 'timeout': 0}, 'sync_read')
 
     def act_write(self):
-        # 既定はサーボ(TIM index 2)。--tim でゲージ等 別の actuator を指定可。
+        # Default is the servo (TIM index 2). Use --tim to target another actuator such as the gauge.
         widx = self.args.tim if self.args.only == 'write' and self.args.tim else 2
         self.send(M.sync_write_cmd,
                   {'appId': self.appId, 'ncapId': self.ncapId,

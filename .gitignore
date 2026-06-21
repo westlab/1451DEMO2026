@@ -40,3 +40,10 @@ _rebuild_legacy.py
 _arrange_d0.py
 _unify_d0_encode.py
 _dup_monitor_timesync.py
+_split_d0_d0c.py
+_split_m5_tim.py
+_func_groups.py
+_label_targets.py
+_add_tim4.py
+_m5_gauges.py
+_drop_tim01.py
