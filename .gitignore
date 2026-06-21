@@ -34,3 +34,4 @@ potsimple.py
 tmphmd.py
 _build_full_svc_ui.py
 _build_d0_svc_ui.py
+_build_relabel_monitor.py
