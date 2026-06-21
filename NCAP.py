@@ -311,6 +311,13 @@ class NCAP:
         self.t_d0op = spfx + conf['tomd0op'] + conf['loc'] + '/' + conf['ncapname']         # subscribe D0
         self.t_d0op_res = spfx + conf['tomd0op'] + conf['locclient'] + '/' + conf['appname']  # publish D0 reply
 
+        # ---- time synchronization (Clause 9): BR-Sync + RR-Sync ----- #
+        self.timesync = bool(conf.get('timesync_enable', True))
+        self.timesync_interval = float(conf.get('timesync_interval', 5.0))
+        self.t_brs = spfx + 'BRSU/SYN'             # 9.2 BR-Sync broadcast (epoch)
+        self.t_rrs_req = spfx + 'RRS/REQ'          # 9.3 RR-Sync request (NCAP subscribes)
+        self.t_rrs_res = spfx + 'RRS/%s/RES'       # 9.3 RR-Sync reply (per client LNS)
+
         self.client = None
         self.loop = None
 
@@ -437,6 +444,9 @@ class NCAP:
             client.subscribe(self.m5prefix + '+/status', qos=0)
             print('Subscribed (M5):', self.m5prefix + '+/telemetry',
                   '|', self.m5prefix + '+/status')
+        if self.timesync:
+            client.subscribe(self.t_rrs_req, qos=0)               # 9.3 RR-Sync requests
+            print('Subscribed (time-sync RR):', self.t_rrs_req)
 
     def on_disconnect(self, client, packet, exc=None):
         print('[DISCONNECTED]')
@@ -464,6 +474,8 @@ class NCAP:
     def _dispatch(self, topic, payload):
         if self.m5_enable and topic.startswith(self.m5prefix):
             return self._handle_m5(topic, payload)
+        if self.timesync and topic == self.t_rrs_req:
+            return self._handle_rrs(payload)
         op = self._opname(topic)
         if op is None:
             self.log('ignored topic', topic)
@@ -526,6 +538,20 @@ class NCAP:
         cmd = M.NCAPmsg(tpl, msgtype=0).decode(data)
         self.dbg('RECV D0-OP', '%-22s' % name, self._fmt(cmd))
         self._handlers[name](self, 'D0', cmd)
+
+    # ----- time sync 9.3 RR-Sync (NTP-style request/reply) -------- #
+    def _handle_rrs(self, payload):
+        """REQ '<clientLNS>[,<t1>]' -> RES '<t1>,<t2>,<t3>,<serverLNS>' (client computes offset/delay)."""
+        t2 = now_epoch_str()                       # server receive time
+        text = payload.decode('utf-8', 'replace') if isinstance(payload, (bytes, bytearray)) else str(payload)
+        f = text.strip().split(',')
+        clientLNS = f[0] if f and f[0] else 'client'
+        t1 = f[1] if len(f) > 1 else ''
+        serverLNS = self.c['loc'] + '/' + self.ncapName
+        t3 = now_epoch_str()                       # server transmit time
+        res_topic = self.t_rrs_res % clientLNS
+        self.client.publish(res_topic, '%s,%s,%s,%s' % (t1, t2, t3, serverLNS), qos=0)
+        print('[RR-Sync  ] req from %s -> %s' % (clientLNS, res_topic))
 
     # ----- reply publishing ---------------------------------------- #
     def _publish(self, op, tpl, d):
@@ -777,6 +803,319 @@ class NCAP:
         print('[UNSUB    ] heartbeat app=..%s removed %d sub(s) (%s)'
               % (appId[-6:], len(removed), op))
 
+    # ----- TEDS Query / Write / Update (3,1 / 3,3 / 3,4) ---------- #
+    def h_query_teds(self, op, cmd):
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        tid = norm_uuid(cmd['timId'])
+        ch = int(cmd['channelId']) if cmd.get('channelId') not in (None, '') else 0
+        code = int(cmd['tedsAccessCode'])
+        keyc = (tid, ch) if (tid, ch) in self.binteds else (tid, 1)
+        hexs = self.binteds.get(keyc, {}).get(code, '')
+        size = len(hexs) // 2
+        self._publish(op, M.query_teds_rep, {
+            'errorCode': 0 if size else 4,
+            'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+            'timId': cmd['timId'], 'channelId': ch,
+            'tedsAccessCode': code, 'tedsSize': size,
+        })
+        print('[TEDS QRY ] tim=..%s ch=%d code=%d size=%d (%s)' % (tid[-6:], ch, code, size, op))
+
+    def _store_teds(self, op, cmd, tpl, label):
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        tid = norm_uuid(cmd['timId'])
+        ch = int(cmd['channelId']) if cmd.get('channelId') not in (None, '') else 0
+        code = int(cmd['tedsAccessCode'])
+        block = cmd.get('rawTEDSBlock')
+        if isinstance(block, (bytes, bytearray)):
+            raw = bytes(block)
+        elif isinstance(block, str) and block:
+            try:
+                raw = hexstr2bin(block)
+            except Exception:
+                raw = block.encode('utf-8', 'replace')
+        else:
+            raw = b''
+        self.binteds.setdefault((tid, ch), {})[code] = raw.hex()
+        self._publish(op, tpl, {
+            'errorCode': 0,
+            'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+            'timId': cmd['timId'], 'channelId': ch, 'tedsAccessCode': code,
+        })
+        print('[TEDS %s] tim=..%s ch=%d code=%d %d bytes (%s)'
+              % (label, tid[-6:], ch, code, len(raw), op))
+
+    def h_write_teds(self, op, cmd):
+        return self._store_teds(op, cmd, M.write_teds_rep, 'WR ')
+
+    def h_update_teds(self, op, cmd):
+        return self._store_teds(op, cmd, M.update_teds_rep, 'UPD')
+
+    # ----- more sync reads: 2,2 / 2,3 / 2,4 ----------------------- #
+    def _block_of(self, tid, ch, n):
+        """Demo block: repeat the current reading n times, ';'-joined."""
+        val = self._read_value(tid, ch)
+        n = max(1, min(int(n or 1), 64))
+        s = '' if val is None else str(val)
+        return ';'.join([s] * n)
+
+    def h_sync_read_block1(self, op, cmd):
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        tid = norm_uuid(cmd['timId']); ch = int(cmd['channelId'])
+        self._publish(op, M.sync_read_block1_rep, {
+            'errorCode': 0, 'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+            'timId': cmd['timId'], 'channelId': ch,
+            'transducerBlockData': self._block_of(tid, ch, cmd.get('numOfSamples', 1)),
+            'endTimestamp': self._ts(op),
+        })
+
+    def h_sync_read_multi1tim(self, op, cmd):
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        tid = norm_uuid(cmd['timId'])
+        chans = [int(c) for c in (cmd.get('channelIds') or [])]
+        vals = []
+        for ch in chans:
+            v = self._read_value(tid, ch)
+            vals.append('' if v is None else str(v))
+        self._publish(op, M.sync_read_multi1tim_rep, {
+            'errorCode': 0, 'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+            'timId': cmd['timId'], 'numOfChannels': len(chans),
+            'channelIds': chans, 'transducerSampleDatas': vals, 'timestamp': self._ts(op),
+        })
+
+    def h_sync_read_block_multi1tim(self, op, cmd):
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        tid = norm_uuid(cmd['timId'])
+        chans = [int(c) for c in (cmd.get('channelIds') or [])]
+        n = cmd.get('numOfSamples', 1)
+        self._publish(op, M.sync_read_block_multi1tim_rep, {
+            'errorCode': 0, 'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+            'timId': cmd['timId'], 'numOfChannels': len(chans),
+            'channelIds': chans, 'transducerBlockDatas': [self._block_of(tid, ch, n) for ch in chans],
+            'endTimestamp': self._ts(op),
+        })
+
+    # ----- more sync writes: 2,8 / 2,9 / 2,10 / 2,11 / 2,12 ------- #
+    def _write_one(self, tid, ch, value):
+        writer = self.writers.get((tid, ch))
+        if writer is None:
+            return 2                       # not writable (sensor / unknown ch)
+        try:
+            writer(value)
+            return 0
+        except Exception as e:
+            print('write error:', repr(e))
+            return 3
+
+    @staticmethod
+    def _last_sample(block):
+        b = str(block or '')
+        return b.split(';')[-1] if b else ''
+
+    def _multi_iter(self, cmd):
+        """Yield (tid, ch, flatIndex) over a multi-TIM command's channel layout."""
+        tims = [norm_uuid(t) for t in (cmd.get('timIds') or [])]
+        counts = [int(c) for c in (cmd.get('numOfChannelsOfTIMs') or [])]
+        chans = [int(c) for c in (cmd.get('channelIds') or [])]
+        idx = 0
+        for ti, tid in enumerate(tims):
+            for _ in range(counts[ti] if ti < len(counts) else 0):
+                if idx < len(chans):
+                    yield tid, chans[idx], idx
+                idx += 1
+
+    def h_sync_write_block1(self, op, cmd):           # 2,8
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        tid = norm_uuid(cmd['timId']); ch = int(cmd['channelId'])
+        err = self._write_one(tid, ch, self._last_sample(cmd.get('transducerBlockData')))
+        self._publish(op, M.sync_write_block1_rep, {
+            'errorCode': err, 'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+            'timId': cmd['timId'], 'channelId': ch})
+
+    def h_sync_write_multi1tim(self, op, cmd):        # 2,9
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        tid = norm_uuid(cmd['timId'])
+        chans = [int(c) for c in (cmd.get('channelIds') or [])]
+        vals = [str(v) for v in (cmd.get('transducerSampleDatas') or [])]
+        err = 0
+        for i, ch in enumerate(chans):
+            err = err or self._write_one(tid, ch, vals[i] if i < len(vals) else '')
+        self._publish(op, M.sync_write_multi1tim_rep, {
+            'errorCode': err, 'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+            'timId': cmd['timId'], 'numOfChannels': len(chans), 'channelIds': chans})
+
+    def h_sync_write_block_multi1tim(self, op, cmd):  # 2,10
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        tid = norm_uuid(cmd['timId'])
+        chans = [int(c) for c in (cmd.get('channelIds') or [])]
+        blocks = [str(b) for b in (cmd.get('transducerBlockDatas') or [])]
+        err = 0
+        for i, ch in enumerate(chans):
+            err = err or self._write_one(tid, ch, self._last_sample(blocks[i] if i < len(blocks) else ''))
+        self._publish(op, M.sync_write_block_multi1tim_rep, {
+            'errorCode': err, 'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+            'timId': cmd['timId'], 'numOfChannels': len(chans), 'channelIds': chans})
+
+    def _multi_write_reply(self, op, cmd, tpl, err):
+        self._publish(op, tpl, {
+            'errorCode': err, 'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+            'numOfTIMs': cmd.get('numOfTIMs', 0), 'timIds': cmd.get('timIds', []),
+            'numOfChannelsOfTIMs': cmd.get('numOfChannelsOfTIMs', []),
+            'channelIds': [int(c) for c in (cmd.get('channelIds') or [])]})
+
+    def h_sync_write_multi(self, op, cmd):            # 2,11
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        vals = [str(v) for v in (cmd.get('transducerSampleDatas') or [])]
+        err = 0
+        for tid, ch, idx in self._multi_iter(cmd):
+            err = err or self._write_one(tid, ch, vals[idx] if idx < len(vals) else '')
+        self._multi_write_reply(op, cmd, M.sync_write_multi_rep, err)
+
+    def h_sync_write_block_multi(self, op, cmd):      # 2,12
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        blocks = [str(b) for b in (cmd.get('transducerBlockDatas') or [])]
+        err = 0
+        for tid, ch, idx in self._multi_iter(cmd):
+            err = err or self._write_one(tid, ch, self._last_sample(blocks[idx] if idx < len(blocks) else ''))
+        self._multi_write_reply(op, cmd, M.sync_write_block_multi_rep, err)
+
+    # ----- async / callback / stream reads (2,13/15/17/19) -------- #
+    def _next_cbk(self):
+        self._cbkid = getattr(self, '_cbkid', 0) + 1
+        return self._cbkid
+
+    def h_async_read_block1(self, op, cmd):           # 2,13 -> grant + 2,14 callback
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        tid = norm_uuid(cmd['timId']); ch = int(cmd['channelId']); cbk = self._next_cbk()
+        ncap = self._ncapId_for(op)
+        self._publish(op, M.async_read_block1_rep, {
+            'errorCode': 0, 'appId': cmd['appId'], 'ncapId': ncap,
+            'timId': cmd['timId'], 'channelId': ch, 'callbackId': cbk})
+        self._publish(op, M.async_read_block1_cbk, {
+            'errorCode': 0, 'appId': cmd['appId'], 'ncapId': ncap,
+            'timId': cmd['timId'], 'channelId': ch,
+            'transducerBlockData': self._block_of(tid, ch, cmd.get('numOfSamples', 1)),
+            'endTimestamp': self._ts(op), 'callbackId': cbk})
+
+    def h_async_read_stream1(self, op, cmd):          # 2,15 -> grant + register stream sub
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        tid = norm_uuid(cmd['timId']); ch = int(cmd['channelId'])
+        interval = max(0.2, _time8_seconds(cmd.get('samplingRate'), default=1.0))
+        replyTopic = self.t_cop_res if op == 'C' else self.t_d0op_res
+        sid = self.subs.add('stream', norm_uuid(cmd['appId']), replyTopic, op,
+                            timId=tid, channelId=ch, interval=interval)
+        self._publish(op, M.async_read_stream1_rep, {
+            'errorCode': 0, 'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+            'timId': cmd['timId'], 'channelId': ch, 'callbackId': sid})
+        print('[ASTREAM  ] stream #%d tim=..%s ch=%d every %.2fs (%s)' % (sid, tid[-6:], ch, interval, op))
+
+    def h_async_read_block_multi1tim(self, op, cmd):  # 2,17 -> grant + 2,18 callback
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        tid = norm_uuid(cmd['timId'])
+        chans = [int(c) for c in (cmd.get('channelIds') or [])]
+        cbk = self._next_cbk(); n = cmd.get('numOfSamples', 1); ncap = self._ncapId_for(op)
+        self._publish(op, M.async_read_block_multi1tim_rep, {
+            'errorCode': 0, 'appId': cmd['appId'], 'ncapId': ncap, 'timId': cmd['timId'],
+            'numOfChannels': len(chans), 'channelIds': chans, 'callbackId': cbk})
+        self._publish(op, M.async_read_block_multi1tim_cbk, {
+            'errorCode': 0, 'appId': cmd['appId'], 'ncapId': ncap, 'timId': cmd['timId'],
+            'numOfChannels': len(chans), 'channelIds': chans,
+            'transducerBlockDatas': [self._block_of(tid, ch, n) for ch in chans],
+            'endTimestamp': self._ts(op), 'callbackId': cbk})
+
+    def h_async_read_block_multi(self, op, cmd):      # 2,19 -> grant + 2,20 callback
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        cbk = self._next_cbk(); n = cmd.get('numOfSamples', 1)
+        blocks = [self._block_of(tid, ch, n) for tid, ch, _ in self._multi_iter(cmd)]
+        base = {'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+                'numOfTIMs': cmd.get('numOfTIMs', 0), 'timIds': cmd.get('timIds', []),
+                'numOfChannelsOfTIMs': cmd.get('numOfChannelsOfTIMs', []),
+                'channelIds': [int(c) for c in (cmd.get('channelIds') or [])]}
+        self._publish(op, M.async_read_block_multi_rep, dict(base, errorCode=0, callbackId=cbk))
+        self._publish(op, M.async_read_block_multi_cbk,
+                      dict(base, errorCode=0, transducerBlockDatas=blocks,
+                           endTimestamp=self._ts(op), callbackId=cbk))
+
+    # ----- event: multi-channel / multi-TIM (4,4/4,6/4,7/4,9) ----- #
+    def h_event_subscribe_multich(self, op, cmd):     # 4,4
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        interval = max(0.2, _time8_seconds(cmd.get('samplingRate'), default=1.0))
+        replyTopic = self.t_cop_res if op == 'C' else self.t_d0op_res
+        tid = norm_uuid(cmd['timId']); appId = norm_uuid(cmd['appId'])
+        chans = [int(c) for c in (cmd.get('channelIds') or [])]
+        first = 0
+        for ch in chans:
+            sid = self.subs.add('event', appId, replyTopic, op, timId=tid, channelId=ch, interval=interval)
+            first = first or sid
+        self._publish(op, M.event_subscribe_multich_rep, {
+            'errorCode': 0, 'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+            'timId': cmd['timId'], 'numOfChannels': len(chans), 'channelIds': chans,
+            'transducerEventPublisher': self.ncapName, 'subscriptionId': first})
+        print('[SUB      ] event multi-ch tim=..%s chs=%s every %.2fs (%s)'
+              % (tid[-6:], chans, interval, op))
+
+    def h_event_unsubscribe_multich(self, op, cmd):   # 4,6
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        appId = norm_uuid(cmd['appId']); tid = norm_uuid(cmd['timId'])
+        chans = set(int(c) for c in (cmd.get('channelIds') or []))
+        removed = [s['subId'] for s in self.subs.all()
+                   if s['appId'] == appId and s['kind'] == 'event' and s['timId'] == tid
+                   and (not chans or s['channelId'] in chans)]
+        for sid in removed:
+            self.subs.remove(sid)
+        self._publish(op, M.event_unsubscribe_multich_rep, {
+            'errorCode': 0, 'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+            'timId': cmd['timId'], 'subscriptionId': removed[0] if removed else 0})
+        print('[UNSUB    ] event multi-ch tim=..%s removed %d (%s)' % (tid[-6:], len(removed), op))
+
+    def h_event_subscribe_multitim(self, op, cmd):    # 4,7
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        interval = max(0.2, _time8_seconds(cmd.get('samplingRate'), default=1.0))
+        replyTopic = self.t_cop_res if op == 'C' else self.t_d0op_res
+        appId = norm_uuid(cmd['appId'])
+        first = 0; total = 0
+        for tid, ch, idx in self._multi_iter(cmd):
+            sid = self.subs.add('event', appId, replyTopic, op, timId=tid, channelId=ch, interval=interval)
+            first = first or sid; total += 1
+        self._publish(op, M.event_subscribe_multitim_rep, {
+            'errorCode': 0, 'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+            'numOfTIMs': cmd.get('numOfTIMs', 0), 'timIds': cmd.get('timIds', []),
+            'numOfChannelsOfTIMs': cmd.get('numOfChannelsOfTIMs', []),
+            'channelIds': [int(c) for c in (cmd.get('channelIds') or [])],
+            'transducerEventPublisher': self.ncapName, 'subscriptionId': first})
+        print('[SUB      ] event multi-TIM %d sub(s) every %.2fs (%s)' % (total, interval, op))
+
+    def h_event_unsubscribe_multitim(self, op, cmd):  # 4,9
+        if not self._check_ncap(cmd):
+            return self._err_ncap(cmd)
+        appId = norm_uuid(cmd['appId'])
+        targets = set((tid, ch) for tid, ch, _ in self._multi_iter(cmd))
+        removed = [s['subId'] for s in self.subs.all()
+                   if s['appId'] == appId and s['kind'] == 'event'
+                   and (s['timId'], s['channelId']) in targets]
+        for sid in removed:
+            self.subs.remove(sid)
+        self._publish(op, M.event_unsubscribe_multitim_rep, {
+            'errorCode': 0, 'appId': cmd['appId'], 'ncapId': self._ncapId_for(op),
+            'subscriptionId': removed[0] if removed else 0})
+        print('[UNSUB    ] event multi-TIM removed %d (%s)' % (len(removed), op))
+
     # ----- error reply -------------------------------------------- #
     def _err_ncap(self, cmd):
         self.log('ncapId mismatch: got', norm_uuid(cmd.get('ncapId', '')), 'want', self.ncapId)
@@ -833,6 +1172,19 @@ class NCAP:
                             'timestamp': self._ts(op),
                         }
                         msg = M.NCAPmsg(M.event_notify, 1 if op == 'C' else 0).encmsg(d)
+                    elif s['kind'] == 'stream':       # 2,16 async stream callback
+                        val = self._read_value(s['timId'], s['channelId'])
+                        d = {
+                            'errorCode': 0,
+                            'appId': '0x' + s['appId'] if op == 'C' else s['appId'],
+                            'ncapId': self._ncapId_for(op),
+                            'timId': ('0x' + s['timId']) if op == 'C' else s['timId'],
+                            'channelId': s['channelId'],
+                            'transducerSampleData': '' if val is None else str(val),
+                            'timestamp': self._ts(op),
+                            'callbackId': s['subId'],
+                        }
+                        msg = M.NCAPmsg(M.async_read_stream1_cbk, 1 if op == 'C' else 0).encmsg(d)
                     else:  # heartbeat
                         d = {
                             'ncapId': self._ncapId_for(op),
@@ -846,6 +1198,16 @@ class NCAP:
                 except Exception as e:
                     print('notify error sub#%d:' % s['subId'], repr(e))
             await asyncio.sleep(0.2)
+
+    async def task_timesync(self):
+        """9.2 BR-Sync: broadcast UNIX epoch to BRSU/SYN periodically (primary clock)."""
+        while True:
+            try:
+                self.client.publish(self.t_brs, now_epoch_str(), qos=0)
+                self.dbg('BR-Sync', 'epoch -> %s' % self.t_brs)
+            except Exception as e:
+                print('br-sync error:', repr(e))
+            await asyncio.sleep(self.timesync_interval)
 
     async def task_announce(self):
         """Periodic NCAP / TIM / Transducer announcements (7.2.2-7.2.4)."""
@@ -892,6 +1254,27 @@ class NCAP:
                                     M.NCAPmsg(M.ncap_tim_transducer_announcement, 0).encode(d), qos=0)
         self.dbg('ANNOUNCE', 'XDCR channels')
 
+    # ----- 7.2 Departure / Abandonment (publish-only) ------------- #
+    def _depart_all(self, abandon=False):
+        """Publish TIM-transducer, TIM, and NCAP departures (graceful goodbye)."""
+        try:
+            for tid in self.tims.timids():
+                t = self.tims.findtim(tid)
+                for x in t['xdcrs']:
+                    self.client.publish(self.t_danno, M.NCAPmsg(M.ncap_tim_transducer_departure, 0).encode(
+                        {'ncapId': self.ncapId, 'timId': tid,
+                         'transducerChannelId': int(x['id']), 'transducerChannelName': x['name']}), qos=0)
+                self.client.publish(self.t_danno, M.NCAPmsg(M.ncap_tim_departure, 0).encode(
+                    {'ncapId': self.ncapId, 'timId': tid, 'timName': t['name']}), qos=0)
+            tpl = M.ncap_abandonment if abandon else M.ncap_departure
+            d = {'ncapId': self.ncapId, 'ncapName': self.ncapName}
+            self.client.publish(self.t_danno, M.NCAPmsg(tpl, 0).encode(d), qos=0)
+            self.client.publish(self.t_canno, M.NCAPmsg(tpl, 1).csfencode(dict(d, ncapId='0x' + self.ncapId)), qos=0)
+            print('[DEPART   ] %s id=..%s -> %s , %s'
+                  % ('ABANDON' if abandon else 'departure', self.ncapId[-6:], self.t_danno, self.t_canno))
+        except Exception as e:
+            print('depart error:', repr(e))
+
     # ================================================================ #
     #  run
     # ================================================================ #
@@ -921,9 +1304,13 @@ class NCAP:
             asyncio.ensure_future(self.task_notify()),
             asyncio.ensure_future(self.task_announce()),
         ]
+        if self.timesync:
+            tasks.append(asyncio.ensure_future(self.task_timesync()))
         await STOP.wait()
         for t in tasks:
             t.cancel()
+        if self.args.announce:
+            self._depart_all()                  # 7.2 graceful departure
         await self.client.disconnect()
         self.hw.cleanup()
 
@@ -963,6 +1350,29 @@ REPLY_NAMES = {
     (4, 10, 4): 'heartbeat_notify',
     (4,  3, 2): 'event_unsubscribe_rep',
     (4, 12, 2): 'heartbeat_unsubscribe_rep',
+    (3,  1, 2): 'query_teds_rep',
+    (3,  3, 2): 'write_teds_rep',
+    (3,  4, 2): 'update_teds_rep',
+    (2,  2, 2): 'sync_read_block1_rep',
+    (2,  3, 2): 'sync_read_multi1tim_rep',
+    (2,  4, 2): 'sync_read_block_multi1tim_rep',
+    (2,  8, 2): 'sync_write_block1_rep',
+    (2,  9, 2): 'sync_write_multi1tim_rep',
+    (2, 10, 2): 'sync_write_block_multi1tim_rep',
+    (2, 11, 2): 'sync_write_multi_rep',
+    (2, 12, 2): 'sync_write_block_multi_rep',
+    (4,  4, 2): 'event_subscribe_multich_rep',
+    (4,  6, 2): 'event_unsubscribe_multich_rep',
+    (4,  7, 2): 'event_subscribe_multitim_rep',
+    (4,  9, 2): 'event_unsubscribe_multitim_rep',
+    (2, 13, 2): 'async_read_block1_rep',
+    (2, 14, 4): 'async_read_block1_cbk',
+    (2, 15, 2): 'async_read_stream1_rep',
+    (2, 16, 4): 'async_read_stream1_cbk',
+    (2, 17, 2): 'async_read_block_multi1tim_rep',
+    (2, 18, 4): 'async_read_block_multi1tim_cbk',
+    (2, 19, 2): 'async_read_block_multi_rep',
+    (2, 20, 4): 'async_read_block_multi_cbk',
 }
 
 
@@ -980,6 +1390,25 @@ NCAP._handlers = {
     'heartbeat_subscribe':     NCAP.h_heartbeat_subscribe,
     'event_unsubscribe':       NCAP.h_event_unsubscribe,
     'heartbeat_unsubscribe':   NCAP.h_heartbeat_unsubscribe,
+    'query_teds':              NCAP.h_query_teds,
+    'write_teds':              NCAP.h_write_teds,
+    'update_teds':             NCAP.h_update_teds,
+    'sync_read_block1':        NCAP.h_sync_read_block1,
+    'sync_read_multi1tim':     NCAP.h_sync_read_multi1tim,
+    'sync_read_block_multi1tim': NCAP.h_sync_read_block_multi1tim,
+    'sync_write_block1':       NCAP.h_sync_write_block1,
+    'sync_write_multi1tim':    NCAP.h_sync_write_multi1tim,
+    'sync_write_block_multi1tim': NCAP.h_sync_write_block_multi1tim,
+    'sync_write_multi':        NCAP.h_sync_write_multi,
+    'sync_write_block_multi':  NCAP.h_sync_write_block_multi,
+    'event_subscribe_multich':   NCAP.h_event_subscribe_multich,
+    'event_unsubscribe_multich': NCAP.h_event_unsubscribe_multich,
+    'event_subscribe_multitim':  NCAP.h_event_subscribe_multitim,
+    'event_unsubscribe_multitim': NCAP.h_event_unsubscribe_multitim,
+    'async_read_block1':         NCAP.h_async_read_block1,
+    'async_read_stream1':        NCAP.h_async_read_stream1,
+    'async_read_block_multi1tim': NCAP.h_async_read_block_multi1tim,
+    'async_read_block_multi':    NCAP.h_async_read_block_multi,
 }
 
 

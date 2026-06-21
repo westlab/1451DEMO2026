@@ -14,7 +14,6 @@ flows.live.prev.json
 NodeRED.json.bak
 
 # non-essential scripts: kept locally, not part of the NCAP + Node-RED deliverable
-APP.py
 NCAP_legacy.py
 ReferenceModel/
 _build_gauge_actuator.py

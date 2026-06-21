@@ -31,7 +31,6 @@ messages over MQTT. It is a modular, asyncio/gmqtt implementation.
 | `NCAPmsg.py`  | Message codec + **all message templates** (single source of the wire format). Both D0-OP (binary) and C-OP (CSV). |
 | `NCAPtbl.py`  | TIM/transducer table and async subscription table. |
 | `config.yml`  | Broker, topics, UUIDs, TEDS, timing. |
-| `NCAP_legacy.py` | Previous single-file version, kept for reference. |
 
 ## Install & run
 
@@ -52,10 +51,22 @@ NCAP flags: `-p` pseudo (no GPIO), `-v` verbose debug, `-a` periodic announcemen
 
 ## Implemented services
 
-Discovery (NCAP/TIM/transducer), synchronous read (single / multi-channel /
-block), synchronous write, Read TEDS, event notification (subscribe + streaming
-notify), NCAP heartbeat, and periodic NCAP/TIM/channel announcements — in both
-D0-OP and C-OP encodings.
+Full IEEE 1451.0 / 1451.1.6 network-service set, in both D0-OP (binary) and
+C-OP (CSV) encodings. Drive any of them from `APP.py --only <action>`.
+
+| NSType | Services (service code) | Status |
+|--------|--------------------------|--------|
+| **1 Discovery** | NCAP/TIM/Transducer Discovery (01 08/09/10); NCAP/TIM/Transducer Announcement (01 01/04/06); **Departure** (01 02/05/07) + **Abandonment** (01 03) on graceful shutdown | ✅ |
+| **2 Transducer access** | **All 20.** Sync read sample/block × 1ch / multi-ch / multi-TIM (02 01–06); sync write sample/block × 1ch / multi-ch / multi-TIM (02 07–12); **async/callback/stream** reads (02 13–20, grant + callback messages) | ✅ |
+| **3 TEDS** | **Query / Read / Write / Update** (03 01/02/03/04) — TEDS are writable at runtime | ✅ |
+| **4 Event notification** | Subscribe / Notify / **Unsubscribe** for one channel (04 01/02/03), multiple channels (04 04/05/06), multiple TIMs (04 07/08/09); NCAP Heartbeat subscribe/notify/**unsubscribe** (04 10/11/12) | ✅ |
+| **9 Time synchronization** | **BR-Sync** (one-way epoch broadcast, `_1451.1.6/BRSU/SYN`) + **RR-Sync** (NTP-style request/reply, `_1451.1.6/RRS/REQ`→`/RRS/<LNS>/RES`, client computes offset/delay) | ✅ |
+
+`APP.py --only` actions: `discover tims xdcrs read teds write sub hb`
+`query_teds write_teds update_teds read_block read_multi1 read_block_multi1`
+`write_block write_multi1 write_block_multi1 write_multi write_block_multi`
+`sub_multich unsub_multich sub_multitim unsub_multitim`
+`aread_block aread_stream aread_block_multi1 aread_block_multi timesync`
 
 ## Debug output (`-v`)
 

@@ -21,17 +21,17 @@
         "info": ""
     },
     {
-        "id": "d7e9ac85b2d047e7",
+        "id": "9ac7a3893df687ef",
         "type": "tab",
-        "label": "NIST",
+        "label": "M5Core2",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "9ac7a3893df687ef",
+        "id": "d7e9ac85b2d047e7",
         "type": "tab",
-        "label": "M5Core2",
+        "label": "NIST",
         "disabled": false,
         "info": "",
         "env": []
@@ -148,17 +148,6 @@
         "name": "D0 Gauge",
         "tab": "86483328.1e604",
         "order": 6,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "646a2c33.077d74",
-        "type": "ui_group",
-        "name": "SERVOCTL",
-        "tab": "dfe5acb3dea19f17",
-        "order": 3,
         "disp": true,
         "width": "6",
         "collapse": false,
@@ -448,6 +437,61 @@
         "name": "D0C TEMP/HUMID",
         "tab": "86483328.1e604",
         "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "00a1510000000001",
+        "type": "ui_group",
+        "name": "D0 1451.1.6 EXT",
+        "tab": "86483328.1e604",
+        "order": 8,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "00a1510000000016",
+        "type": "ui_group",
+        "name": "D0C 1451.1.6 EXT",
+        "tab": "86483328.1e604",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c600000000000002",
+        "type": "ui_group",
+        "name": "M5 #1  Req/Res (TIM3)",
+        "tab": "86483328.1e604",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c600000000000009",
+        "type": "ui_group",
+        "name": "M5 #2  Req/Res (TIM4)",
+        "tab": "86483328.1e604",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "646a2c33.077d74",
+        "type": "ui_group",
+        "name": "SERVOCTL",
+        "tab": "dfe5acb3dea19f17",
+        "order": 3,
         "disp": true,
         "width": "6",
         "collapse": false,
@@ -754,8 +798,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1410,
-        "y": 800,
+        "x": 1290,
+        "y": 920,
         "wires": []
     },
     {
@@ -770,8 +814,8 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 190,
-        "y": 560,
+        "x": 180,
+        "y": 660,
         "wires": [
             [
                 "bd93661acb03e458",
@@ -804,8 +848,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1590,
-        "y": 720,
+        "x": 1470,
+        "y": 840,
         "wires": []
     },
     {
@@ -830,8 +874,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 1010,
-        "y": 760,
+        "x": 890,
+        "y": 860,
         "wires": [
             [
                 "37725cd568c488dc"
@@ -855,8 +899,8 @@
         "correl": "",
         "expiry": "",
         "broker": "39d5aa93d6951ccb",
-        "x": 1120,
-        "y": 180,
+        "x": 1100,
+        "y": 260,
         "wires": []
     },
     {
@@ -875,7 +919,7 @@
         "topic": "",
         "name": "",
         "x": 1070,
-        "y": 140,
+        "y": 220,
         "wires": []
     },
     {
@@ -893,8 +937,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1210,
-        "y": 620,
+        "x": 1200,
+        "y": 720,
         "wires": []
     },
     {
@@ -909,7 +953,7 @@
         "finalize": "",
         "libs": [],
         "x": 770,
-        "y": 140,
+        "y": 220,
         "wires": [
             [
                 "510bc89faa4516fe",
@@ -936,7 +980,7 @@
         "payload": "",
         "payloadType": "str",
         "x": 150,
-        "y": 280,
+        "y": 220,
         "wires": [
             [
                 "1c067cb4f34ee513"
@@ -961,7 +1005,7 @@
         "payload": "",
         "payloadType": "str",
         "x": 150,
-        "y": 240,
+        "y": 180,
         "wires": [
             [
                 "f5f10596308e31c7"
@@ -989,7 +1033,7 @@
         "topic": "",
         "topicType": "str",
         "x": 430,
-        "y": 280,
+        "y": 220,
         "wires": [
             [
                 "f4dc1efa4ddec667"
@@ -1017,7 +1061,7 @@
         "topic": "",
         "topicType": "str",
         "x": 430,
-        "y": 240,
+        "y": 180,
         "wires": [
             [
                 "f4dc1efa4ddec667"
@@ -1037,7 +1081,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1050,
-        "y": 100,
+        "y": 180,
         "wires": []
     },
     {
@@ -1052,8 +1096,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1190,
-        "y": 580,
+        "x": 1180,
+        "y": 680,
         "wires": []
     },
     {
@@ -1067,8 +1111,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
-        "y": 560,
+        "x": 500,
+        "y": 660,
         "wires": [
             [
                 "3b4fa548f6bba24c",
@@ -1089,8 +1133,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1180,
-        "y": 460,
+        "x": 1170,
+        "y": 560,
         "wires": []
     },
     {
@@ -1106,8 +1150,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1190,
-        "y": 420,
+        "x": 1180,
+        "y": 520,
         "wires": []
     },
     {
@@ -1123,8 +1167,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1190,
-        "y": 500,
+        "x": 1180,
+        "y": 600,
         "wires": []
     },
     {
@@ -1140,8 +1184,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1180,
-        "y": 540,
+        "x": 1170,
+        "y": 640,
         "wires": []
     },
     {
@@ -1166,8 +1210,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 830,
-        "y": 820,
+        "x": 710,
+        "y": 920,
         "wires": [
             [
                 "797be9366cb3cffc"
@@ -1188,8 +1232,8 @@
         "syntax": "mustache",
         "template": "{{sample}}",
         "output": "str",
-        "x": 1200,
-        "y": 720,
+        "x": 1080,
+        "y": 820,
         "wires": [
             [
                 "0271ae2968d24863",
@@ -1208,8 +1252,8 @@
         "syntax": "mustache",
         "template": "{{teds}}",
         "output": "str",
-        "x": 1010,
-        "y": 880,
+        "x": 890,
+        "y": 960,
         "wires": [
             [
                 "979eb85cc7eda7d5",
@@ -1230,8 +1274,8 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "TEDSTEXT",
-        "x": 1230,
-        "y": 880,
+        "x": 1090,
+        "y": 980,
         "wires": []
     },
     {
@@ -1306,8 +1350,8 @@
         "max": "255",
         "step": 1,
         "className": "",
-        "x": 130,
-        "y": 160,
+        "x": 110,
+        "y": 420,
         "wires": [
             [
                 "c3fa091a3f412a45",
@@ -1327,7 +1371,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 160,
+        "y": 420,
         "wires": [
             [
                 "f4dc1efa4ddec667"
@@ -1346,8 +1390,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 550,
-        "y": 460,
+        "x": 510,
+        "y": 600,
         "wires": []
     },
     {
@@ -1368,7 +1412,7 @@
         "payload": "",
         "payloadType": "str",
         "x": 150,
-        "y": 320,
+        "y": 260,
         "wires": [
             [
                 "994cf8d5638d2680"
@@ -1396,7 +1440,7 @@
         "topic": "",
         "topicType": "str",
         "x": 430,
-        "y": 320,
+        "y": 260,
         "wires": [
             [
                 "f4dc1efa4ddec667"
@@ -1421,7 +1465,7 @@
         "payload": "",
         "payloadType": "str",
         "x": 160,
-        "y": 360,
+        "y": 300,
         "wires": [
             [
                 "eef992bfdac662de"
@@ -1449,7 +1493,7 @@
         "topic": "",
         "topicType": "str",
         "x": 440,
-        "y": 360,
+        "y": 300,
         "wires": [
             [
                 "f4dc1efa4ddec667"
@@ -1467,8 +1511,8 @@
         "syntax": "mustache",
         "template": "{{sample}}",
         "output": "str",
-        "x": 1200,
-        "y": 800,
+        "x": 1080,
+        "y": 900,
         "wires": [
             [
                 "aa8973059778364c",
@@ -1489,8 +1533,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1390,
-        "y": 680,
+        "x": 1270,
+        "y": 800,
         "wires": []
     },
     {
@@ -1506,8 +1550,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1400,
-        "y": 760,
+        "x": 1280,
+        "y": 880,
         "wires": []
     },
     {
@@ -1523,8 +1567,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1210,
-        "y": 840,
+        "x": 1070,
+        "y": 940,
         "wires": []
     },
     {
@@ -1549,8 +1593,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 750,
-        "y": 560,
+        "x": 710,
+        "y": 660,
         "wires": [
             [
                 "146dc54f4fab9526"
@@ -1571,8 +1615,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 940,
-        "y": 560,
+        "x": 920,
+        "y": 660,
         "wires": [
             [
                 "48eb6497066517cb",
@@ -1595,11 +1639,647 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1410,
-        "y": 720,
+        "x": 1290,
+        "y": 840,
         "wires": [
             [
                 "ccbb4021f26245f6"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000018",
+        "type": "inject",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C settings",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "00a1510000000017"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000017",
+        "type": "change",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C set global vars",
+        "rules": [
+            {
+                "t": "set",
+                "p": "NCAP",
+                "pt": "global",
+                "to": "2400250026002700280029003a010f0f",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "APP",
+                "pt": "global",
+                "to": "2400250026002700280029003a030f0f",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "T0",
+                "pt": "global",
+                "to": "2400250026002700280029003a020f00",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "T1",
+                "pt": "global",
+                "to": "2400250026002700280029003a020f01",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "T2",
+                "pt": "global",
+                "to": "2400250026002700280029003a020f02",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "reqTopicC",
+                "pt": "global",
+                "to": "_1451.1.6/C/PTTEST/ncap0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "00a1510000000019",
+        "type": "mqtt out",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C EXT out",
+        "topic": "",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "39d5aa93d6951ccb",
+        "x": 810,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "00a151000000001a",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C NCAP discovery",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='1,8,1,0x'+APP;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1160,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "00a151000000001b",
+        "type": "ui_button",
+        "z": "0c7a731dc303bfda",
+        "name": "",
+        "group": "00a1510000000016",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "D0C NCAP discovery",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 160,
+        "y": 1160,
+        "wires": [
+            [
+                "00a151000000001a"
+            ]
+        ]
+    },
+    {
+        "id": "00a151000000001c",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C TIM discovery",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='1,9,1,0x'+APP+',0x'+NCAP;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 1240,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "00a151000000001d",
+        "type": "ui_button",
+        "z": "0c7a731dc303bfda",
+        "name": "",
+        "group": "00a1510000000016",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "D0C TIM discovery",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 150,
+        "y": 1240,
+        "wires": [
+            [
+                "00a151000000001c"
+            ]
+        ]
+    },
+    {
+        "id": "00a151000000001e",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C XDCR discovery",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='1,10,1,0x'+APP+',0x'+NCAP+',0x'+T0;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1280,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "00a151000000001f",
+        "type": "ui_button",
+        "z": "0c7a731dc303bfda",
+        "name": "",
+        "group": "00a1510000000016",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "D0C XDCR discovery",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 160,
+        "y": 1280,
+        "wires": [
+            [
+                "00a151000000001e"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000020",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C Multi-ch read",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='2,5,1,0x'+APP+',0x'+NCAP+',2,0x'+T0+':0x'+T1+',1:1,1:1,5,0';\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 1360,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000021",
+        "type": "ui_button",
+        "z": "0c7a731dc303bfda",
+        "name": "",
+        "group": "00a1510000000016",
+        "order": 4,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "D0C Multi-ch read",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 150,
+        "y": 1360,
+        "wires": [
+            [
+                "00a1510000000020"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000022",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C Block read",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='2,6,1,0x'+APP+',0x'+NCAP+',1,0x'+T0+',1,1,3,0,0,0';\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1400,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000023",
+        "type": "ui_button",
+        "z": "0c7a731dc303bfda",
+        "name": "",
+        "group": "00a1510000000016",
+        "order": 5,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "D0C Block read",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 140,
+        "y": 1400,
+        "wires": [
+            [
+                "00a1510000000022"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000024",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C Event subscribe",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,1,1,0x'+APP+',0x'+NCAP+',0x'+T0+',1,,app0,0,0';\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1440,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000025",
+        "type": "ui_button",
+        "z": "0c7a731dc303bfda",
+        "name": "",
+        "group": "00a1510000000016",
+        "order": 6,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "D0C Event subscribe",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 160,
+        "y": 1440,
+        "wires": [
+            [
+                "00a1510000000024"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000026",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C Heartbeat subscribe",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,10,1,0x'+APP+',0,0';\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 1480,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000027",
+        "type": "ui_button",
+        "z": "0c7a731dc303bfda",
+        "name": "",
+        "group": "00a1510000000016",
+        "order": 7,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "D0C Heartbeat subscribe",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 170,
+        "y": 1480,
+        "wires": [
+            [
+                "00a1510000000026"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000028",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C EXT decode",
+        "func": "var s=msg.payload;\nif(typeof s!=='string'){if(Buffer.isBuffer(s)){s=s.toString();}else{return [null,null];}}\nvar f=s.split(',');var t=+f[0],i=+f[1],m=+f[2];\nvar label=null,chart=null;\nif(t==1&&i==8&&m==2){label='[NCAP disc rep] '+s;}\nelse if(t==1&&i==9&&m==2){label='[TIM disc rep] '+s;}\nelse if(t==1&&i==10&&m==2){label='[XDCR disc rep] '+s;}\nelse if(t==2&&i==5&&m==2){label='[multi read rep] '+s;}\nelse if(t==2&&i==6&&m==2){label='[block read rep] '+s;}\nelse if(t==4&&i==1&&m==2){label='[event sub rep] '+s;}\nelse if(t==4&&i==1&&m==4){chart=parseFloat(f[9]);label='[event NOTIFY] sample='+f[9];}\nelse if(t==4&&i==10&&m==2){label='[heartbeat rep] '+s;}\nelse if(t==4&&i==10&&m==4){label='[heartbeat NOTIFY] '+s;}\nif(label===null){return [null,null];}\nreturn [{payload:label},(chart!==null&&!isNaN(chart))?{payload:chart}:null];\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 1040,
+        "wires": [
+            [
+                "00a1510000000029"
+            ],
+            [
+                "00a151000000002a"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000029",
+        "type": "debug",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C EXT reply",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "00a151000000002a",
+        "type": "ui_chart",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C notify",
+        "group": "00a1510000000016",
+        "order": 99,
+        "width": "6",
+        "height": "5",
+        "label": "D0C event notify",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "5",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 730,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c700000000000007",
+        "type": "ui_gauge",
+        "z": "0c7a731dc303bfda",
+        "group": "c3134a.6ced2cb8",
+        "order": 2,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Gauge (actual)",
+        "label": "0-100",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#0094ce",
+            "#0094ce",
+            "#0094ce"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 400,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "c800000000000001",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C Event unsubscribe",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,3,1,0x'+APP+',0x'+NCAP+',0x'+T0+',1,0';   // event unsubscribe (4,3,1)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 1200,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "c800000000000002",
+        "type": "ui_button",
+        "z": "0c7a731dc303bfda",
+        "group": "00a1510000000016",
+        "order": 8,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Event Unsub (Stop)",
+        "tooltip": "",
+        "color": "#ffffff",
+        "bgcolor": "#c0392b",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 150,
+        "y": 1200,
+        "wires": [
+            [
+                "c800000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "c800000000000003",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "D0C Heartbeat unsubscribe",
+        "func": "var APP=global.get('APP');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,12,1,0x'+APP;                              // heartbeat unsubscribe (4,12,1)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 1320,
+        "wires": [
+            [
+                "00a1510000000019"
+            ]
+        ]
+    },
+    {
+        "id": "c800000000000004",
+        "type": "ui_button",
+        "z": "0c7a731dc303bfda",
+        "group": "00a1510000000016",
+        "order": 9,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Heartbeat Stop",
+        "tooltip": "",
+        "color": "#ffffff",
+        "bgcolor": "#c0392b",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 140,
+        "y": 1320,
+        "wires": [
+            [
+                "c800000000000003"
             ]
         ]
     },
@@ -1621,7 +2301,7 @@
         "payload": "dummy",
         "payloadType": "str",
         "x": 120,
-        "y": 40,
+        "y": 60,
         "wires": [
             [
                 "8515346c52346c95"
@@ -1648,30 +2328,12 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 340,
-        "y": 40,
+        "x": 380,
+        "y": 60,
         "wires": [
             [
                 "055b25eceac2df9f"
             ]
-        ]
-    },
-    {
-        "id": "8f0d081d6599b7e6",
-        "type": "mqtt in",
-        "z": "a4c183a95164db51",
-        "name": "",
-        "topic": "_1451.1.6/D0/99BINDTEST/ncap0",
-        "qos": "1",
-        "datatype": "auto",
-        "broker": "39d5aa93d6951ccb",
-        "nl": false,
-        "rap": false,
-        "inputs": 0,
-        "x": 160,
-        "y": 680,
-        "wires": [
-            []
         ]
     },
     {
@@ -1685,8 +2347,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 40,
+        "x": 640,
+        "y": 60,
         "wires": [
             [
                 "4d79897b5485f473"
@@ -1704,8 +2366,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 740,
+        "x": 640,
+        "y": 820,
         "wires": [
             [
                 "adafa614399b6d2e",
@@ -1737,8 +2399,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1500,
-        "y": 860,
+        "x": 1560,
+        "y": 940,
         "wires": []
     },
     {
@@ -1753,8 +2415,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 610,
-        "y": 560,
+        "x": 650,
+        "y": 640,
         "wires": []
     },
     {
@@ -1775,7 +2437,7 @@
         "payload": "dummy",
         "payloadType": "str",
         "x": 120,
-        "y": 80,
+        "y": 100,
         "wires": [
             [
                 "d9da488c657a553f"
@@ -1802,8 +2464,8 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 340,
-        "y": 80,
+        "x": 380,
+        "y": 100,
         "wires": [
             [
                 "2d6bae1e986f897f"
@@ -1821,31 +2483,13 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 80,
+        "x": 640,
+        "y": 100,
         "wires": [
             [
                 "4d79897b5485f473"
             ]
         ]
-    },
-    {
-        "id": "49721123dda12dc1",
-        "type": "mqtt out",
-        "z": "a4c183a95164db51",
-        "name": "",
-        "topic": "_1451.1.6/D0/99BINDTEST/ncap0",
-        "qos": "1",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "39d5aa93d6951ccb",
-        "x": 1180,
-        "y": 120,
-        "wires": []
     },
     {
         "id": "b4b4fbcd349c97ec",
@@ -1862,8 +2506,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1300,
-        "y": 80,
+        "x": 1470,
+        "y": 140,
         "wires": []
     },
     {
@@ -1877,7 +2521,7 @@
         "initialize": "",
         "finalize": "",
         "x": 930,
-        "y": 120,
+        "y": 140,
         "wires": [
             [
                 "7ce46b8dbc03ff46",
@@ -1901,8 +2545,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 780,
-        "y": 600,
+        "x": 820,
+        "y": 680,
         "wires": []
     },
     {
@@ -1927,8 +2571,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 950,
-        "y": 900,
+        "x": 990,
+        "y": 980,
         "wires": [
             [
                 "629390aa10a785d3"
@@ -1950,8 +2594,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1130,
-        "y": 40,
+        "x": 1150,
+        "y": 100,
         "wires": []
     },
     {
@@ -1978,8 +2622,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1310,
-        "y": 940,
+        "x": 1350,
+        "y": 1020,
         "wires": []
     },
     {
@@ -2000,7 +2644,7 @@
         "payload": "dummy",
         "payloadType": "str",
         "x": 140,
-        "y": 200,
+        "y": 220,
         "wires": [
             [
                 "34ec58c9942e20cd"
@@ -2028,7 +2672,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 400,
-        "y": 200,
+        "y": 220,
         "wires": [
             [
                 "3c97b5834c8ee6f3"
@@ -2053,7 +2697,7 @@
         "payload": "dummy",
         "payloadType": "str",
         "x": 140,
-        "y": 240,
+        "y": 260,
         "wires": [
             [
                 "7fa3e401202cf7ba"
@@ -2081,7 +2725,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 410,
-        "y": 240,
+        "y": 260,
         "wires": [
             [
                 "f28f2897e5d9aa99"
@@ -2100,7 +2744,7 @@
         "finalize": "",
         "libs": [],
         "x": 660,
-        "y": 200,
+        "y": 220,
         "wires": [
             [
                 "4d79897b5485f473"
@@ -2119,7 +2763,7 @@
         "finalize": "",
         "libs": [],
         "x": 660,
-        "y": 240,
+        "y": 260,
         "wires": [
             [
                 "4d79897b5485f473"
@@ -2138,8 +2782,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1130,
-        "y": 780,
+        "x": 1170,
+        "y": 860,
         "wires": []
     },
     {
@@ -2155,8 +2799,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1120,
-        "y": 660,
+        "x": 1160,
+        "y": 740,
         "wires": []
     },
     {
@@ -2172,8 +2816,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1130,
-        "y": 620,
+        "x": 1170,
+        "y": 700,
         "wires": []
     },
     {
@@ -2189,8 +2833,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1130,
-        "y": 700,
+        "x": 1170,
+        "y": 780,
         "wires": []
     },
     {
@@ -2206,8 +2850,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1120,
-        "y": 740,
+        "x": 1160,
+        "y": 820,
         "wires": []
     },
     {
@@ -2232,8 +2876,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 770,
-        "y": 920,
+        "x": 810,
+        "y": 1000,
         "wires": [
             [
                 "2409118d90faf447"
@@ -2257,8 +2901,8 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "",
-        "x": 1300,
-        "y": 1020,
+        "x": 1340,
+        "y": 1100,
         "wires": []
     },
     {
@@ -2271,8 +2915,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1120,
-        "y": 80,
+        "x": 1140,
+        "y": 140,
         "wires": [
             [
                 "b4b4fbcd349c97ec"
@@ -2289,8 +2933,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 600,
-        "y": 600,
+        "x": 640,
+        "y": 680,
         "wires": [
             [
                 "bf918d6a9f2f1804"
@@ -2316,8 +2960,8 @@
         "max": "255",
         "step": 1,
         "className": "",
-        "x": 330,
-        "y": 120,
+        "x": 350,
+        "y": 140,
         "wires": [
             [
                 "92cdf83959118817",
@@ -2336,8 +2980,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 120,
+        "x": 640,
+        "y": 140,
         "wires": [
             [
                 "4d79897b5485f473"
@@ -2362,7 +3006,7 @@
         "payload": "dummy",
         "payloadType": "str",
         "x": 150,
-        "y": 280,
+        "y": 300,
         "wires": [
             [
                 "f80a154ce518e260"
@@ -2390,7 +3034,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 410,
-        "y": 280,
+        "y": 300,
         "wires": [
             [
                 "59c17793c04c0c67"
@@ -2409,7 +3053,7 @@
         "finalize": "",
         "libs": [],
         "x": 660,
-        "y": 280,
+        "y": 300,
         "wires": [
             [
                 "4d79897b5485f473"
@@ -2434,7 +3078,7 @@
         "payload": "dummy",
         "payloadType": "str",
         "x": 130,
-        "y": 120,
+        "y": 140,
         "wires": [
             [
                 "f09eb6e12bda2bff"
@@ -2459,7 +3103,7 @@
         "payload": "dummy",
         "payloadType": "str",
         "x": 160,
-        "y": 320,
+        "y": 340,
         "wires": [
             [
                 "b67efba2521a75b3"
@@ -2487,7 +3131,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 420,
-        "y": 320,
+        "y": 340,
         "wires": [
             [
                 "6015d726eac01a03"
@@ -2506,7 +3150,7 @@
         "finalize": "",
         "libs": [],
         "x": 660,
-        "y": 320,
+        "y": 340,
         "wires": [
             [
                 "4d79897b5485f473"
@@ -2524,8 +3168,8 @@
         "syntax": "mustache",
         "template": "{{sample}}",
         "output": "str",
-        "x": 1120,
-        "y": 940,
+        "x": 1160,
+        "y": 1020,
         "wires": [
             [
                 "9c09104671edbe28",
@@ -2544,8 +3188,8 @@
         "syntax": "mustache",
         "template": "{{sample}}",
         "output": "str",
-        "x": 1120,
-        "y": 860,
+        "x": 1160,
+        "y": 940,
         "wires": [
             [
                 "dddcc4ff24cc83e2",
@@ -2564,8 +3208,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 970,
-        "y": 1020,
+        "x": 1010,
+        "y": 1100,
         "wires": [
             [
                 "4f84dd09a1e8ca24"
@@ -2583,8 +3227,8 @@
         "syntax": "mustache",
         "template": "{{teds}}",
         "output": "str",
-        "x": 1120,
-        "y": 1020,
+        "x": 1160,
+        "y": 1100,
         "wires": [
             [
                 "db422cf5094a66ef",
@@ -2610,7 +3254,7 @@
         "payload": "3",
         "payloadType": "num",
         "x": 130,
-        "y": 420,
+        "y": 440,
         "wires": [
             [
                 "83f14fb1506b84e0"
@@ -2635,7 +3279,7 @@
         "payload": "1",
         "payloadType": "num",
         "x": 130,
-        "y": 380,
+        "y": 400,
         "wires": [
             [
                 "43eb5e963ed23654"
@@ -2660,7 +3304,7 @@
         "payload": "12",
         "payloadType": "num",
         "x": 130,
-        "y": 460,
+        "y": 480,
         "wires": [
             [
                 "299d20ad096d1f15"
@@ -2687,8 +3331,8 @@
         "payloadType": "num",
         "topic": "topic",
         "topicType": "str",
-        "x": 330,
-        "y": 420,
+        "x": 370,
+        "y": 440,
         "wires": [
             [
                 "ec36f0d3366952aa"
@@ -2715,8 +3359,8 @@
         "payloadType": "num",
         "topic": "topic",
         "topicType": "str",
-        "x": 330,
-        "y": 380,
+        "x": 370,
+        "y": 400,
         "wires": [
             [
                 "ec36f0d3366952aa"
@@ -2743,8 +3387,8 @@
         "payloadType": "num",
         "topic": "topic",
         "topicType": "str",
-        "x": 330,
-        "y": 460,
+        "x": 370,
+        "y": 480,
         "wires": [
             [
                 "ec36f0d3366952aa"
@@ -2762,8 +3406,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 590,
-        "y": 440,
+        "x": 630,
+        "y": 460,
         "wires": [
             []
         ]
@@ -2790,8 +3434,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 770,
-        "y": 700,
+        "x": 810,
+        "y": 780,
         "wires": [
             [
                 "8d33ac0fce4f74f3"
@@ -2812,8 +3456,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
-        "y": 700,
+        "x": 960,
+        "y": 780,
         "wires": [
             [
                 "30fd5a99a9e5d16e",
@@ -2837,8 +3481,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 950,
-        "y": 1080,
+        "x": 990,
+        "y": 1160,
         "wires": []
     },
     {
@@ -2859,7 +3503,7 @@
         "payload": "13",
         "payloadType": "num",
         "x": 120,
-        "y": 500,
+        "y": 520,
         "wires": [
             [
                 "db1b9b21bbad0810"
@@ -2886,8 +3530,8 @@
         "payloadType": "num",
         "topic": "topic",
         "topicType": "str",
-        "x": 330,
-        "y": 500,
+        "x": 370,
+        "y": 520,
         "wires": [
             [
                 "ec36f0d3366952aa"
@@ -2907,8 +3551,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1290,
-        "y": 820,
+        "x": 1330,
+        "y": 900,
         "wires": []
     },
     {
@@ -2924,8 +3568,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1300,
-        "y": 900,
+        "x": 1340,
+        "y": 980,
         "wires": []
     },
     {
@@ -2941,8 +3585,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1290,
-        "y": 980,
+        "x": 1330,
+        "y": 1060,
         "wires": []
     },
     {
@@ -2956,8 +3600,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1310,
-        "y": 860,
+        "x": 1350,
+        "y": 940,
         "wires": [
             [
                 "4a76375d90ee0a70"
@@ -2978,7 +3622,7 @@
         "correl": "",
         "expiry": "",
         "broker": "39d5aa93d6951ccb",
-        "x": 1170,
+        "x": 1210,
         "y": 180,
         "wires": []
     },
@@ -2994,8 +3638,8 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 140,
-        "y": 800,
+        "x": 180,
+        "y": 880,
         "wires": [
             [
                 "74be0c85ff4645ea",
@@ -3014,13 +3658,2091 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
-        "y": 740,
+        "x": 440,
+        "y": 820,
         "wires": [
             [
                 "dc076277db143607",
                 "c7583948860ccdb6",
                 "611ded86214b1bb3"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000003",
+        "type": "inject",
+        "z": "a4c183a95164db51",
+        "name": "D0 settings",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 130,
+        "y": 580,
+        "wires": [
+            [
+                "00a1510000000002"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000002",
+        "type": "change",
+        "z": "a4c183a95164db51",
+        "name": "D0 set global vars",
+        "rules": [
+            {
+                "t": "set",
+                "p": "NCAP",
+                "pt": "global",
+                "to": "2400250026002700280029003a010f0f",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "APP",
+                "pt": "global",
+                "to": "2400250026002700280029003a030f0f",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "T0",
+                "pt": "global",
+                "to": "2400250026002700280029003a020f00",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "T1",
+                "pt": "global",
+                "to": "2400250026002700280029003a020f01",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "T2",
+                "pt": "global",
+                "to": "2400250026002700280029003a020f02",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "reqTopicD0",
+                "pt": "global",
+                "to": "_1451.1.6/D0/PTTEST/ncap0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "00a1510000000004",
+        "type": "mqtt out",
+        "z": "a4c183a95164db51",
+        "name": "D0 EXT out",
+        "topic": "",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "39d5aa93d6951ccb",
+        "x": 890,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "00a1510000000005",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 NCAP discovery",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[1,8,1,0,0].concat(hx(APP));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 1320,
+        "wires": [
+            [
+                "00a1510000000004"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000006",
+        "type": "ui_button",
+        "z": "a4c183a95164db51",
+        "name": "",
+        "group": "00a1510000000001",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "D0 NCAP discovery",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 150,
+        "y": 1320,
+        "wires": [
+            [
+                "00a1510000000005"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000007",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 TIM discovery",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[1,9,1,0,0].concat(hx(APP)).concat(hx(NCAP));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 1400,
+        "wires": [
+            [
+                "00a1510000000004"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000008",
+        "type": "ui_button",
+        "z": "a4c183a95164db51",
+        "name": "",
+        "group": "00a1510000000001",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "D0 TIM discovery",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 150,
+        "y": 1400,
+        "wires": [
+            [
+                "00a1510000000007"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000009",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 XDCR discovery",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[1,10,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(hx(T0));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 1480,
+        "wires": [
+            [
+                "00a1510000000004"
+            ]
+        ]
+    },
+    {
+        "id": "00a151000000000a",
+        "type": "ui_button",
+        "z": "a4c183a95164db51",
+        "name": "",
+        "group": "00a1510000000001",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "D0 XDCR discovery",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 160,
+        "y": 1480,
+        "wires": [
+            [
+                "00a1510000000009"
+            ]
+        ]
+    },
+    {
+        "id": "00a151000000000b",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 Multi-ch read",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[2,5,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(u16(2)).concat(hx(T0)).concat(hx(T1)).concat(u16(1)).concat(u16(1)).concat(u16(1)).concat(u16(1)).concat([5]).concat(Z8);\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 1520,
+        "wires": [
+            [
+                "00a1510000000004"
+            ]
+        ]
+    },
+    {
+        "id": "00a151000000000c",
+        "type": "ui_button",
+        "z": "a4c183a95164db51",
+        "name": "",
+        "group": "00a1510000000001",
+        "order": 4,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "D0 Multi-ch read",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 140,
+        "y": 1520,
+        "wires": [
+            [
+                "00a151000000000b"
+            ]
+        ]
+    },
+    {
+        "id": "00a151000000000d",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 Block read",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[2,6,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(u16(1)).concat(hx(T0)).concat(u16(1)).concat(u16(1)).concat(u32(3)).concat(Z8).concat(Z8).concat(Z8);\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 1560,
+        "wires": [
+            [
+                "00a1510000000004"
+            ]
+        ]
+    },
+    {
+        "id": "00a151000000000e",
+        "type": "ui_button",
+        "z": "a4c183a95164db51",
+        "name": "",
+        "group": "00a1510000000001",
+        "order": 5,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "D0 Block read",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 140,
+        "y": 1560,
+        "wires": [
+            [
+                "00a151000000000d"
+            ]
+        ]
+    },
+    {
+        "id": "00a151000000000f",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 Event subscribe",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[4,1,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(hx(T0)).concat(u16(1)).concat(s0('')).concat(s0('app0')).concat(Z8).concat(Z8);\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 1600,
+        "wires": [
+            [
+                "00a1510000000004"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000010",
+        "type": "ui_button",
+        "z": "a4c183a95164db51",
+        "name": "",
+        "group": "00a1510000000001",
+        "order": 6,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "D0 Event subscribe",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 150,
+        "y": 1600,
+        "wires": [
+            [
+                "00a151000000000f"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000011",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 Heartbeat subscribe",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[4,10,1,0,0].concat(hx(APP)).concat(Z8).concat(Z8);\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 1640,
+        "wires": [
+            [
+                "00a1510000000004"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000012",
+        "type": "ui_button",
+        "z": "a4c183a95164db51",
+        "name": "",
+        "group": "00a1510000000001",
+        "order": 7,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "D0 Heartbeat subscribe",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 170,
+        "y": 1640,
+        "wires": [
+            [
+                "00a1510000000011"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000013",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 EXT decode",
+        "func": "var p=msg.payload;\nif(!Buffer.isBuffer(p)){return [null,null];}\nvar t=p[0],i=p[1],m=p[2];\nfunction rs(o){var e=o;while(e<p.length&&p[e]!==0){e++;}return p.slice(o,e).toString();}\nvar label=null,chart=null;\nif(t==1&&i==8&&m==2){label='[NCAP disc rep] ncapId='+p.slice(23,39).toString('hex');}\nelse if(t==1&&i==9&&m==2){label='[TIM disc rep] '+p.toString('hex');}\nelse if(t==1&&i==10&&m==2){label='[XDCR disc rep] '+p.toString('hex');}\nelse if(t==2&&i==5&&m==2){label='[multi read rep] '+p.toString('hex');}\nelse if(t==2&&i==6&&m==2){label='[block read rep] '+p.toString('hex');}\nelse if(t==4&&i==1&&m==2){label='[event sub rep] '+p.toString('hex');}\nelse if(t==4&&i==1&&m==4){var s=rs(59);label='[event NOTIFY] sample='+s;chart=parseFloat(s);}\nelse if(t==4&&i==10&&m==2){label='[heartbeat rep] '+p.toString('hex');}\nelse if(t==4&&i==10&&m==4){label='[heartbeat NOTIFY] '+p.toString('hex');}\nif(label===null){return [null,null];}\nreturn [{payload:label},(chart!==null&&!isNaN(chart))?{payload:chart}:null];\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 1200,
+        "wires": [
+            [
+                "00a1510000000014"
+            ],
+            [
+                "00a1510000000015"
+            ]
+        ]
+    },
+    {
+        "id": "00a1510000000014",
+        "type": "debug",
+        "z": "a4c183a95164db51",
+        "name": "D0 EXT reply",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "00a1510000000015",
+        "type": "ui_chart",
+        "z": "a4c183a95164db51",
+        "name": "D0 notify",
+        "group": "00a1510000000001",
+        "order": 99,
+        "width": "6",
+        "height": "5",
+        "label": "D0 event notify",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "5",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 680,
+        "y": 1220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c700000000000008",
+        "type": "ui_gauge",
+        "z": "a4c183a95164db51",
+        "group": "e960bf17.9f3d",
+        "order": 2,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Gauge (actual)",
+        "label": "0-100",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#0094ce",
+            "#0094ce",
+            "#0094ce"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 640,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c800000000000005",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 Event unsubscribe",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nvar a=[4,3,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(hx(T0)).concat(u16(1)).concat(u16(0));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');msg.payload=Buffer.from(a);return msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 1360,
+        "wires": [
+            [
+                "00a1510000000004"
+            ]
+        ]
+    },
+    {
+        "id": "c800000000000006",
+        "type": "ui_button",
+        "z": "a4c183a95164db51",
+        "group": "00a1510000000001",
+        "order": 8,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Event Unsub (Stop)",
+        "tooltip": "",
+        "color": "#ffffff",
+        "bgcolor": "#c0392b",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 150,
+        "y": 1360,
+        "wires": [
+            [
+                "c800000000000005"
+            ]
+        ]
+    },
+    {
+        "id": "c800000000000007",
+        "type": "function",
+        "z": "a4c183a95164db51",
+        "name": "D0 Heartbeat unsubscribe",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nvar a=[4,12,1,0,0].concat(hx(APP));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');msg.payload=Buffer.from(a);return msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 1440,
+        "wires": [
+            [
+                "00a1510000000004"
+            ]
+        ]
+    },
+    {
+        "id": "c800000000000008",
+        "type": "ui_button",
+        "z": "a4c183a95164db51",
+        "group": "00a1510000000001",
+        "order": 9,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Heartbeat Stop",
+        "tooltip": "",
+        "color": "#ffffff",
+        "bgcolor": "#c0392b",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 140,
+        "y": 1440,
+        "wires": [
+            [
+                "c800000000000007"
+            ]
+        ]
+    },
+    {
+        "id": "c500000000000007",
+        "type": "ui_text",
+        "z": "9ac7a3893df687ef",
+        "group": "3d28726f78ea7296",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "name": "",
+        "label": "m5-01 Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 650,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "c500000000000001",
+        "type": "ui_gauge",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "3d28726f78ea7296",
+        "order": 2,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Temperature °C",
+        "label": "degC",
+        "format": "{{value}}",
+        "min": "-10",
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 660,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "c500000000000002",
+        "type": "ui_gauge",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "3d28726f78ea7296",
+        "order": 3,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Humidity %",
+        "label": "%RH",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 650,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c500000000000003",
+        "type": "ui_gauge",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "3d28726f78ea7296",
+        "order": 4,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "CO2 ppm",
+        "label": "ppm",
+        "format": "{{value}}",
+        "min": "400",
+        "max": "2000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "1000",
+        "seg2": "1500",
+        "diff": false,
+        "className": "",
+        "x": 640,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c500000000000004",
+        "type": "ui_gauge",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "3d28726f78ea7296",
+        "order": 5,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Gauge (actual)",
+        "label": "0-100",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#0094ce",
+            "#0094ce",
+            "#0094ce"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 660,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "c500000000000005",
+        "type": "ui_chart",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "3d28726f78ea7296",
+        "order": 6,
+        "width": "6",
+        "height": "4",
+        "label": "Temp / Humidity Trend",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#ff7f0e",
+            "#2ca02c",
+            "#d62728",
+            "#9467bd",
+            "#8c564b",
+            "#e377c2",
+            "#7f7f7f",
+            "#bcbd22"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 680,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c500000000000006",
+        "type": "ui_chart",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "3d28726f78ea7296",
+        "order": 7,
+        "width": "6",
+        "height": "4",
+        "label": "CO2 Trend",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#ff7f0e",
+            "#2ca02c",
+            "#d62728",
+            "#9467bd",
+            "#8c564b",
+            "#e377c2",
+            "#7f7f7f",
+            "#bcbd22"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 650,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c500000000000008",
+        "type": "function",
+        "z": "9ac7a3893df687ef",
+        "name": "split m5-01",
+        "func": "// M5 telemetry JSON -> 4 series\nvar p = msg.payload || {};\nfunction val(v){ return (typeof v === 'number' && !isNaN(v)) ? v : null; }\nvar t = val(p.temp), h = val(p.humid), c = val(p.co2), g = val(p.gauge);\nreturn [\n  t!==null ? {payload:t, topic:'TEMP'}  : null,\n  h!==null ? {payload:h, topic:'HUMID'} : null,\n  c!==null ? {payload:c, topic:'CO2'}   : null,\n  g!==null ? {payload:g, topic:'GAUGE'} : null\n];",
+        "outputs": 4,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 180,
+        "wires": [
+            [
+                "c500000000000001",
+                "c500000000000005"
+            ],
+            [
+                "c500000000000002",
+                "c500000000000005"
+            ],
+            [
+                "c500000000000003",
+                "c500000000000006"
+            ],
+            [
+                "c500000000000004"
+            ]
+        ]
+    },
+    {
+        "id": "c500000000000009",
+        "type": "mqtt in",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "topic": "m5iot/m5-01/telemetry",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "39d5aa93d6951ccb",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 180,
+        "wires": [
+            [
+                "c500000000000008"
+            ]
+        ]
+    },
+    {
+        "id": "c50000000000000a",
+        "type": "function",
+        "z": "9ac7a3893df687ef",
+        "name": "status m5-01",
+        "func": "var s = ('' + msg.payload).trim().toLowerCase();\nmsg.payload = (s === 'online') ? '🟢 ONLINE' : '🔴 OFFLINE (LWT)';\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 340,
+        "wires": [
+            [
+                "c500000000000007"
+            ]
+        ]
+    },
+    {
+        "id": "c50000000000000b",
+        "type": "mqtt in",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "topic": "m5iot/m5-01/status",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "39d5aa93d6951ccb",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 340,
+        "wires": [
+            [
+                "c50000000000000a"
+            ]
+        ]
+    },
+    {
+        "id": "c50000000000000c",
+        "type": "mqtt out",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "topic": "m5iot/m5-01/gauge",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "39d5aa93d6951ccb",
+        "x": 670,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "c50000000000000d",
+        "type": "function",
+        "z": "9ac7a3893df687ef",
+        "name": "gauge->str m5-01",
+        "func": "// clamp 0-100 and send as plain text to M5\nvar v = parseInt(msg.payload, 10);\nif (isNaN(v)) return null;\nv = Math.max(0, Math.min(100, v));\nmsg.payload = '' + v;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 440,
+        "wires": [
+            [
+                "c50000000000000c"
+            ]
+        ]
+    },
+    {
+        "id": "c50000000000000e",
+        "type": "ui_slider",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "label": "Gauge Control (0-100)",
+        "tooltip": "",
+        "group": "3d28726f78ea7296",
+        "order": 8,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "outs": "end",
+        "topic": "payload",
+        "topicType": "msg",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 180,
+        "y": 420,
+        "wires": [
+            [
+                "c50000000000000d"
+            ]
+        ]
+    },
+    {
+        "id": "c50000000000000f",
+        "type": "ui_button",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "3d28726f78ea7296",
+        "order": 9,
+        "width": "2",
+        "height": "1",
+        "passthru": true,
+        "label": "0",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 130,
+        "y": 460,
+        "wires": [
+            [
+                "c50000000000000d"
+            ]
+        ]
+    },
+    {
+        "id": "c500000000000010",
+        "type": "ui_button",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "3d28726f78ea7296",
+        "order": 10,
+        "width": "2",
+        "height": "1",
+        "passthru": true,
+        "label": "50",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "50",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 130,
+        "y": 500,
+        "wires": [
+            [
+                "c50000000000000d"
+            ]
+        ]
+    },
+    {
+        "id": "c500000000000011",
+        "type": "ui_button",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "3d28726f78ea7296",
+        "order": 11,
+        "width": "2",
+        "height": "1",
+        "passthru": true,
+        "label": "100",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "100",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 130,
+        "y": 540,
+        "wires": [
+            [
+                "c50000000000000d"
+            ]
+        ]
+    },
+    {
+        "id": "c500000000000018",
+        "type": "ui_text",
+        "z": "9ac7a3893df687ef",
+        "group": "ab28081145731513",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "name": "",
+        "label": "m5-02 Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1410,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "c500000000000012",
+        "type": "ui_gauge",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "ab28081145731513",
+        "order": 2,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Temperature °C",
+        "label": "degC",
+        "format": "{{value}}",
+        "min": "-10",
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1420,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "c500000000000013",
+        "type": "ui_gauge",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "ab28081145731513",
+        "order": 3,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Humidity %",
+        "label": "%RH",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1410,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c500000000000014",
+        "type": "ui_gauge",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "ab28081145731513",
+        "order": 4,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "CO2 ppm",
+        "label": "ppm",
+        "format": "{{value}}",
+        "min": "400",
+        "max": "2000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "1000",
+        "seg2": "1500",
+        "diff": false,
+        "className": "",
+        "x": 1400,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c500000000000015",
+        "type": "ui_gauge",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "ab28081145731513",
+        "order": 5,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Gauge (actual)",
+        "label": "0-100",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#0094ce",
+            "#0094ce",
+            "#0094ce"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1420,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "c500000000000016",
+        "type": "ui_chart",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "ab28081145731513",
+        "order": 6,
+        "width": "6",
+        "height": "4",
+        "label": "Temp / Humidity Trend",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#ff7f0e",
+            "#2ca02c",
+            "#d62728",
+            "#9467bd",
+            "#8c564b",
+            "#e377c2",
+            "#7f7f7f",
+            "#bcbd22"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1440,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c500000000000017",
+        "type": "ui_chart",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "ab28081145731513",
+        "order": 7,
+        "width": "6",
+        "height": "4",
+        "label": "CO2 Trend",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#ff7f0e",
+            "#2ca02c",
+            "#d62728",
+            "#9467bd",
+            "#8c564b",
+            "#e377c2",
+            "#7f7f7f",
+            "#bcbd22"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1410,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c500000000000019",
+        "type": "function",
+        "z": "9ac7a3893df687ef",
+        "name": "split m5-02",
+        "func": "// M5 telemetry JSON -> 4 series\nvar p = msg.payload || {};\nfunction val(v){ return (typeof v === 'number' && !isNaN(v)) ? v : null; }\nvar t = val(p.temp), h = val(p.humid), c = val(p.co2), g = val(p.gauge);\nreturn [\n  t!==null ? {payload:t, topic:'TEMP'}  : null,\n  h!==null ? {payload:h, topic:'HUMID'} : null,\n  c!==null ? {payload:c, topic:'CO2'}   : null,\n  g!==null ? {payload:g, topic:'GAUGE'} : null\n];",
+        "outputs": 4,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 180,
+        "wires": [
+            [
+                "c500000000000012",
+                "c500000000000016"
+            ],
+            [
+                "c500000000000013",
+                "c500000000000016"
+            ],
+            [
+                "c500000000000014",
+                "c500000000000017"
+            ],
+            [
+                "c500000000000015"
+            ]
+        ]
+    },
+    {
+        "id": "c50000000000001a",
+        "type": "mqtt in",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "topic": "m5iot/m5-02/telemetry",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "39d5aa93d6951ccb",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 920,
+        "y": 180,
+        "wires": [
+            [
+                "c500000000000019"
+            ]
+        ]
+    },
+    {
+        "id": "c50000000000001b",
+        "type": "function",
+        "z": "9ac7a3893df687ef",
+        "name": "status m5-02",
+        "func": "var s = ('' + msg.payload).trim().toLowerCase();\nmsg.payload = (s === 'online') ? '🟢 ONLINE' : '🔴 OFFLINE (LWT)';\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 340,
+        "wires": [
+            [
+                "c500000000000018"
+            ]
+        ]
+    },
+    {
+        "id": "c50000000000001c",
+        "type": "mqtt in",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "topic": "m5iot/m5-02/status",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "39d5aa93d6951ccb",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 910,
+        "y": 340,
+        "wires": [
+            [
+                "c50000000000001b"
+            ]
+        ]
+    },
+    {
+        "id": "c50000000000001d",
+        "type": "mqtt out",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "topic": "m5iot/m5-02/gauge",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "39d5aa93d6951ccb",
+        "x": 1430,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "c50000000000001e",
+        "type": "function",
+        "z": "9ac7a3893df687ef",
+        "name": "gauge->str m5-02",
+        "func": "// clamp 0-100 and send as plain text to M5\nvar v = parseInt(msg.payload, 10);\nif (isNaN(v)) return null;\nv = Math.max(0, Math.min(100, v));\nmsg.payload = '' + v;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 440,
+        "wires": [
+            [
+                "c50000000000001d"
+            ]
+        ]
+    },
+    {
+        "id": "c50000000000001f",
+        "type": "ui_slider",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "label": "Gauge Control (0-100)",
+        "tooltip": "",
+        "group": "ab28081145731513",
+        "order": 8,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "outs": "end",
+        "topic": "payload",
+        "topicType": "msg",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 920,
+        "y": 420,
+        "wires": [
+            [
+                "c50000000000001e"
+            ]
+        ]
+    },
+    {
+        "id": "c500000000000020",
+        "type": "ui_button",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "ab28081145731513",
+        "order": 9,
+        "width": "2",
+        "height": "1",
+        "passthru": true,
+        "label": "0",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 870,
+        "y": 460,
+        "wires": [
+            [
+                "c50000000000001e"
+            ]
+        ]
+    },
+    {
+        "id": "c500000000000021",
+        "type": "ui_button",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "ab28081145731513",
+        "order": 10,
+        "width": "2",
+        "height": "1",
+        "passthru": true,
+        "label": "50",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "50",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 870,
+        "y": 500,
+        "wires": [
+            [
+                "c50000000000001e"
+            ]
+        ]
+    },
+    {
+        "id": "c500000000000022",
+        "type": "ui_button",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "group": "ab28081145731513",
+        "order": 11,
+        "width": "2",
+        "height": "1",
+        "passthru": true,
+        "label": "100",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "100",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 870,
+        "y": 540,
+        "wires": [
+            [
+                "c50000000000001e"
+            ]
+        ]
+    },
+    {
+        "id": "c600000000000001",
+        "type": "mqtt out",
+        "z": "9ac7a3893df687ef",
+        "name": "M5 C-OP req",
+        "topic": "_1451.1.6/C/PTTEST/ncap0",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "39d5aa93d6951ccb",
+        "x": 790,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "c600000000000003",
+        "type": "ui_text",
+        "z": "9ac7a3893df687ef",
+        "group": "c600000000000002",
+        "order": 7,
+        "width": "6",
+        "height": "2",
+        "name": "",
+        "label": "Last response",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 660,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "c600000000000004",
+        "type": "ui_gauge",
+        "z": "9ac7a3893df687ef",
+        "group": "c600000000000002",
+        "order": 5,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "CO2 ppm (req/res)",
+        "label": "ppm",
+        "format": "{{value}}",
+        "min": "400",
+        "max": "2000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "1000",
+        "seg2": "1500",
+        "diff": false,
+        "className": "",
+        "x": 670,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "c600000000000005",
+        "type": "ui_button",
+        "z": "9ac7a3893df687ef",
+        "group": "c600000000000002",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Temp read",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,1,0,0",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 150,
+        "y": 600,
+        "wires": [
+            [
+                "c600000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "c600000000000006",
+        "type": "ui_button",
+        "z": "9ac7a3893df687ef",
+        "group": "c600000000000002",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Humid read",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,2,0,0",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 150,
+        "y": 640,
+        "wires": [
+            [
+                "c600000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "c600000000000007",
+        "type": "ui_button",
+        "z": "9ac7a3893df687ef",
+        "group": "c600000000000002",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "CO2 read",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,3,0,0",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 140,
+        "y": 680,
+        "wires": [
+            [
+                "c600000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "c600000000000008",
+        "type": "ui_button",
+        "z": "9ac7a3893df687ef",
+        "group": "c600000000000002",
+        "order": 4,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Gauge read",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,4,0,0",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 150,
+        "y": 720,
+        "wires": [
+            [
+                "c600000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "c60000000000000a",
+        "type": "ui_text",
+        "z": "9ac7a3893df687ef",
+        "group": "c600000000000009",
+        "order": 7,
+        "width": "6",
+        "height": "2",
+        "name": "",
+        "label": "Last response",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 660,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "c60000000000000b",
+        "type": "ui_gauge",
+        "z": "9ac7a3893df687ef",
+        "group": "c600000000000009",
+        "order": 5,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "CO2 ppm (req/res)",
+        "label": "ppm",
+        "format": "{{value}}",
+        "min": "400",
+        "max": "2000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "1000",
+        "seg2": "1500",
+        "diff": false,
+        "className": "",
+        "x": 670,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "c60000000000000c",
+        "type": "ui_button",
+        "z": "9ac7a3893df687ef",
+        "group": "c600000000000009",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Temp read",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,1,0,0",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 150,
+        "y": 760,
+        "wires": [
+            [
+                "c600000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "c60000000000000d",
+        "type": "ui_button",
+        "z": "9ac7a3893df687ef",
+        "group": "c600000000000009",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Humid read",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,2,0,0",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 150,
+        "y": 800,
+        "wires": [
+            [
+                "c600000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "c60000000000000e",
+        "type": "ui_button",
+        "z": "9ac7a3893df687ef",
+        "group": "c600000000000009",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "CO2 read",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,3,0,0",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 140,
+        "y": 840,
+        "wires": [
+            [
+                "c600000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "c60000000000000f",
+        "type": "ui_button",
+        "z": "9ac7a3893df687ef",
+        "group": "c600000000000009",
+        "order": 4,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Gauge read",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,4,0,0",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 150,
+        "y": 880,
+        "wires": [
+            [
+                "c600000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "c600000000000010",
+        "type": "function",
+        "z": "9ac7a3893df687ef",
+        "name": "M5 reply decode",
+        "func": "var s = ('' + msg.payload).trim();\nvar f = s.split(',');\n// read reply: 2,1,2,0,app,ncap,tim,ch,val,ts\nif (f.length < 9 || f[0] !== '2' || f[1] !== '1' || f[2] !== '2') return [null,null,null,null];\nvar tim = (f[6] || '').toLowerCase();\nvar ch  = f[7];\nvar val = parseFloat(f[8]);\nvar names = {'1':'Temp','2':'Humid','3':'CO2','4':'Gauge'};\nvar units = {'1':'K','2':'%','3':'ppm','4':''};\nvar extra = (ch === '1') ? ' (' + (val - 273.15).toFixed(1) + ' \\u00b0C)' : '';\nvar line = 'ch' + ch + ' ' + (names[ch]||'?') + ' = ' + val + ' ' + (units[ch]||'') + extra;\nvar T = '0x2400250026002700280029003a020f03', U = '0x2400250026002700280029003a020f04';\nvar tmsg = {payload: line};\nvar gmsg = {payload: val};\nif (tim === T) return [tmsg, ch === '3' ? gmsg : null, null, null];\nif (tim === U) return [null, null, tmsg, ch === '3' ? gmsg : null];\nreturn [null,null,null,null];",
+        "outputs": 4,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 1160,
+        "wires": [
+            [
+                "c600000000000003"
+            ],
+            [
+                "c600000000000004"
+            ],
+            [
+                "c60000000000000a"
+            ],
+            [
+                "c60000000000000b"
+            ]
+        ]
+    },
+    {
+        "id": "c600000000000011",
+        "type": "mqtt in",
+        "z": "9ac7a3893df687ef",
+        "name": "M5 C-OP reply",
+        "topic": "_1451.1.6/C/PTTEST/ncap0",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "39d5aa93d6951ccb",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 1160,
+        "wires": [
+            [
+                "c600000000000010"
+            ]
+        ]
+    },
+    {
+        "id": "c700000000000001",
+        "type": "ui_gauge",
+        "z": "9ac7a3893df687ef",
+        "group": "c600000000000002",
+        "order": 6,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Gauge (actual)",
+        "label": "0-100",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#0094ce",
+            "#0094ce",
+            "#0094ce"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 420,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "c700000000000002",
+        "type": "function",
+        "z": "9ac7a3893df687ef",
+        "name": "Gauge write 03",
+        "func": "// Gauge actuator -> 1451.1.6 sync_write (2,7,1) to NCAP -> M5 gauge channel (ch4)\nvar v = parseInt(msg.payload, 10);\nif (isNaN(v)) return null;\nv = Math.max(0, Math.min(100, v));\nmsg.payload = '2,7,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,4,0,' + v;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 980,
+        "wires": [
+            [
+                "c600000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "c700000000000003",
+        "type": "ui_slider",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "label": "Gauge write (0-100)",
+        "tooltip": "",
+        "group": "c600000000000002",
+        "order": 8,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "outs": "end",
+        "topic": "payload",
+        "topicType": "msg",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 180,
+        "y": 960,
+        "wires": [
+            [
+                "c700000000000001",
+                "c700000000000002"
+            ]
+        ]
+    },
+    {
+        "id": "c700000000000004",
+        "type": "ui_gauge",
+        "z": "9ac7a3893df687ef",
+        "group": "c600000000000009",
+        "order": 6,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Gauge (actual)",
+        "label": "0-100",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#0094ce",
+            "#0094ce",
+            "#0094ce"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 420,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "c700000000000005",
+        "type": "function",
+        "z": "9ac7a3893df687ef",
+        "name": "Gauge write 04",
+        "func": "// Gauge actuator -> 1451.1.6 sync_write (2,7,1) to NCAP -> M5 gauge channel (ch4)\nvar v = parseInt(msg.payload, 10);\nif (isNaN(v)) return null;\nv = Math.max(0, Math.min(100, v));\nmsg.payload = '2,7,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,4,0,' + v;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1060,
+        "wires": [
+            [
+                "c600000000000001"
+            ]
+        ]
+    },
+    {
+        "id": "c700000000000006",
+        "type": "ui_slider",
+        "z": "9ac7a3893df687ef",
+        "name": "",
+        "label": "Gauge write (0-100)",
+        "tooltip": "",
+        "group": "c600000000000009",
+        "order": 8,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "outs": "end",
+        "topic": "payload",
+        "topicType": "msg",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 180,
+        "y": 1040,
+        "wires": [
+            [
+                "c700000000000004",
+                "c700000000000005"
             ]
         ]
     },
@@ -3107,8 +5829,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
-        "y": 780,
+        "x": 680,
+        "y": 640,
         "wires": [
             [
                 "b9937f92551b0e0b",
@@ -3140,8 +5862,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1480,
-        "y": 940,
+        "x": 1660,
+        "y": 800,
         "wires": []
     },
     {
@@ -3156,8 +5878,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 590,
-        "y": 600,
+        "x": 710,
+        "y": 460,
         "wires": []
     },
     {
@@ -3190,8 +5912,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
-        "y": 160,
+        "x": 850,
+        "y": 80,
         "wires": [
             [
                 "7d3dc0420f760a50",
@@ -3215,8 +5937,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 740,
-        "y": 640,
+        "x": 910,
+        "y": 500,
         "wires": []
     },
     {
@@ -3241,8 +5963,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 910,
-        "y": 940,
+        "x": 1090,
+        "y": 800,
         "wires": [
             [
                 "da634a7df92d6be6"
@@ -3278,8 +6000,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1130,
-        "y": 820,
+        "x": 1370,
+        "y": 680,
         "wires": []
     },
     {
@@ -3295,8 +6017,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1120,
-        "y": 700,
+        "x": 1360,
+        "y": 560,
         "wires": []
     },
     {
@@ -3312,8 +6034,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1130,
-        "y": 660,
+        "x": 1370,
+        "y": 520,
         "wires": []
     },
     {
@@ -3329,8 +6051,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1130,
-        "y": 740,
+        "x": 1370,
+        "y": 600,
         "wires": []
     },
     {
@@ -3346,8 +6068,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1120,
-        "y": 780,
+        "x": 1360,
+        "y": 640,
         "wires": []
     },
     {
@@ -3372,8 +6094,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 730,
-        "y": 960,
+        "x": 910,
+        "y": 820,
         "wires": [
             [
                 "0769f79b9bc82396"
@@ -3411,8 +6133,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 580,
-        "y": 640,
+        "x": 700,
+        "y": 500,
         "wires": [
             [
                 "c85666fe4010560a"
@@ -3501,8 +6223,8 @@
         "syntax": "mustache",
         "template": "{{sample}}",
         "output": "str",
-        "x": 1080,
-        "y": 940,
+        "x": 1260,
+        "y": 800,
         "wires": [
             [
                 "8f790869cfbbe2a7",
@@ -3532,8 +6254,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 730,
-        "y": 740,
+        "x": 910,
+        "y": 600,
         "wires": [
             [
                 "46b8d6305dc63fe8"
@@ -3554,8 +6276,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 900,
-        "y": 740,
+        "x": 1080,
+        "y": 600,
         "wires": [
             [
                 "a6e5382a93886996",
@@ -3579,8 +6301,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 930,
-        "y": 1120,
+        "x": 1110,
+        "y": 980,
         "wires": []
     },
     {
@@ -3596,8 +6318,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1270,
-        "y": 900,
+        "x": 1450,
+        "y": 760,
         "wires": []
     },
     {
@@ -3611,8 +6333,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1290,
-        "y": 940,
+        "x": 1470,
+        "y": 800,
         "wires": [
             [
                 "1e6e2c7346343fc6"
@@ -3649,8 +6371,8 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 150,
-        "y": 760,
+        "x": 190,
+        "y": 600,
         "wires": [
             [
                 "174bae6fa51ea8bd"
@@ -3686,8 +6408,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
-        "y": 220,
+        "x": 850,
+        "y": 160,
         "wires": [
             [
                 "7d3dc0420f760a50",
@@ -3708,8 +6430,8 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 160,
-        "y": 840,
+        "x": 200,
+        "y": 680,
         "wires": [
             [
                 "174bae6fa51ea8bd"
@@ -3727,8 +6449,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
-        "y": 780,
+        "x": 500,
+        "y": 640,
         "wires": [
             [
                 "3c7846a5d04959e3",
@@ -3738,2761 +6460,11 @@
         ]
     },
     {
-        "id": "00a1510000000001",
-        "type": "ui_group",
-        "name": "D0 1451.1.6 EXT",
-        "tab": "86483328.1e604",
-        "order": 8,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "00a1510000000003",
-        "type": "inject",
-        "z": "a4c183a95164db51",
-        "name": "D0 settings",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "x": 150,
-        "y": 1300,
-        "wires": [
-            [
-                "00a1510000000002"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000002",
-        "type": "change",
-        "z": "a4c183a95164db51",
-        "name": "D0 set global vars",
-        "rules": [
-            {
-                "t": "set",
-                "p": "NCAP",
-                "pt": "global",
-                "to": "2400250026002700280029003a010f0f",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "APP",
-                "pt": "global",
-                "to": "2400250026002700280029003a030f0f",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "T0",
-                "pt": "global",
-                "to": "2400250026002700280029003a020f00",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "T1",
-                "pt": "global",
-                "to": "2400250026002700280029003a020f01",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "T2",
-                "pt": "global",
-                "to": "2400250026002700280029003a020f02",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "reqTopicD0",
-                "pt": "global",
-                "to": "_1451.1.6/D0/PTTEST/ncap0",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 420,
-        "y": 1300,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "00a1510000000004",
-        "type": "mqtt out",
-        "z": "a4c183a95164db51",
-        "name": "D0 EXT out",
-        "topic": "",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "39d5aa93d6951ccb",
-        "x": 1180,
-        "y": 1300,
-        "wires": []
-    },
-    {
-        "id": "00a1510000000005",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 NCAP discovery",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[1,8,1,0,0].concat(hx(APP));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 1360,
-        "wires": [
-            [
-                "00a1510000000004"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000006",
-        "type": "ui_button",
-        "z": "a4c183a95164db51",
-        "name": "",
-        "group": "00a1510000000001",
-        "order": 1,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "D0 NCAP discovery",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 470,
-        "y": 1360,
-        "wires": [
-            [
-                "00a1510000000005"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000007",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 TIM discovery",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[1,9,1,0,0].concat(hx(APP)).concat(hx(NCAP));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 1410,
-        "wires": [
-            [
-                "00a1510000000004"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000008",
-        "type": "ui_button",
-        "z": "a4c183a95164db51",
-        "name": "",
-        "group": "00a1510000000001",
-        "order": 2,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "D0 TIM discovery",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 470,
-        "y": 1410,
-        "wires": [
-            [
-                "00a1510000000007"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000009",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 XDCR discovery",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[1,10,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(hx(T0));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 1460,
-        "wires": [
-            [
-                "00a1510000000004"
-            ]
-        ]
-    },
-    {
-        "id": "00a151000000000a",
-        "type": "ui_button",
-        "z": "a4c183a95164db51",
-        "name": "",
-        "group": "00a1510000000001",
-        "order": 3,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "D0 XDCR discovery",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 470,
-        "y": 1460,
-        "wires": [
-            [
-                "00a1510000000009"
-            ]
-        ]
-    },
-    {
-        "id": "00a151000000000b",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 Multi-ch read",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[2,5,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(u16(2)).concat(hx(T0)).concat(hx(T1)).concat(u16(1)).concat(u16(1)).concat(u16(1)).concat(u16(1)).concat([5]).concat(Z8);\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 1510,
-        "wires": [
-            [
-                "00a1510000000004"
-            ]
-        ]
-    },
-    {
-        "id": "00a151000000000c",
-        "type": "ui_button",
-        "z": "a4c183a95164db51",
-        "name": "",
-        "group": "00a1510000000001",
-        "order": 4,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "D0 Multi-ch read",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 470,
-        "y": 1510,
-        "wires": [
-            [
-                "00a151000000000b"
-            ]
-        ]
-    },
-    {
-        "id": "00a151000000000d",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 Block read",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[2,6,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(u16(1)).concat(hx(T0)).concat(u16(1)).concat(u16(1)).concat(u32(3)).concat(Z8).concat(Z8).concat(Z8);\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 1560,
-        "wires": [
-            [
-                "00a1510000000004"
-            ]
-        ]
-    },
-    {
-        "id": "00a151000000000e",
-        "type": "ui_button",
-        "z": "a4c183a95164db51",
-        "name": "",
-        "group": "00a1510000000001",
-        "order": 5,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "D0 Block read",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 470,
-        "y": 1560,
-        "wires": [
-            [
-                "00a151000000000d"
-            ]
-        ]
-    },
-    {
-        "id": "00a151000000000f",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 Event subscribe",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[4,1,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(hx(T0)).concat(u16(1)).concat(s0('')).concat(s0('app0')).concat(Z8).concat(Z8);\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 1610,
-        "wires": [
-            [
-                "00a1510000000004"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000010",
-        "type": "ui_button",
-        "z": "a4c183a95164db51",
-        "name": "",
-        "group": "00a1510000000001",
-        "order": 6,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "D0 Event subscribe",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 470,
-        "y": 1610,
-        "wires": [
-            [
-                "00a151000000000f"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000011",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 Heartbeat subscribe",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[4,10,1,0,0].concat(hx(APP)).concat(Z8).concat(Z8);\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 1660,
-        "wires": [
-            [
-                "00a1510000000004"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000012",
-        "type": "ui_button",
-        "z": "a4c183a95164db51",
-        "name": "",
-        "group": "00a1510000000001",
-        "order": 7,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "D0 Heartbeat subscribe",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 470,
-        "y": 1660,
-        "wires": [
-            [
-                "00a1510000000011"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000013",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 EXT decode",
-        "func": "var p=msg.payload;\nif(!Buffer.isBuffer(p)){return [null,null];}\nvar t=p[0],i=p[1],m=p[2];\nfunction rs(o){var e=o;while(e<p.length&&p[e]!==0){e++;}return p.slice(o,e).toString();}\nvar label=null,chart=null;\nif(t==1&&i==8&&m==2){label='[NCAP disc rep] ncapId='+p.slice(23,39).toString('hex');}\nelse if(t==1&&i==9&&m==2){label='[TIM disc rep] '+p.toString('hex');}\nelse if(t==1&&i==10&&m==2){label='[XDCR disc rep] '+p.toString('hex');}\nelse if(t==2&&i==5&&m==2){label='[multi read rep] '+p.toString('hex');}\nelse if(t==2&&i==6&&m==2){label='[block read rep] '+p.toString('hex');}\nelse if(t==4&&i==1&&m==2){label='[event sub rep] '+p.toString('hex');}\nelse if(t==4&&i==1&&m==4){var s=rs(59);label='[event NOTIFY] sample='+s;chart=parseFloat(s);}\nelse if(t==4&&i==10&&m==2){label='[heartbeat rep] '+p.toString('hex');}\nelse if(t==4&&i==10&&m==4){label='[heartbeat NOTIFY] '+p.toString('hex');}\nif(label===null){return [null,null];}\nreturn [{payload:label},(chart!==null&&!isNaN(chart))?{payload:chart}:null];\n",
-        "outputs": 2,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 1730,
-        "wires": [
-            [
-                "00a1510000000014"
-            ],
-            [
-                "00a1510000000015"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000014",
-        "type": "debug",
-        "z": "a4c183a95164db51",
-        "name": "D0 EXT reply",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 760,
-        "y": 1730,
-        "wires": []
-    },
-    {
-        "id": "00a1510000000015",
-        "type": "ui_chart",
-        "z": "a4c183a95164db51",
-        "name": "D0 notify",
-        "group": "00a1510000000001",
-        "order": 99,
-        "width": "6",
-        "height": "5",
-        "label": "D0 event notify",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "5",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 760,
-        "y": 1780,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "00a1510000000016",
-        "type": "ui_group",
-        "name": "D0C 1451.1.6 EXT",
-        "tab": "86483328.1e604",
-        "order": 5,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "00a1510000000018",
-        "type": "inject",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C settings",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "x": 150,
-        "y": 1300,
-        "wires": [
-            [
-                "00a1510000000017"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000017",
-        "type": "change",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C set global vars",
-        "rules": [
-            {
-                "t": "set",
-                "p": "NCAP",
-                "pt": "global",
-                "to": "2400250026002700280029003a010f0f",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "APP",
-                "pt": "global",
-                "to": "2400250026002700280029003a030f0f",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "T0",
-                "pt": "global",
-                "to": "2400250026002700280029003a020f00",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "T1",
-                "pt": "global",
-                "to": "2400250026002700280029003a020f01",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "T2",
-                "pt": "global",
-                "to": "2400250026002700280029003a020f02",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "reqTopicC",
-                "pt": "global",
-                "to": "_1451.1.6/C/PTTEST/ncap0",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 420,
-        "y": 1300,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "00a1510000000019",
-        "type": "mqtt out",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C EXT out",
-        "topic": "",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "39d5aa93d6951ccb",
-        "x": 1180,
-        "y": 1300,
-        "wires": []
-    },
-    {
-        "id": "00a151000000001a",
-        "type": "function",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C NCAP discovery",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='1,8,1,0x'+APP;\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 1360,
-        "wires": [
-            [
-                "00a1510000000019"
-            ]
-        ]
-    },
-    {
-        "id": "00a151000000001b",
-        "type": "ui_button",
-        "z": "0c7a731dc303bfda",
-        "name": "",
-        "group": "00a1510000000016",
-        "order": 1,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "D0C NCAP discovery",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 470,
-        "y": 1360,
-        "wires": [
-            [
-                "00a151000000001a"
-            ]
-        ]
-    },
-    {
-        "id": "00a151000000001c",
-        "type": "function",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C TIM discovery",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='1,9,1,0x'+APP+',0x'+NCAP;\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 1410,
-        "wires": [
-            [
-                "00a1510000000019"
-            ]
-        ]
-    },
-    {
-        "id": "00a151000000001d",
-        "type": "ui_button",
-        "z": "0c7a731dc303bfda",
-        "name": "",
-        "group": "00a1510000000016",
-        "order": 2,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "D0C TIM discovery",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 470,
-        "y": 1410,
-        "wires": [
-            [
-                "00a151000000001c"
-            ]
-        ]
-    },
-    {
-        "id": "00a151000000001e",
-        "type": "function",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C XDCR discovery",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='1,10,1,0x'+APP+',0x'+NCAP+',0x'+T0;\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 1460,
-        "wires": [
-            [
-                "00a1510000000019"
-            ]
-        ]
-    },
-    {
-        "id": "00a151000000001f",
-        "type": "ui_button",
-        "z": "0c7a731dc303bfda",
-        "name": "",
-        "group": "00a1510000000016",
-        "order": 3,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "D0C XDCR discovery",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 470,
-        "y": 1460,
-        "wires": [
-            [
-                "00a151000000001e"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000020",
-        "type": "function",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C Multi-ch read",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='2,5,1,0x'+APP+',0x'+NCAP+',2,0x'+T0+':0x'+T1+',1:1,1:1,5,0';\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 1510,
-        "wires": [
-            [
-                "00a1510000000019"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000021",
-        "type": "ui_button",
-        "z": "0c7a731dc303bfda",
-        "name": "",
-        "group": "00a1510000000016",
-        "order": 4,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "D0C Multi-ch read",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 470,
-        "y": 1510,
-        "wires": [
-            [
-                "00a1510000000020"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000022",
-        "type": "function",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C Block read",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='2,6,1,0x'+APP+',0x'+NCAP+',1,0x'+T0+',1,1,3,0,0,0';\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 1560,
-        "wires": [
-            [
-                "00a1510000000019"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000023",
-        "type": "ui_button",
-        "z": "0c7a731dc303bfda",
-        "name": "",
-        "group": "00a1510000000016",
-        "order": 5,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "D0C Block read",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 470,
-        "y": 1560,
-        "wires": [
-            [
-                "00a1510000000022"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000024",
-        "type": "function",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C Event subscribe",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,1,1,0x'+APP+',0x'+NCAP+',0x'+T0+',1,,app0,0,0';\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 1610,
-        "wires": [
-            [
-                "00a1510000000019"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000025",
-        "type": "ui_button",
-        "z": "0c7a731dc303bfda",
-        "name": "",
-        "group": "00a1510000000016",
-        "order": 6,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "D0C Event subscribe",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 470,
-        "y": 1610,
-        "wires": [
-            [
-                "00a1510000000024"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000026",
-        "type": "function",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C Heartbeat subscribe",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,10,1,0x'+APP+',0,0';\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 1660,
-        "wires": [
-            [
-                "00a1510000000019"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000027",
-        "type": "ui_button",
-        "z": "0c7a731dc303bfda",
-        "name": "",
-        "group": "00a1510000000016",
-        "order": 7,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "D0C Heartbeat subscribe",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 470,
-        "y": 1660,
-        "wires": [
-            [
-                "00a1510000000026"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000028",
-        "type": "function",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C EXT decode",
-        "func": "var s=msg.payload;\nif(typeof s!=='string'){if(Buffer.isBuffer(s)){s=s.toString();}else{return [null,null];}}\nvar f=s.split(',');var t=+f[0],i=+f[1],m=+f[2];\nvar label=null,chart=null;\nif(t==1&&i==8&&m==2){label='[NCAP disc rep] '+s;}\nelse if(t==1&&i==9&&m==2){label='[TIM disc rep] '+s;}\nelse if(t==1&&i==10&&m==2){label='[XDCR disc rep] '+s;}\nelse if(t==2&&i==5&&m==2){label='[multi read rep] '+s;}\nelse if(t==2&&i==6&&m==2){label='[block read rep] '+s;}\nelse if(t==4&&i==1&&m==2){label='[event sub rep] '+s;}\nelse if(t==4&&i==1&&m==4){chart=parseFloat(f[9]);label='[event NOTIFY] sample='+f[9];}\nelse if(t==4&&i==10&&m==2){label='[heartbeat rep] '+s;}\nelse if(t==4&&i==10&&m==4){label='[heartbeat NOTIFY] '+s;}\nif(label===null){return [null,null];}\nreturn [{payload:label},(chart!==null&&!isNaN(chart))?{payload:chart}:null];\n",
-        "outputs": 2,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 1730,
-        "wires": [
-            [
-                "00a1510000000029"
-            ],
-            [
-                "00a151000000002a"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000029",
-        "type": "debug",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C EXT reply",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 760,
-        "y": 1730,
-        "wires": []
-    },
-    {
-        "id": "00a151000000002a",
-        "type": "ui_chart",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C notify",
-        "group": "00a1510000000016",
-        "order": 99,
-        "width": "6",
-        "height": "5",
-        "label": "D0C event notify",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "5",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 760,
-        "y": 1780,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c500000000000007",
-        "type": "ui_text",
-        "z": "9ac7a3893df687ef",
-        "group": "3d28726f78ea7296",
-        "order": 1,
-        "width": "6",
-        "height": "1",
-        "name": "",
-        "label": "m5-01 Status",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "className": "",
-        "x": 720,
-        "y": 50,
-        "wires": []
-    },
-    {
-        "id": "c500000000000001",
-        "type": "ui_gauge",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "3d28726f78ea7296",
-        "order": 2,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "Temperature °C",
-        "label": "degC",
-        "format": "{{value}}",
-        "min": "-10",
-        "max": "50",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 720,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "c500000000000002",
-        "type": "ui_gauge",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "3d28726f78ea7296",
-        "order": 3,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "Humidity %",
-        "label": "%RH",
-        "format": "{{value}}",
-        "min": "0",
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 720,
-        "y": 130,
-        "wires": []
-    },
-    {
-        "id": "c500000000000003",
-        "type": "ui_gauge",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "3d28726f78ea7296",
-        "order": 4,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "CO2 ppm",
-        "label": "ppm",
-        "format": "{{value}}",
-        "min": "400",
-        "max": "2000",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "1000",
-        "seg2": "1500",
-        "diff": false,
-        "className": "",
-        "x": 720,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "c500000000000004",
-        "type": "ui_gauge",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "3d28726f78ea7296",
-        "order": 5,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "Gauge (actual)",
-        "label": "0-100",
-        "format": "{{value}}",
-        "min": "0",
-        "max": "100",
-        "colors": [
-            "#0094ce",
-            "#0094ce",
-            "#0094ce"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 720,
-        "y": 230,
-        "wires": []
-    },
-    {
-        "id": "c500000000000005",
-        "type": "ui_chart",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "3d28726f78ea7296",
-        "order": 6,
-        "width": "6",
-        "height": "4",
-        "label": "Temp / Humidity Trend",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "10",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#ff7f0e",
-            "#2ca02c",
-            "#d62728",
-            "#9467bd",
-            "#8c564b",
-            "#e377c2",
-            "#7f7f7f",
-            "#bcbd22"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 720,
-        "y": 290,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c500000000000006",
-        "type": "ui_chart",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "3d28726f78ea7296",
-        "order": 7,
-        "width": "6",
-        "height": "4",
-        "label": "CO2 Trend",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "10",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#ff7f0e",
-            "#2ca02c",
-            "#d62728",
-            "#9467bd",
-            "#8c564b",
-            "#e377c2",
-            "#7f7f7f",
-            "#bcbd22"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 720,
-        "y": 350,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c500000000000008",
-        "type": "function",
-        "z": "9ac7a3893df687ef",
-        "name": "split m5-01",
-        "func": "// M5 telemetry JSON -> 4 series\nvar p = msg.payload || {};\nfunction val(v){ return (typeof v === 'number' && !isNaN(v)) ? v : null; }\nvar t = val(p.temp), h = val(p.humid), c = val(p.co2), g = val(p.gauge);\nreturn [\n  t!==null ? {payload:t, topic:'TEMP'}  : null,\n  h!==null ? {payload:h, topic:'HUMID'} : null,\n  c!==null ? {payload:c, topic:'CO2'}   : null,\n  g!==null ? {payload:g, topic:'GAUGE'} : null\n];",
-        "outputs": 4,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 440,
-        "y": 80,
-        "wires": [
-            [
-                "c500000000000001",
-                "c500000000000005"
-            ],
-            [
-                "c500000000000002",
-                "c500000000000005"
-            ],
-            [
-                "c500000000000003",
-                "c500000000000006"
-            ],
-            [
-                "c500000000000004"
-            ]
-        ]
-    },
-    {
-        "id": "c500000000000009",
-        "type": "mqtt in",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "topic": "m5iot/m5-01/telemetry",
-        "qos": "0",
-        "datatype": "json",
-        "broker": "39d5aa93d6951ccb",
-        "nl": false,
-        "rap": false,
-        "rh": 0,
-        "inputs": 0,
-        "x": 200,
-        "y": 80,
-        "wires": [
-            [
-                "c500000000000008"
-            ]
-        ]
-    },
-    {
-        "id": "c50000000000000a",
-        "type": "function",
-        "z": "9ac7a3893df687ef",
-        "name": "status m5-01",
-        "func": "var s = ('' + msg.payload).trim().toLowerCase();\nmsg.payload = (s === 'online') ? '🟢 ONLINE' : '🔴 OFFLINE (LWT)';\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 440,
-        "y": 150,
-        "wires": [
-            [
-                "c500000000000007"
-            ]
-        ]
-    },
-    {
-        "id": "c50000000000000b",
-        "type": "mqtt in",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "topic": "m5iot/m5-01/status",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "39d5aa93d6951ccb",
-        "nl": false,
-        "rap": false,
-        "rh": 0,
-        "inputs": 0,
-        "x": 200,
-        "y": 150,
-        "wires": [
-            [
-                "c50000000000000a"
-            ]
-        ]
-    },
-    {
-        "id": "c50000000000000c",
-        "type": "mqtt out",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "topic": "m5iot/m5-01/gauge",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "39d5aa93d6951ccb",
-        "x": 660,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "c50000000000000d",
-        "type": "function",
-        "z": "9ac7a3893df687ef",
-        "name": "gauge->str m5-01",
-        "func": "// clamp 0-100 and send as plain text to M5\nvar v = parseInt(msg.payload, 10);\nif (isNaN(v)) return null;\nv = Math.max(0, Math.min(100, v));\nmsg.payload = '' + v;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 440,
-        "y": 440,
-        "wires": [
-            [
-                "c50000000000000c"
-            ]
-        ]
-    },
-    {
-        "id": "c50000000000000e",
-        "type": "ui_slider",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "label": "Gauge Control (0-100)",
-        "tooltip": "",
-        "group": "3d28726f78ea7296",
-        "order": 8,
-        "width": "6",
-        "height": "1",
-        "passthru": true,
-        "outs": "end",
-        "topic": "payload",
-        "topicType": "msg",
-        "min": 0,
-        "max": "100",
-        "step": 1,
-        "className": "",
-        "x": 180,
-        "y": 410,
-        "wires": [
-            [
-                "c50000000000000d"
-            ]
-        ]
-    },
-    {
-        "id": "c50000000000000f",
-        "type": "ui_button",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "3d28726f78ea7296",
-        "order": 9,
-        "width": "2",
-        "height": "1",
-        "passthru": true,
-        "label": "0",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "0",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 180,
-        "y": 460,
-        "wires": [
-            [
-                "c50000000000000d"
-            ]
-        ]
-    },
-    {
-        "id": "c500000000000010",
-        "type": "ui_button",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "3d28726f78ea7296",
-        "order": 10,
-        "width": "2",
-        "height": "1",
-        "passthru": true,
-        "label": "50",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "50",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 260,
-        "y": 460,
-        "wires": [
-            [
-                "c50000000000000d"
-            ]
-        ]
-    },
-    {
-        "id": "c500000000000011",
-        "type": "ui_button",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "3d28726f78ea7296",
-        "order": 11,
-        "width": "2",
-        "height": "1",
-        "passthru": true,
-        "label": "100",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "100",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 340,
-        "y": 460,
-        "wires": [
-            [
-                "c50000000000000d"
-            ]
-        ]
-    },
-    {
-        "id": "c500000000000018",
-        "type": "ui_text",
-        "z": "9ac7a3893df687ef",
-        "group": "ab28081145731513",
-        "order": 1,
-        "width": "6",
-        "height": "1",
-        "name": "",
-        "label": "m5-02 Status",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "className": "",
-        "x": 720,
-        "y": 570,
-        "wires": []
-    },
-    {
-        "id": "c500000000000012",
-        "type": "ui_gauge",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "ab28081145731513",
-        "order": 2,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "Temperature °C",
-        "label": "degC",
-        "format": "{{value}}",
-        "min": "-10",
-        "max": "50",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 720,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "c500000000000013",
-        "type": "ui_gauge",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "ab28081145731513",
-        "order": 3,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "Humidity %",
-        "label": "%RH",
-        "format": "{{value}}",
-        "min": "0",
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 720,
-        "y": 650,
-        "wires": []
-    },
-    {
-        "id": "c500000000000014",
-        "type": "ui_gauge",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "ab28081145731513",
-        "order": 4,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "CO2 ppm",
-        "label": "ppm",
-        "format": "{{value}}",
-        "min": "400",
-        "max": "2000",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "1000",
-        "seg2": "1500",
-        "diff": false,
-        "className": "",
-        "x": 720,
-        "y": 700,
-        "wires": []
-    },
-    {
-        "id": "c500000000000015",
-        "type": "ui_gauge",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "ab28081145731513",
-        "order": 5,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "Gauge (actual)",
-        "label": "0-100",
-        "format": "{{value}}",
-        "min": "0",
-        "max": "100",
-        "colors": [
-            "#0094ce",
-            "#0094ce",
-            "#0094ce"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 720,
-        "y": 750,
-        "wires": []
-    },
-    {
-        "id": "c500000000000016",
-        "type": "ui_chart",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "ab28081145731513",
-        "order": 6,
-        "width": "6",
-        "height": "4",
-        "label": "Temp / Humidity Trend",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "10",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#ff7f0e",
-            "#2ca02c",
-            "#d62728",
-            "#9467bd",
-            "#8c564b",
-            "#e377c2",
-            "#7f7f7f",
-            "#bcbd22"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 720,
-        "y": 810,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c500000000000017",
-        "type": "ui_chart",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "ab28081145731513",
-        "order": 7,
-        "width": "6",
-        "height": "4",
-        "label": "CO2 Trend",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "10",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#ff7f0e",
-            "#2ca02c",
-            "#d62728",
-            "#9467bd",
-            "#8c564b",
-            "#e377c2",
-            "#7f7f7f",
-            "#bcbd22"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 720,
-        "y": 870,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c500000000000019",
-        "type": "function",
-        "z": "9ac7a3893df687ef",
-        "name": "split m5-02",
-        "func": "// M5 telemetry JSON -> 4 series\nvar p = msg.payload || {};\nfunction val(v){ return (typeof v === 'number' && !isNaN(v)) ? v : null; }\nvar t = val(p.temp), h = val(p.humid), c = val(p.co2), g = val(p.gauge);\nreturn [\n  t!==null ? {payload:t, topic:'TEMP'}  : null,\n  h!==null ? {payload:h, topic:'HUMID'} : null,\n  c!==null ? {payload:c, topic:'CO2'}   : null,\n  g!==null ? {payload:g, topic:'GAUGE'} : null\n];",
-        "outputs": 4,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 440,
-        "y": 600,
-        "wires": [
-            [
-                "c500000000000012",
-                "c500000000000016"
-            ],
-            [
-                "c500000000000013",
-                "c500000000000016"
-            ],
-            [
-                "c500000000000014",
-                "c500000000000017"
-            ],
-            [
-                "c500000000000015"
-            ]
-        ]
-    },
-    {
-        "id": "c50000000000001a",
-        "type": "mqtt in",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "topic": "m5iot/m5-02/telemetry",
-        "qos": "0",
-        "datatype": "json",
-        "broker": "39d5aa93d6951ccb",
-        "nl": false,
-        "rap": false,
-        "rh": 0,
-        "inputs": 0,
-        "x": 200,
-        "y": 600,
-        "wires": [
-            [
-                "c500000000000019"
-            ]
-        ]
-    },
-    {
-        "id": "c50000000000001b",
-        "type": "function",
-        "z": "9ac7a3893df687ef",
-        "name": "status m5-02",
-        "func": "var s = ('' + msg.payload).trim().toLowerCase();\nmsg.payload = (s === 'online') ? '🟢 ONLINE' : '🔴 OFFLINE (LWT)';\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 440,
-        "y": 670,
-        "wires": [
-            [
-                "c500000000000018"
-            ]
-        ]
-    },
-    {
-        "id": "c50000000000001c",
-        "type": "mqtt in",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "topic": "m5iot/m5-02/status",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "39d5aa93d6951ccb",
-        "nl": false,
-        "rap": false,
-        "rh": 0,
-        "inputs": 0,
-        "x": 200,
-        "y": 670,
-        "wires": [
-            [
-                "c50000000000001b"
-            ]
-        ]
-    },
-    {
-        "id": "c50000000000001d",
-        "type": "mqtt out",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "topic": "m5iot/m5-02/gauge",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "39d5aa93d6951ccb",
-        "x": 660,
-        "y": 960,
-        "wires": []
-    },
-    {
-        "id": "c50000000000001e",
-        "type": "function",
-        "z": "9ac7a3893df687ef",
-        "name": "gauge->str m5-02",
-        "func": "// clamp 0-100 and send as plain text to M5\nvar v = parseInt(msg.payload, 10);\nif (isNaN(v)) return null;\nv = Math.max(0, Math.min(100, v));\nmsg.payload = '' + v;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 440,
-        "y": 960,
-        "wires": [
-            [
-                "c50000000000001d"
-            ]
-        ]
-    },
-    {
-        "id": "c50000000000001f",
-        "type": "ui_slider",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "label": "Gauge Control (0-100)",
-        "tooltip": "",
-        "group": "ab28081145731513",
-        "order": 8,
-        "width": "6",
-        "height": "1",
-        "passthru": true,
-        "outs": "end",
-        "topic": "payload",
-        "topicType": "msg",
-        "min": 0,
-        "max": "100",
-        "step": 1,
-        "className": "",
-        "x": 180,
-        "y": 930,
-        "wires": [
-            [
-                "c50000000000001e"
-            ]
-        ]
-    },
-    {
-        "id": "c500000000000020",
-        "type": "ui_button",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "ab28081145731513",
-        "order": 9,
-        "width": "2",
-        "height": "1",
-        "passthru": true,
-        "label": "0",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "0",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 180,
-        "y": 980,
-        "wires": [
-            [
-                "c50000000000001e"
-            ]
-        ]
-    },
-    {
-        "id": "c500000000000021",
-        "type": "ui_button",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "ab28081145731513",
-        "order": 10,
-        "width": "2",
-        "height": "1",
-        "passthru": true,
-        "label": "50",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "50",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 260,
-        "y": 980,
-        "wires": [
-            [
-                "c50000000000001e"
-            ]
-        ]
-    },
-    {
-        "id": "c500000000000022",
-        "type": "ui_button",
-        "z": "9ac7a3893df687ef",
-        "name": "",
-        "group": "ab28081145731513",
-        "order": 11,
-        "width": "2",
-        "height": "1",
-        "passthru": true,
-        "label": "100",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "100",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 340,
-        "y": 980,
-        "wires": [
-            [
-                "c50000000000001e"
-            ]
-        ]
-    },
-    {
-        "id": "c600000000000001",
-        "type": "mqtt out",
-        "z": "9ac7a3893df687ef",
-        "name": "M5 C-OP req",
-        "topic": "_1451.1.6/C/PTTEST/ncap0",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "39d5aa93d6951ccb",
-        "x": 700,
-        "y": 1100,
-        "wires": []
-    },
-    {
-        "id": "c600000000000002",
-        "type": "ui_group",
-        "name": "M5 #1  Req/Res (TIM3)",
-        "tab": "86483328.1e604",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "c600000000000003",
-        "type": "ui_text",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000002",
-        "order": 7,
-        "width": "6",
-        "height": "2",
-        "name": "",
-        "label": "Last response",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "className": "",
-        "x": 1050,
-        "y": 1260,
-        "wires": []
-    },
-    {
-        "id": "c600000000000004",
-        "type": "ui_gauge",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000002",
-        "order": 5,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "CO2 ppm (req/res)",
-        "label": "ppm",
-        "format": "{{value}}",
-        "min": "400",
-        "max": "2000",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "1000",
-        "seg2": "1500",
-        "diff": false,
-        "className": "",
-        "x": 1050,
-        "y": 1200,
-        "wires": []
-    },
-    {
-        "id": "c600000000000005",
-        "type": "ui_button",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000002",
-        "order": 1,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "Temp read",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,1,0,0",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 400,
-        "y": 1200,
-        "wires": [
-            [
-                "c600000000000001"
-            ]
-        ]
-    },
-    {
-        "id": "c600000000000006",
-        "type": "ui_button",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000002",
-        "order": 2,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "Humid read",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,2,0,0",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 400,
-        "y": 1240,
-        "wires": [
-            [
-                "c600000000000001"
-            ]
-        ]
-    },
-    {
-        "id": "c600000000000007",
-        "type": "ui_button",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000002",
-        "order": 3,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "CO2 read",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,3,0,0",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 400,
-        "y": 1280,
-        "wires": [
-            [
-                "c600000000000001"
-            ]
-        ]
-    },
-    {
-        "id": "c600000000000008",
-        "type": "ui_button",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000002",
-        "order": 4,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "Gauge read",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,4,0,0",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 400,
-        "y": 1320,
-        "wires": [
-            [
-                "c600000000000001"
-            ]
-        ]
-    },
-    {
-        "id": "c600000000000009",
-        "type": "ui_group",
-        "name": "M5 #2  Req/Res (TIM4)",
-        "tab": "86483328.1e604",
-        "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "c60000000000000a",
-        "type": "ui_text",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000009",
-        "order": 7,
-        "width": "6",
-        "height": "2",
-        "name": "",
-        "label": "Last response",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "className": "",
-        "x": 1050,
-        "y": 1620,
-        "wires": []
-    },
-    {
-        "id": "c60000000000000b",
-        "type": "ui_gauge",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000009",
-        "order": 5,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "CO2 ppm (req/res)",
-        "label": "ppm",
-        "format": "{{value}}",
-        "min": "400",
-        "max": "2000",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "1000",
-        "seg2": "1500",
-        "diff": false,
-        "className": "",
-        "x": 1050,
-        "y": 1560,
-        "wires": []
-    },
-    {
-        "id": "c60000000000000c",
-        "type": "ui_button",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000009",
-        "order": 1,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "Temp read",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,1,0,0",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 400,
-        "y": 1560,
-        "wires": [
-            [
-                "c600000000000001"
-            ]
-        ]
-    },
-    {
-        "id": "c60000000000000d",
-        "type": "ui_button",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000009",
-        "order": 2,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "Humid read",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,2,0,0",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 400,
-        "y": 1600,
-        "wires": [
-            [
-                "c600000000000001"
-            ]
-        ]
-    },
-    {
-        "id": "c60000000000000e",
-        "type": "ui_button",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000009",
-        "order": 3,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "CO2 read",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,3,0,0",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 400,
-        "y": 1640,
-        "wires": [
-            [
-                "c600000000000001"
-            ]
-        ]
-    },
-    {
-        "id": "c60000000000000f",
-        "type": "ui_button",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000009",
-        "order": 4,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "Gauge read",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,4,0,0",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 400,
-        "y": 1680,
-        "wires": [
-            [
-                "c600000000000001"
-            ]
-        ]
-    },
-    {
-        "id": "c600000000000010",
-        "type": "function",
-        "z": "9ac7a3893df687ef",
-        "name": "M5 reply decode",
-        "func": "var s = ('' + msg.payload).trim();\nvar f = s.split(',');\n// read reply: 2,1,2,0,app,ncap,tim,ch,val,ts\nif (f.length < 9 || f[0] !== '2' || f[1] !== '1' || f[2] !== '2') return [null,null,null,null];\nvar tim = (f[6] || '').toLowerCase();\nvar ch  = f[7];\nvar val = parseFloat(f[8]);\nvar names = {'1':'Temp','2':'Humid','3':'CO2','4':'Gauge'};\nvar units = {'1':'K','2':'%','3':'ppm','4':''};\nvar extra = (ch === '1') ? ' (' + (val - 273.15).toFixed(1) + ' \\u00b0C)' : '';\nvar line = 'ch' + ch + ' ' + (names[ch]||'?') + ' = ' + val + ' ' + (units[ch]||'') + extra;\nvar T = '0x2400250026002700280029003a020f03', U = '0x2400250026002700280029003a020f04';\nvar tmsg = {payload: line};\nvar gmsg = {payload: val};\nif (tim === T) return [tmsg, ch === '3' ? gmsg : null, null, null];\nif (tim === U) return [null, null, tmsg, ch === '3' ? gmsg : null];\nreturn [null,null,null,null];",
-        "outputs": 4,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 820,
-        "y": 1260,
-        "wires": [
-            [
-                "c600000000000003"
-            ],
-            [
-                "c600000000000004"
-            ],
-            [
-                "c60000000000000a"
-            ],
-            [
-                "c60000000000000b"
-            ]
-        ]
-    },
-    {
-        "id": "c600000000000011",
-        "type": "mqtt in",
-        "z": "9ac7a3893df687ef",
-        "name": "M5 C-OP reply",
-        "topic": "_1451.1.6/C/PTTEST/ncap0",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "39d5aa93d6951ccb",
-        "nl": false,
-        "rap": false,
-        "rh": 0,
-        "inputs": 0,
-        "x": 600,
-        "y": 1260,
-        "wires": [
-            [
-                "c600000000000010"
-            ]
-        ]
-    },
-    {
-        "id": "c700000000000001",
-        "type": "ui_gauge",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000002",
-        "order": 6,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "Gauge (actual)",
-        "label": "0-100",
-        "format": "{{value}}",
-        "min": "0",
-        "max": "100",
-        "colors": [
-            "#0094ce",
-            "#0094ce",
-            "#0094ce"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 1050,
-        "y": 1500,
-        "wires": []
-    },
-    {
-        "id": "c700000000000002",
-        "type": "function",
-        "z": "9ac7a3893df687ef",
-        "name": "Gauge write 03",
-        "func": "// Gauge actuator -> 1451.1.6 sync_write (2,7,1) to NCAP -> M5 gauge channel (ch4)\nvar v = parseInt(msg.payload, 10);\nif (isNaN(v)) return null;\nv = Math.max(0, Math.min(100, v));\nmsg.payload = '2,7,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,4,0,' + v;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 820,
-        "y": 1540,
-        "wires": [
-            [
-                "c600000000000001"
-            ]
-        ]
-    },
-    {
-        "id": "c700000000000003",
-        "type": "ui_slider",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000002",
-        "order": 8,
-        "width": "6",
-        "height": "1",
-        "name": "",
-        "label": "Gauge write (0-100)",
-        "tooltip": "",
-        "passthru": true,
-        "outs": "end",
-        "topic": "payload",
-        "topicType": "msg",
-        "min": 0,
-        "max": "100",
-        "step": 1,
-        "className": "",
-        "x": 560,
-        "y": 1540,
-        "wires": [
-            [
-                "c700000000000001",
-                "c700000000000002"
-            ]
-        ]
-    },
-    {
-        "id": "c700000000000004",
-        "type": "ui_gauge",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000009",
-        "order": 6,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "Gauge (actual)",
-        "label": "0-100",
-        "format": "{{value}}",
-        "min": "0",
-        "max": "100",
-        "colors": [
-            "#0094ce",
-            "#0094ce",
-            "#0094ce"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 1050,
-        "y": 1700,
-        "wires": []
-    },
-    {
-        "id": "c700000000000005",
-        "type": "function",
-        "z": "9ac7a3893df687ef",
-        "name": "Gauge write 04",
-        "func": "// Gauge actuator -> 1451.1.6 sync_write (2,7,1) to NCAP -> M5 gauge channel (ch4)\nvar v = parseInt(msg.payload, 10);\nif (isNaN(v)) return null;\nv = Math.max(0, Math.min(100, v));\nmsg.payload = '2,7,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,4,0,' + v;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 820,
-        "y": 1740,
-        "wires": [
-            [
-                "c600000000000001"
-            ]
-        ]
-    },
-    {
-        "id": "c700000000000006",
-        "type": "ui_slider",
-        "z": "9ac7a3893df687ef",
-        "group": "c600000000000009",
-        "order": 8,
-        "width": "6",
-        "height": "1",
-        "name": "",
-        "label": "Gauge write (0-100)",
-        "tooltip": "",
-        "passthru": true,
-        "outs": "end",
-        "topic": "payload",
-        "topicType": "msg",
-        "min": 0,
-        "max": "100",
-        "step": 1,
-        "className": "",
-        "x": 560,
-        "y": 1740,
-        "wires": [
-            [
-                "c700000000000004",
-                "c700000000000005"
-            ]
-        ]
-    },
-    {
-        "id": "c700000000000007",
-        "type": "ui_gauge",
-        "z": "0c7a731dc303bfda",
-        "group": "c3134a.6ced2cb8",
-        "order": 2,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "Gauge (actual)",
-        "label": "0-100",
-        "format": "{{value}}",
-        "min": "0",
-        "max": "100",
-        "colors": [
-            "#0094ce",
-            "#0094ce",
-            "#0094ce"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 300,
-        "y": 2000,
-        "wires": []
-    },
-    {
-        "id": "c700000000000008",
-        "type": "ui_gauge",
-        "z": "a4c183a95164db51",
-        "group": "e960bf17.9f3d",
-        "order": 2,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "Gauge (actual)",
-        "label": "0-100",
-        "format": "{{value}}",
-        "min": "0",
-        "max": "100",
-        "colors": [
-            "#0094ce",
-            "#0094ce",
-            "#0094ce"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 300,
-        "y": 2000,
-        "wires": []
-    },
-    {
-        "id": "c800000000000001",
-        "type": "function",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C Event unsubscribe",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,3,1,0x'+APP+',0x'+NCAP+',0x'+T0+',1,0';   // event unsubscribe (4,3,1)\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 700,
-        "y": 1400,
-        "wires": [
-            [
-                "00a1510000000019"
-            ]
-        ]
-    },
-    {
-        "id": "c800000000000002",
-        "type": "ui_button",
-        "z": "0c7a731dc303bfda",
-        "group": "00a1510000000016",
-        "order": 8,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "Event Unsub (Stop)",
-        "tooltip": "",
-        "color": "#ffffff",
-        "bgcolor": "#c0392b",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 420,
-        "y": 1400,
-        "wires": [
-            [
-                "c800000000000001"
-            ]
-        ]
-    },
-    {
-        "id": "c800000000000003",
-        "type": "function",
-        "z": "0c7a731dc303bfda",
-        "name": "D0C Heartbeat unsubscribe",
-        "func": "var APP=global.get('APP');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,12,1,0x'+APP;                              // heartbeat unsubscribe (4,12,1)\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 700,
-        "y": 1460,
-        "wires": [
-            [
-                "00a1510000000019"
-            ]
-        ]
-    },
-    {
-        "id": "c800000000000004",
-        "type": "ui_button",
-        "z": "0c7a731dc303bfda",
-        "group": "00a1510000000016",
-        "order": 9,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "Heartbeat Stop",
-        "tooltip": "",
-        "color": "#ffffff",
-        "bgcolor": "#c0392b",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 420,
-        "y": 1460,
-        "wires": [
-            [
-                "c800000000000003"
-            ]
-        ]
-    },
-    {
-        "id": "c800000000000005",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 Event unsubscribe",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nvar a=[4,3,1,0,0].concat(hx(APP)).concat(hx(NCAP)).concat(hx(T0)).concat(u16(1)).concat(u16(0));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');msg.payload=Buffer.from(a);return msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 700,
-        "y": 1400,
-        "wires": [
-            [
-                "00a1510000000004"
-            ]
-        ]
-    },
-    {
-        "id": "c800000000000006",
-        "type": "ui_button",
-        "z": "a4c183a95164db51",
-        "group": "00a1510000000001",
-        "order": 8,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "Event Unsub (Stop)",
-        "tooltip": "",
-        "color": "#ffffff",
-        "bgcolor": "#c0392b",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 420,
-        "y": 1400,
-        "wires": [
-            [
-                "c800000000000005"
-            ]
-        ]
-    },
-    {
-        "id": "c800000000000007",
-        "type": "function",
-        "z": "a4c183a95164db51",
-        "name": "D0 Heartbeat unsubscribe",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nvar a=[4,12,1,0,0].concat(hx(APP));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');msg.payload=Buffer.from(a);return msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 700,
-        "y": 1460,
-        "wires": [
-            [
-                "00a1510000000004"
-            ]
-        ]
-    },
-    {
-        "id": "c800000000000008",
-        "type": "ui_button",
-        "z": "a4c183a95164db51",
-        "group": "00a1510000000001",
-        "order": 9,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "Heartbeat Stop",
-        "tooltip": "",
-        "color": "#ffffff",
-        "bgcolor": "#c0392b",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 420,
-        "y": 1460,
-        "wires": [
-            [
-                "c800000000000007"
-            ]
-        ]
+        "id": "74f619c2c785672f",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
     }
 ]

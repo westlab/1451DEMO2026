@@ -655,6 +655,475 @@ heartbeat_unsubscribe_rep = {                           # 4,12,2
     'ncapId':     {'dt': 'uuid'},
 }
 
+# ---- 7.4 TEDS: Query (3,1) / Write (3,3) / Update (3,4) ------------- #
+query_teds_cmd = {                                      # 3,1,1
+    'netSvcType':     {'dt': 'u8',  'const': 3},
+    'netSvcId':       {'dt': 'u8',  'const': 1},
+    'msgType':        {'dt': 'u8',  'const': 1},
+    'msgLength':      {'dt': 'len'},
+    'appId':          {'dt': 'uuid'},
+    'ncapId':         {'dt': 'uuid'},
+    'timId':          {'dt': 'uuid'},
+    'channelId':      {'dt': 'u16'},
+    'tedsAccessCode': {'dt': 'u8'},
+    'timeout':        {'dt': 'time8'},
+}
+query_teds_rep = {                                      # 3,1,2
+    'netSvcType':     {'dt': 'u8',  'const': 3},
+    'netSvcId':       {'dt': 'u8',  'const': 1},
+    'msgType':        {'dt': 'u8',  'const': 2},
+    'msgLength':      {'dt': 'len'},
+    'errorCode':      {'dt': 'err'},
+    'appId':          {'dt': 'uuid'},
+    'ncapId':         {'dt': 'uuid'},
+    'timId':          {'dt': 'uuid'},
+    'channelId':      {'dt': 'u16'},
+    'tedsAccessCode': {'dt': 'u8'},
+    'tedsSize':       {'dt': 'u32'},
+}
+
+write_teds_cmd = {                                      # 3,3,1
+    'netSvcType':     {'dt': 'u8',  'const': 3},
+    'netSvcId':       {'dt': 'u8',  'const': 3},
+    'msgType':        {'dt': 'u8',  'const': 1},
+    'msgLength':      {'dt': 'len'},
+    'appId':          {'dt': 'uuid'},
+    'ncapId':         {'dt': 'uuid'},
+    'timId':          {'dt': 'uuid'},
+    'channelId':      {'dt': 'u16'},
+    'tedsAccessCode': {'dt': 'u8'},
+    'tedsOffset':     {'dt': 'u32'},
+    'timeout':        {'dt': 'time8'},
+    'rawTEDSBlock':   {'dt': 'octets'},     # variable length -> must be last
+}
+write_teds_rep = {                                      # 3,3,2
+    'netSvcType':     {'dt': 'u8',  'const': 3},
+    'netSvcId':       {'dt': 'u8',  'const': 3},
+    'msgType':        {'dt': 'u8',  'const': 2},
+    'msgLength':      {'dt': 'len'},
+    'errorCode':      {'dt': 'err'},
+    'appId':          {'dt': 'uuid'},
+    'ncapId':         {'dt': 'uuid'},
+    'timId':          {'dt': 'uuid'},
+    'channelId':      {'dt': 'u16'},
+    'tedsAccessCode': {'dt': 'u8'},
+}
+
+update_teds_cmd = dict(write_teds_cmd, netSvcId={'dt': 'u8', 'const': 4})   # 3,4,1
+update_teds_rep = dict(write_teds_rep, netSvcId={'dt': 'u8', 'const': 4})   # 3,4,2
+
+# ---- 7.3 more transducer reads: 2,2 / 2,3 / 2,4 -------------------- #
+# 2,2 block read, one channel of one TIM
+sync_read_block1_cmd = {                                # 2,2,1
+    'netSvcType':  {'dt': 'u8',  'const': 2},
+    'netSvcId':    {'dt': 'u8',  'const': 2},
+    'msgType':     {'dt': 'u8',  'const': 1},
+    'msgLength':   {'dt': 'len'},
+    'appId':       {'dt': 'uuid'},
+    'ncapId':      {'dt': 'uuid'},
+    'timId':       {'dt': 'uuid'},
+    'channelId':   {'dt': 'u16'},
+    'numOfSamples':   {'dt': 'u32'},
+    'sampleInterval': {'dt': 'time8'},
+    'startTime':      {'dt': 'time8'},
+    'timeout':        {'dt': 'time8'},
+}
+sync_read_block1_rep = {                                # 2,2,2
+    'netSvcType':  {'dt': 'u8',  'const': 2},
+    'netSvcId':    {'dt': 'u8',  'const': 2},
+    'msgType':     {'dt': 'u8',  'const': 2},
+    'msgLength':   {'dt': 'len'},
+    'errorCode':   {'dt': 'err'},
+    'appId':       {'dt': 'uuid'},
+    'ncapId':      {'dt': 'uuid'},
+    'timId':       {'dt': 'uuid'},
+    'channelId':   {'dt': 'u16'},
+    'transducerBlockData': {'dt': 'str'},   # samples joined by ';'
+    'endTimestamp': {'dt': 'time8'},
+}
+# 2,3 sample read, multiple channels of one TIM
+sync_read_multi1tim_cmd = {                             # 2,3,1
+    'netSvcType':  {'dt': 'u8',  'const': 2},
+    'netSvcId':    {'dt': 'u8',  'const': 3},
+    'msgType':     {'dt': 'u8',  'const': 1},
+    'msgLength':   {'dt': 'len'},
+    'appId':       {'dt': 'uuid'},
+    'ncapId':      {'dt': 'uuid'},
+    'timId':       {'dt': 'uuid'},
+    'numOfChannels': {'dt': 'u16'},
+    'channelIds':  {'dt': 'u16array', 'count': 'numOfChannels'},
+    'samplingMode': {'dt': 'u8'},
+    'timeout':     {'dt': 'time8'},
+}
+sync_read_multi1tim_rep = {                             # 2,3,2
+    'netSvcType':  {'dt': 'u8',  'const': 2},
+    'netSvcId':    {'dt': 'u8',  'const': 3},
+    'msgType':     {'dt': 'u8',  'const': 2},
+    'msgLength':   {'dt': 'len'},
+    'errorCode':   {'dt': 'err'},
+    'appId':       {'dt': 'uuid'},
+    'ncapId':      {'dt': 'uuid'},
+    'timId':       {'dt': 'uuid'},
+    'numOfChannels': {'dt': 'u16'},
+    'channelIds':  {'dt': 'u16array', 'count': 'numOfChannels'},
+    'transducerSampleDatas': {'dt': 'strarray', 'count': 'numOfChannels'},
+    'timestamp':   {'dt': 'time8'},
+}
+# 2,4 block read, multiple channels of one TIM
+sync_read_block_multi1tim_cmd = {                       # 2,4,1
+    'netSvcType':  {'dt': 'u8',  'const': 2},
+    'netSvcId':    {'dt': 'u8',  'const': 4},
+    'msgType':     {'dt': 'u8',  'const': 1},
+    'msgLength':   {'dt': 'len'},
+    'appId':       {'dt': 'uuid'},
+    'ncapId':      {'dt': 'uuid'},
+    'timId':       {'dt': 'uuid'},
+    'numOfChannels': {'dt': 'u16'},
+    'channelIds':  {'dt': 'u16array', 'count': 'numOfChannels'},
+    'numOfSamples':   {'dt': 'u32'},
+    'sampleInterval': {'dt': 'time8'},
+    'startTime':      {'dt': 'time8'},
+    'timeout':        {'dt': 'time8'},
+}
+sync_read_block_multi1tim_rep = {                       # 2,4,2
+    'netSvcType':  {'dt': 'u8',  'const': 2},
+    'netSvcId':    {'dt': 'u8',  'const': 4},
+    'msgType':     {'dt': 'u8',  'const': 2},
+    'msgLength':   {'dt': 'len'},
+    'errorCode':   {'dt': 'err'},
+    'appId':       {'dt': 'uuid'},
+    'ncapId':      {'dt': 'uuid'},
+    'timId':       {'dt': 'uuid'},
+    'numOfChannels': {'dt': 'u16'},
+    'channelIds':  {'dt': 'u16array', 'count': 'numOfChannels'},
+    'transducerBlockDatas': {'dt': 'strarray', 'count': 'numOfChannels'},
+    'endTimestamp': {'dt': 'time8'},
+}
+
+# ---- 7.3 more transducer writes: 2,8 / 2,9 / 2,10 / 2,11 / 2,12 --- #
+# 2,8 block write, one channel of one TIM
+sync_write_block1_cmd = {                               # 2,8,1
+    'netSvcType':  {'dt': 'u8',  'const': 2},
+    'netSvcId':    {'dt': 'u8',  'const': 8},
+    'msgType':     {'dt': 'u8',  'const': 1},
+    'msgLength':   {'dt': 'len'},
+    'appId':       {'dt': 'uuid'},
+    'ncapId':      {'dt': 'uuid'},
+    'timId':       {'dt': 'uuid'},
+    'channelId':   {'dt': 'u16'},
+    'samplingMode':{'dt': 'u8'},
+    'transducerBlockData': {'dt': 'str'},   # samples joined by ';'
+    'timeout':     {'dt': 'time8'},
+}
+sync_write_block1_rep = {                               # 2,8,2
+    'netSvcType':  {'dt': 'u8',  'const': 2},
+    'netSvcId':    {'dt': 'u8',  'const': 8},
+    'msgType':     {'dt': 'u8',  'const': 2},
+    'msgLength':   {'dt': 'len'},
+    'errorCode':   {'dt': 'err'},
+    'appId':       {'dt': 'uuid'},
+    'ncapId':      {'dt': 'uuid'},
+    'timId':       {'dt': 'uuid'},
+    'channelId':   {'dt': 'u16'},
+}
+# 2,9 sample write, multiple channels of one TIM
+sync_write_multi1tim_cmd = {                            # 2,9,1
+    'netSvcType':  {'dt': 'u8',  'const': 2},
+    'netSvcId':    {'dt': 'u8',  'const': 9},
+    'msgType':     {'dt': 'u8',  'const': 1},
+    'msgLength':   {'dt': 'len'},
+    'appId':       {'dt': 'uuid'},
+    'ncapId':      {'dt': 'uuid'},
+    'timId':       {'dt': 'uuid'},
+    'numOfChannels': {'dt': 'u16'},
+    'channelIds':  {'dt': 'u16array', 'count': 'numOfChannels'},
+    'samplingMode':{'dt': 'u8'},
+    'transducerSampleDatas': {'dt': 'strarray', 'count': 'numOfChannels'},
+    'timeout':     {'dt': 'time8'},
+}
+sync_write_multi1tim_rep = {                            # 2,9,2
+    'netSvcType':  {'dt': 'u8',  'const': 2},
+    'netSvcId':    {'dt': 'u8',  'const': 9},
+    'msgType':     {'dt': 'u8',  'const': 2},
+    'msgLength':   {'dt': 'len'},
+    'errorCode':   {'dt': 'err'},
+    'appId':       {'dt': 'uuid'},
+    'ncapId':      {'dt': 'uuid'},
+    'timId':       {'dt': 'uuid'},
+    'numOfChannels': {'dt': 'u16'},
+    'channelIds':  {'dt': 'u16array', 'count': 'numOfChannels'},
+}
+# 2,10 block write, multiple channels of one TIM
+sync_write_block_multi1tim_cmd = {                      # 2,10,1
+    'netSvcType':  {'dt': 'u8',  'const': 2},
+    'netSvcId':    {'dt': 'u8',  'const': 10},
+    'msgType':     {'dt': 'u8',  'const': 1},
+    'msgLength':   {'dt': 'len'},
+    'appId':       {'dt': 'uuid'},
+    'ncapId':      {'dt': 'uuid'},
+    'timId':       {'dt': 'uuid'},
+    'numOfChannels': {'dt': 'u16'},
+    'channelIds':  {'dt': 'u16array', 'count': 'numOfChannels'},
+    'samplingMode':{'dt': 'u8'},
+    'transducerBlockDatas': {'dt': 'strarray', 'count': 'numOfChannels'},
+    'timeout':     {'dt': 'time8'},
+}
+sync_write_block_multi1tim_rep = dict(sync_write_multi1tim_rep,    # 2,10,2
+                                      netSvcId={'dt': 'u8', 'const': 10})
+# 2,11 sample write, multiple channels of multiple TIMs
+sync_write_multi_cmd = {                                # 2,11,1
+    'netSvcType': {'dt': 'u8',  'const': 2},
+    'netSvcId':   {'dt': 'u8',  'const': 11},
+    'msgType':    {'dt': 'u8',  'const': 1},
+    'msgLength':  {'dt': 'len'},
+    'appId':      {'dt': 'uuid'},
+    'ncapId':     {'dt': 'uuid'},
+    'numOfTIMs':  {'dt': 'u16'},
+    'timIds':     {'dt': 'uuidarray', 'count': 'numOfTIMs'},
+    'numOfChannelsOfTIMs': {'dt': 'u16array', 'count': 'numOfTIMs'},
+    'channelIds': {'dt': 'u16array', 'count_sum': 'numOfChannelsOfTIMs'},
+    'samplingMode': {'dt': 'u8'},
+    'transducerSampleDatas': {'dt': 'strarray', 'count_sum': 'numOfChannelsOfTIMs'},
+    'timeout':    {'dt': 'time8'},
+}
+sync_write_multi_rep = {                                # 2,11,2
+    'netSvcType': {'dt': 'u8',  'const': 2},
+    'netSvcId':   {'dt': 'u8',  'const': 11},
+    'msgType':    {'dt': 'u8',  'const': 2},
+    'msgLength':  {'dt': 'len'},
+    'errorCode':  {'dt': 'err'},
+    'appId':      {'dt': 'uuid'},
+    'ncapId':     {'dt': 'uuid'},
+    'numOfTIMs':  {'dt': 'u16'},
+    'timIds':     {'dt': 'uuidarray', 'count': 'numOfTIMs'},
+    'numOfChannelsOfTIMs': {'dt': 'u16array', 'count': 'numOfTIMs'},
+    'channelIds': {'dt': 'u16array', 'count_sum': 'numOfChannelsOfTIMs'},
+}
+# 2,12 block write, multiple channels of multiple TIMs
+sync_write_block_multi_cmd = {                          # 2,12,1
+    'netSvcType': {'dt': 'u8',  'const': 2},
+    'netSvcId':   {'dt': 'u8',  'const': 12},
+    'msgType':    {'dt': 'u8',  'const': 1},
+    'msgLength':  {'dt': 'len'},
+    'appId':      {'dt': 'uuid'},
+    'ncapId':     {'dt': 'uuid'},
+    'numOfTIMs':  {'dt': 'u16'},
+    'timIds':     {'dt': 'uuidarray', 'count': 'numOfTIMs'},
+    'numOfChannelsOfTIMs': {'dt': 'u16array', 'count': 'numOfTIMs'},
+    'channelIds': {'dt': 'u16array', 'count_sum': 'numOfChannelsOfTIMs'},
+    'samplingMode': {'dt': 'u8'},
+    'transducerBlockDatas': {'dt': 'strarray', 'count_sum': 'numOfChannelsOfTIMs'},
+    'timeout':    {'dt': 'time8'},
+}
+sync_write_block_multi_rep = dict(sync_write_multi_rep, netSvcId={'dt': 'u8', 'const': 12})  # 2,12,2
+
+# ---- 7.5 Event: multiple channels of one TIM (4,4 / 4,6) ---------- #
+event_subscribe_multich_cmd = {                         # 4,4,1
+    'netSvcType': {'dt': 'u8',  'const': 4},
+    'netSvcId':   {'dt': 'u8',  'const': 4},
+    'msgType':    {'dt': 'u8',  'const': 1},
+    'msgLength':  {'dt': 'len'},
+    'appId':      {'dt': 'uuid'},
+    'ncapId':     {'dt': 'uuid'},
+    'timId':      {'dt': 'uuid'},
+    'numOfChannels': {'dt': 'u16'},
+    'channelIds': {'dt': 'u16array', 'count': 'numOfChannels'},
+    'minMaxThreshold': {'dt': 'str'},
+    'transducerEventSubscriber': {'dt': 'str'},
+    'samplingRate': {'dt': 'time8'},
+    'timeoutUnsubscribe': {'dt': 'time8'},
+}
+event_subscribe_multich_rep = {                         # 4,4,2
+    'netSvcType': {'dt': 'u8',  'const': 4},
+    'netSvcId':   {'dt': 'u8',  'const': 4},
+    'msgType':    {'dt': 'u8',  'const': 2},
+    'msgLength':  {'dt': 'len'},
+    'errorCode':  {'dt': 'err'},
+    'appId':      {'dt': 'uuid'},
+    'ncapId':     {'dt': 'uuid'},
+    'timId':      {'dt': 'uuid'},
+    'numOfChannels': {'dt': 'u16'},
+    'channelIds': {'dt': 'u16array', 'count': 'numOfChannels'},
+    'transducerEventPublisher': {'dt': 'str'},
+    'subscriptionId': {'dt': 'u16'},
+}
+event_unsubscribe_multich_cmd = {                       # 4,6,1
+    'netSvcType': {'dt': 'u8',  'const': 4},
+    'netSvcId':   {'dt': 'u8',  'const': 6},
+    'msgType':    {'dt': 'u8',  'const': 1},
+    'msgLength':  {'dt': 'len'},
+    'appId':      {'dt': 'uuid'},
+    'ncapId':     {'dt': 'uuid'},
+    'timId':      {'dt': 'uuid'},
+    'numOfChannels': {'dt': 'u16'},
+    'channelIds': {'dt': 'u16array', 'count': 'numOfChannels'},
+    'subscriptionId': {'dt': 'u16'},
+}
+event_unsubscribe_multich_rep = {                       # 4,6,2
+    'netSvcType': {'dt': 'u8',  'const': 4},
+    'netSvcId':   {'dt': 'u8',  'const': 6},
+    'msgType':    {'dt': 'u8',  'const': 2},
+    'msgLength':  {'dt': 'len'},
+    'errorCode':  {'dt': 'err'},
+    'appId':      {'dt': 'uuid'},
+    'ncapId':     {'dt': 'uuid'},
+    'timId':      {'dt': 'uuid'},
+    'subscriptionId': {'dt': 'u16'},
+}
+# ---- 7.5 Event: multiple channels of multiple TIMs (4,7 / 4,9) ----- #
+event_subscribe_multitim_cmd = {                        # 4,7,1
+    'netSvcType': {'dt': 'u8',  'const': 4},
+    'netSvcId':   {'dt': 'u8',  'const': 7},
+    'msgType':    {'dt': 'u8',  'const': 1},
+    'msgLength':  {'dt': 'len'},
+    'appId':      {'dt': 'uuid'},
+    'ncapId':     {'dt': 'uuid'},
+    'numOfTIMs':  {'dt': 'u16'},
+    'timIds':     {'dt': 'uuidarray', 'count': 'numOfTIMs'},
+    'numOfChannelsOfTIMs': {'dt': 'u16array', 'count': 'numOfTIMs'},
+    'channelIds': {'dt': 'u16array', 'count_sum': 'numOfChannelsOfTIMs'},
+    'minMaxThreshold': {'dt': 'str'},
+    'transducerEventSubscriber': {'dt': 'str'},
+    'samplingRate': {'dt': 'time8'},
+    'timeoutUnsubscribe': {'dt': 'time8'},
+}
+event_subscribe_multitim_rep = {                        # 4,7,2
+    'netSvcType': {'dt': 'u8',  'const': 4},
+    'netSvcId':   {'dt': 'u8',  'const': 7},
+    'msgType':    {'dt': 'u8',  'const': 2},
+    'msgLength':  {'dt': 'len'},
+    'errorCode':  {'dt': 'err'},
+    'appId':      {'dt': 'uuid'},
+    'ncapId':     {'dt': 'uuid'},
+    'numOfTIMs':  {'dt': 'u16'},
+    'timIds':     {'dt': 'uuidarray', 'count': 'numOfTIMs'},
+    'numOfChannelsOfTIMs': {'dt': 'u16array', 'count': 'numOfTIMs'},
+    'channelIds': {'dt': 'u16array', 'count_sum': 'numOfChannelsOfTIMs'},
+    'transducerEventPublisher': {'dt': 'str'},
+    'subscriptionId': {'dt': 'u16'},
+}
+event_unsubscribe_multitim_cmd = {                      # 4,9,1
+    'netSvcType': {'dt': 'u8',  'const': 4},
+    'netSvcId':   {'dt': 'u8',  'const': 9},
+    'msgType':    {'dt': 'u8',  'const': 1},
+    'msgLength':  {'dt': 'len'},
+    'appId':      {'dt': 'uuid'},
+    'ncapId':     {'dt': 'uuid'},
+    'numOfTIMs':  {'dt': 'u16'},
+    'timIds':     {'dt': 'uuidarray', 'count': 'numOfTIMs'},
+    'numOfChannelsOfTIMs': {'dt': 'u16array', 'count': 'numOfTIMs'},
+    'channelIds': {'dt': 'u16array', 'count_sum': 'numOfChannelsOfTIMs'},
+    'subscriptionId': {'dt': 'u16'},
+}
+event_unsubscribe_multitim_rep = {                      # 4,9,2
+    'netSvcType': {'dt': 'u8',  'const': 4},
+    'netSvcId':   {'dt': 'u8',  'const': 9},
+    'msgType':    {'dt': 'u8',  'const': 2},
+    'msgLength':  {'dt': 'len'},
+    'errorCode':  {'dt': 'err'},
+    'appId':      {'dt': 'uuid'},
+    'ncapId':     {'dt': 'uuid'},
+    'subscriptionId': {'dt': 'u16'},
+}
+
+# ---- 7.2 Departure / Abandonment (publish-only, mirror announce) -- #
+ncap_departure = {                                      # 1,1,2  (NCAPDeparture)
+    'netSvcType': {'dt': 'u8',  'const': 1},
+    'netSvcId':   {'dt': 'u8',  'const': 1},
+    'msgType':    {'dt': 'u8',  'const': 2},
+    'msgLength':  {'dt': 'len'},
+    'ncapId':     {'dt': 'uuid'},
+    'ncapName':   {'dt': 'str'},
+}
+ncap_abandonment = dict(ncap_departure, msgType={'dt': 'u8', 'const': 8})   # 1,1,8
+ncap_tim_departure = {                                  # 1,1,5  (NCAPTIMDeparture)
+    'netSvcType': {'dt': 'u8',  'const': 1},
+    'netSvcId':   {'dt': 'u8',  'const': 1},
+    'msgType':    {'dt': 'u8',  'const': 5},
+    'msgLength':  {'dt': 'len'},
+    'ncapId':     {'dt': 'uuid'},
+    'timId':      {'dt': 'uuid'},
+    'timName':    {'dt': 'str'},
+}
+ncap_tim_transducer_departure = {                       # 1,1,7  (NCAPTIMTransducerDeparture)
+    'netSvcType': {'dt': 'u8',  'const': 1},
+    'netSvcId':   {'dt': 'u8',  'const': 1},
+    'msgType':    {'dt': 'u8',  'const': 7},
+    'msgLength':  {'dt': 'len'},
+    'ncapId':     {'dt': 'uuid'},
+    'timId':      {'dt': 'uuid'},
+    'transducerChannelId':   {'dt': 'u16'},
+    'transducerChannelName': {'dt': 'str'},
+}
+
+# ---- 7.3 Async / Callback / Stream reads: 2,13 .. 2,20 ------------ #
+# Request shapes mirror the sync reads; replies are "grants"; data arrives via callbacks (msgType 4).
+async_read_block1_cmd = dict(sync_read_block1_cmd, netSvcId={'dt': 'u8', 'const': 13})          # 2,13,1
+async_read_block1_rep = {                               # 2,13,2 (grant)
+    'netSvcType': {'dt': 'u8', 'const': 2}, 'netSvcId': {'dt': 'u8', 'const': 13},
+    'msgType': {'dt': 'u8', 'const': 2}, 'msgLength': {'dt': 'len'},
+    'errorCode': {'dt': 'err'}, 'appId': {'dt': 'uuid'}, 'ncapId': {'dt': 'uuid'},
+    'timId': {'dt': 'uuid'}, 'channelId': {'dt': 'u16'}, 'callbackId': {'dt': 'u16'},
+}
+async_read_block1_cbk = {                               # 2,14,4 (callback data)
+    'netSvcType': {'dt': 'u8', 'const': 2}, 'netSvcId': {'dt': 'u8', 'const': 14},
+    'msgType': {'dt': 'u8', 'const': 4}, 'msgLength': {'dt': 'len'},
+    'errorCode': {'dt': 'err'}, 'appId': {'dt': 'uuid'}, 'ncapId': {'dt': 'uuid'},
+    'timId': {'dt': 'uuid'}, 'channelId': {'dt': 'u16'},
+    'transducerBlockData': {'dt': 'str'}, 'endTimestamp': {'dt': 'time8'}, 'callbackId': {'dt': 'u16'},
+}
+async_read_stream1_cmd = {                              # 2,15,1
+    'netSvcType': {'dt': 'u8', 'const': 2}, 'netSvcId': {'dt': 'u8', 'const': 15},
+    'msgType': {'dt': 'u8', 'const': 1}, 'msgLength': {'dt': 'len'},
+    'appId': {'dt': 'uuid'}, 'ncapId': {'dt': 'uuid'}, 'timId': {'dt': 'uuid'},
+    'channelId': {'dt': 'u16'}, 'samplingMode': {'dt': 'u8'},
+    'samplingRate': {'dt': 'time8'}, 'timeout': {'dt': 'time8'},
+}
+async_read_stream1_rep = dict(async_read_block1_rep, netSvcId={'dt': 'u8', 'const': 15})         # 2,15,2 (grant)
+async_read_stream1_cbk = {                              # 2,16,4 (streamed sample)
+    'netSvcType': {'dt': 'u8', 'const': 2}, 'netSvcId': {'dt': 'u8', 'const': 16},
+    'msgType': {'dt': 'u8', 'const': 4}, 'msgLength': {'dt': 'len'},
+    'errorCode': {'dt': 'err'}, 'appId': {'dt': 'uuid'}, 'ncapId': {'dt': 'uuid'},
+    'timId': {'dt': 'uuid'}, 'channelId': {'dt': 'u16'},
+    'transducerSampleData': {'dt': 'str'}, 'timestamp': {'dt': 'time8'}, 'callbackId': {'dt': 'u16'},
+}
+async_read_block_multi1tim_cmd = dict(sync_read_block_multi1tim_cmd, netSvcId={'dt': 'u8', 'const': 17})  # 2,17,1
+async_read_block_multi1tim_rep = {                      # 2,17,2 (grant)
+    'netSvcType': {'dt': 'u8', 'const': 2}, 'netSvcId': {'dt': 'u8', 'const': 17},
+    'msgType': {'dt': 'u8', 'const': 2}, 'msgLength': {'dt': 'len'},
+    'errorCode': {'dt': 'err'}, 'appId': {'dt': 'uuid'}, 'ncapId': {'dt': 'uuid'},
+    'timId': {'dt': 'uuid'}, 'numOfChannels': {'dt': 'u16'},
+    'channelIds': {'dt': 'u16array', 'count': 'numOfChannels'}, 'callbackId': {'dt': 'u16'},
+}
+async_read_block_multi1tim_cbk = {                      # 2,18,4 (callback data)
+    'netSvcType': {'dt': 'u8', 'const': 2}, 'netSvcId': {'dt': 'u8', 'const': 18},
+    'msgType': {'dt': 'u8', 'const': 4}, 'msgLength': {'dt': 'len'},
+    'errorCode': {'dt': 'err'}, 'appId': {'dt': 'uuid'}, 'ncapId': {'dt': 'uuid'},
+    'timId': {'dt': 'uuid'}, 'numOfChannels': {'dt': 'u16'},
+    'channelIds': {'dt': 'u16array', 'count': 'numOfChannels'},
+    'transducerBlockDatas': {'dt': 'strarray', 'count': 'numOfChannels'},
+    'endTimestamp': {'dt': 'time8'}, 'callbackId': {'dt': 'u16'},
+}
+async_read_block_multi_cmd = dict(sync_read_block_cmd, netSvcId={'dt': 'u8', 'const': 19})       # 2,19,1
+async_read_block_multi_rep = {                          # 2,19,2 (grant)
+    'netSvcType': {'dt': 'u8', 'const': 2}, 'netSvcId': {'dt': 'u8', 'const': 19},
+    'msgType': {'dt': 'u8', 'const': 2}, 'msgLength': {'dt': 'len'},
+    'errorCode': {'dt': 'err'}, 'appId': {'dt': 'uuid'}, 'ncapId': {'dt': 'uuid'},
+    'numOfTIMs': {'dt': 'u16'}, 'timIds': {'dt': 'uuidarray', 'count': 'numOfTIMs'},
+    'numOfChannelsOfTIMs': {'dt': 'u16array', 'count': 'numOfTIMs'},
+    'channelIds': {'dt': 'u16array', 'count_sum': 'numOfChannelsOfTIMs'}, 'callbackId': {'dt': 'u16'},
+}
+async_read_block_multi_cbk = {                          # 2,20,4 (callback data)
+    'netSvcType': {'dt': 'u8', 'const': 2}, 'netSvcId': {'dt': 'u8', 'const': 20},
+    'msgType': {'dt': 'u8', 'const': 4}, 'msgLength': {'dt': 'len'},
+    'errorCode': {'dt': 'err'}, 'appId': {'dt': 'uuid'}, 'ncapId': {'dt': 'uuid'},
+    'numOfTIMs': {'dt': 'u16'}, 'timIds': {'dt': 'uuidarray', 'count': 'numOfTIMs'},
+    'numOfChannelsOfTIMs': {'dt': 'u16array', 'count': 'numOfTIMs'},
+    'channelIds': {'dt': 'u16array', 'count_sum': 'numOfChannelsOfTIMs'},
+    'transducerBlockDatas': {'dt': 'strarray', 'count_sum': 'numOfChannelsOfTIMs'},
+    'endTimestamp': {'dt': 'time8'}, 'callbackId': {'dt': 'u16'},
+}
+
 # Lookup table: (netSvcType, netSvcId, msgType) -> (name, template).
 # Used by the dispatcher to identify an incoming command quickly.
 COMMANDS = {
@@ -670,6 +1139,25 @@ COMMANDS = {
     (4, 10, 1): ('heartbeat_subscribe',      heartbeat_cmd),
     (4,  3, 1): ('event_unsubscribe',        event_unsubscribe_cmd),
     (4, 12, 1): ('heartbeat_unsubscribe',    heartbeat_unsubscribe_cmd),
+    (3,  1, 1): ('query_teds',               query_teds_cmd),
+    (3,  3, 1): ('write_teds',               write_teds_cmd),
+    (3,  4, 1): ('update_teds',              update_teds_cmd),
+    (2,  2, 1): ('sync_read_block1',         sync_read_block1_cmd),
+    (2,  3, 1): ('sync_read_multi1tim',      sync_read_multi1tim_cmd),
+    (2,  4, 1): ('sync_read_block_multi1tim', sync_read_block_multi1tim_cmd),
+    (2,  8, 1): ('sync_write_block1',        sync_write_block1_cmd),
+    (2,  9, 1): ('sync_write_multi1tim',     sync_write_multi1tim_cmd),
+    (2, 10, 1): ('sync_write_block_multi1tim', sync_write_block_multi1tim_cmd),
+    (2, 11, 1): ('sync_write_multi',         sync_write_multi_cmd),
+    (2, 12, 1): ('sync_write_block_multi',   sync_write_block_multi_cmd),
+    (4,  4, 1): ('event_subscribe_multich',  event_subscribe_multich_cmd),
+    (4,  6, 1): ('event_unsubscribe_multich', event_unsubscribe_multich_cmd),
+    (4,  7, 1): ('event_subscribe_multitim', event_subscribe_multitim_cmd),
+    (4,  9, 1): ('event_unsubscribe_multitim', event_unsubscribe_multitim_cmd),
+    (2, 13, 1): ('async_read_block1',        async_read_block1_cmd),
+    (2, 15, 1): ('async_read_stream1',       async_read_stream1_cmd),
+    (2, 17, 1): ('async_read_block_multi1tim', async_read_block_multi1tim_cmd),
+    (2, 19, 1): ('async_read_block_multi',   async_read_block_multi_cmd),
 }
 
 
