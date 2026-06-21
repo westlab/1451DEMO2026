@@ -173,7 +173,9 @@ class NCAPmsg:
         for name, spec in self.tpl.items():
             dt = spec['dt']
             if dt == 'len':
-                # C-OP omits msgLength entirely (7.1 / 6.4.13). Skip the field.
+                # 6.4.13: the C-OP length field IS present (shows the CSV size);
+                # 6.4.10: its value is omitted/ignored -> emit a zero-filled column.
+                cols.append('0')
                 continue
             elif dt in ('u8', 'u16', 'u32', 'u64', 'err'):
                 cols.append(str(d.get(name, spec.get('const', 0))))
@@ -200,8 +202,9 @@ class NCAPmsg:
         for name, spec in self.tpl.items():
             dt = spec['dt']
             if dt == 'len':
-                # C-OP carries no msgLength column; do not consume a field.
+                # C-OP carries the msgLength column (zero-filled, ignored) -> consume it.
                 out[name] = 0
+                i += 1
                 continue
             if i >= len(row):
                 out[name] = None

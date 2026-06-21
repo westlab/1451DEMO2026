@@ -638,6 +638,17 @@
         "className": ""
     },
     {
+        "id": "cb00000000000001",
+        "type": "ui_group",
+        "name": "Message monitor (sent / received)",
+        "tab": "86483328.1e604",
+        "order": 80,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "3b80644f6be2f167",
         "type": "mqtt in",
         "z": "d846a1a921681d74",
@@ -896,13 +907,13 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0C single read (Humid)",
+        "label": "D0C single read (Humid) (2,1)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f01,1,0,0",
+        "payload": "2,1,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f01,1,0,0",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -1162,7 +1173,7 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0C read TEDS (Humid)",
+        "label": "D0C read TEDS (Humid) (3,2)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -1190,7 +1201,7 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0C read TEDS (Temp)",
+        "label": "D0C read TEDS (Temp) (3,2)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -1453,13 +1464,13 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0C single read (Temp)",
+        "label": "D0C single read (Temp) (2,1)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f00,1,0,0",
+        "payload": "2,1,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f00,1,0,0",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -1504,7 +1515,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "SyncWriteCmd",
-        "func": "msg.payload = '2,7,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,4,0,'+\n    + msg.payload;\nreturn msg;",
+        "func": "msg.payload = '2,7,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,4,0,'+\n    + msg.payload;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1569,7 +1580,7 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0C read TEDS (Servo)",
+        "label": "D0C read TEDS (Servo) (3,2)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -1622,7 +1633,7 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0C read TEDS (Security)",
+        "label": "D0C read TEDS (Security) (3,2)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -1909,7 +1920,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "D0C NCAP discovery",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='1,8,1,0x'+APP;\nreturn msg;\n",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='1,8,1,0,0x'+APP;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1956,7 +1967,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "D0C TIM discovery",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='1,9,1,0x'+APP+',0x'+NCAP;\nreturn msg;\n",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='1,9,1,0,0x'+APP+',0x'+NCAP;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2003,7 +2014,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "D0C XDCR discovery",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='1,10,1,0x'+APP+',0x'+NCAP+',0x'+T0;\nreturn msg;\n",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='1,10,1,0,0x'+APP+',0x'+NCAP+',0x'+T0;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2050,7 +2061,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "D0C Multi-ch read",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='2,5,1,0x'+APP+',0x'+NCAP+',2,0x'+T0+':0x'+T1+',1:1,1:1,5,0';\nreturn msg;\n",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='2,5,1,0,0x'+APP+',0x'+NCAP+',2,0x'+T0+':0x'+T1+',1:1,1:1,5,0';\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2097,7 +2108,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "D0C Block read",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='2,6,1,0x'+APP+',0x'+NCAP+',1,0x'+T0+',1,1,3,0,0,0';\nreturn msg;\n",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='2,6,1,0,0x'+APP+',0x'+NCAP+',1,0x'+T0+',1,1,3,0,0,0';\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2144,7 +2155,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "D0C Event subscribe",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,1,1,0x'+APP+',0x'+NCAP+',0x'+T0+',1,,app0,0,0';\nreturn msg;\n",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,1,1,0,0x'+APP+',0x'+NCAP+',0x'+T0+',1,,app0,0,0';\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2191,7 +2202,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "D0C Heartbeat subscribe",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,10,1,0x'+APP+',0,0';\nreturn msg;\n",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,10,1,0,0x'+APP+',0,0';\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2348,7 +2359,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "D0C Event unsubscribe",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,3,1,0x'+APP+',0x'+NCAP+',0x'+T0+',1,0';   // event unsubscribe (4,3,1)\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,3,1,0,0x'+APP+',0x'+NCAP+',0x'+T0+',1,0';   // event unsubscribe (4,3,1)\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2395,7 +2406,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "D0C Heartbeat unsubscribe",
-        "func": "var APP=global.get('APP');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,12,1,0x'+APP;                              // heartbeat unsubscribe (4,12,1)\nreturn msg;",
+        "func": "var APP=global.get('APP');\nmsg.topic=global.get('reqTopicC');\nmsg.payload='4,12,1,0,0x'+APP;                              // heartbeat unsubscribe (4,12,1)\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2442,7 +2453,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "TEDS Query (3,1)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`3,1,1,0x${APP},0x${NCAP},0x${T0},1,12,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`3,1,1,0,0x${APP},0x${NCAP},0x${T0},1,12,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2489,7 +2500,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "TEDS Write (3,3)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`3,3,1,0x${APP},0x${NCAP},0x${T0},1,60,0,0,deadbeef`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`3,3,1,0,0x${APP},0x${NCAP},0x${T0},1,60,0,0,deadbeef`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2536,7 +2547,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "TEDS Update (3,4)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`3,4,1,0x${APP},0x${NCAP},0x${T0},1,60,0,0,cafe`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`3,4,1,0,0x${APP},0x${NCAP},0x${T0},1,60,0,0,cafe`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2583,7 +2594,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Block read 1ch (2,2)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,2,1,0x${APP},0x${NCAP},0x${T3},3,4,0,0,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,2,1,0,0x${APP},0x${NCAP},0x${T3},3,4,0,0,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2630,7 +2641,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Sample multi-ch (2,3)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,3,1,0x${APP},0x${NCAP},0x${T3},3,1:2:3,5,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,3,1,0,0x${APP},0x${NCAP},0x${T3},3,1:2:3,5,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2677,7 +2688,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Block multi-ch (2,4)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,4,1,0x${APP},0x${NCAP},0x${T3},2,1:3,3,0,0,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,4,1,0,0x${APP},0x${NCAP},0x${T3},2,1:3,3,0,0,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2724,7 +2735,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Block write (2,8)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,8,1,0x${APP},0x${NCAP},0x${T3},4,5,70;72;75,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,8,1,0,0x${APP},0x${NCAP},0x${T3},4,5,70;72;75,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2771,7 +2782,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Sample multi-ch wr (2,9)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,9,1,0x${APP},0x${NCAP},0x${T3},1,4,5,66,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,9,1,0,0x${APP},0x${NCAP},0x${T3},1,4,5,66,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2818,7 +2829,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Block multi-ch wr (2,10)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,10,1,0x${APP},0x${NCAP},0x${T3},1,4,5,55;58,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,10,1,0,0x${APP},0x${NCAP},0x${T3},1,4,5,55;58,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2865,7 +2876,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Multi-TIM write (2,11)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,11,1,0x${APP},0x${NCAP},2,0x${T3}:0x${T4},1:1,4:4,5,44:33,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,11,1,0,0x${APP},0x${NCAP},2,0x${T3}:0x${T4},1:1,4:4,5,44:33,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2912,7 +2923,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Block multi-TIM wr (2,12)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,12,1,0x${APP},0x${NCAP},2,0x${T3}:0x${T4},1:1,4:4,5,22;25:11;15,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,12,1,0,0x${APP},0x${NCAP},2,0x${T3}:0x${T4},1:1,4:4,5,22;25:11;15,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2959,7 +2970,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Async block (2,13)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,13,1,0x${APP},0x${NCAP},0x${T3},3,4,0,0,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,13,1,0,0x${APP},0x${NCAP},0x${T3},3,4,0,0,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3006,7 +3017,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Async stream (2,15)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,15,1,0x${APP},0x${NCAP},0x${T3},3,5,0,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,15,1,0,0x${APP},0x${NCAP},0x${T3},3,5,0,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3053,7 +3064,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Async block multi-ch (2,17)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,17,1,0x${APP},0x${NCAP},0x${T3},3,1:2:3,3,0,0,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,17,1,0,0x${APP},0x${NCAP},0x${T3},3,1:2:3,3,0,0,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3100,7 +3111,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Async block multi-TIM (2,19)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,19,1,0x${APP},0x${NCAP},2,0x${T3}:0x${T4},2:2,1:3:1:3,2,0,0,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`2,19,1,0,0x${APP},0x${NCAP},2,0x${T3}:0x${T4},2:2,1:3:1:3,2,0,0,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3147,7 +3158,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Sub multi-ch (4,4)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`4,4,1,0x${APP},0x${NCAP},0x${T3},3,1:2:3,,app0,1,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`4,4,1,0,0x${APP},0x${NCAP},0x${T3},3,1:2:3,,app0,1,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3194,7 +3205,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Unsub multi-ch (4,6)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`4,6,1,0x${APP},0x${NCAP},0x${T3},3,1:2:3,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`4,6,1,0,0x${APP},0x${NCAP},0x${T3},3,1:2:3,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3241,7 +3252,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Sub multi-TIM (4,7)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`4,7,1,0x${APP},0x${NCAP},2,0x${T3}:0x${T4},2:2,1:3:1:3,,app0,1,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`4,7,1,0,0x${APP},0x${NCAP},2,0x${T3}:0x${T4},2:2,1:3:1:3,,app0,1,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3288,7 +3299,7 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "Unsub multi-TIM (4,9)",
-        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`4,9,1,0x${APP},0x${NCAP},2,0x${T3}:0x${T4},2:2,1:3:1:3,0`;\nreturn msg;",
+        "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T3=global.get('T3'),T4=global.get('T4');\nmsg.topic=global.get('reqTopicC');\nmsg.payload=`4,9,1,0,0x${APP},0x${NCAP},2,0x${T3}:0x${T4},2:2,1:3:1:3,0`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3532,27 +3543,85 @@
         ]
     },
     {
-        "id": "a176aea009a7176b",
-        "type": "inject",
-        "z": "a4c183a95164db51",
-        "name": "TEMP-D0",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "dummy",
-        "payloadType": "str",
-        "x": 120,
-        "y": 60,
+        "id": "cb00000000000002",
+        "type": "ui_template",
+        "z": "0c7a731dc303bfda",
+        "group": "cb00000000000001",
+        "name": "msg log",
+        "order": 1,
+        "width": "12",
+        "height": "9",
+        "format": "<div style=\"font-family:monospace;font-size:11px;white-space:pre-wrap;line-height:1.35;height:400px;overflow-y:auto;width:100%;text-align:left\">{{msg.payload}}</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1100,
+        "y": 2600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cb00000000000003",
+        "type": "function",
+        "z": "0c7a731dc303bfda",
+        "name": "msg monitor fmt",
+        "func": "var p=msg.payload,bin=Buffer.isBuffer(p),h,raw;\nif(bin){if(p.length<3)return null;h=[p[0],p[1],p[2]];raw='0x'+p.toString('hex');}\nelse{var f=(''+p).split(',');if(f.length<3)return null;h=[parseInt(f[0]),parseInt(f[1]),parseInt(f[2])];raw=''+p;}\nvar NAMES={\"2,14,4\": \"async_read_block1_cbk\", \"2,13,1\": \"async_read_block1_cmd\", \"2,13,2\": \"async_read_block1_rep\", \"2,18,4\": \"async_read_block_multi1tim_cbk\", \"2,17,1\": \"async_read_block_multi1tim_cmd\", \"2,17,2\": \"async_read_block_multi1tim_rep\", \"2,20,4\": \"async_read_block_multi_cbk\", \"2,19,1\": \"async_read_block_multi_cmd\", \"2,19,2\": \"async_read_block_multi_rep\", \"2,16,4\": \"async_read_stream1_cbk\", \"2,15,1\": \"async_read_stream1_cmd\", \"2,15,2\": \"async_read_stream1_rep\", \"4,1,4\": \"event_notify\", \"4,1,1\": \"event_subscribe_cmd\", \"4,4,1\": \"event_subscribe_multich_cmd\", \"4,4,2\": \"event_subscribe_multich_rep\", \"4,7,1\": \"event_subscribe_multitim_cmd\", \"4,7,2\": \"event_subscribe_multitim_rep\", \"4,1,2\": \"event_subscribe_rep\", \"4,3,1\": \"event_unsubscribe_cmd\", \"4,6,1\": \"event_unsubscribe_multich_cmd\", \"4,6,2\": \"event_unsubscribe_multich_rep\", \"4,9,1\": \"event_unsubscribe_multitim_cmd\", \"4,9,2\": \"event_unsubscribe_multitim_rep\", \"4,3,2\": \"event_unsubscribe_rep\", \"4,10,1\": \"heartbeat_cmd\", \"4,10,4\": \"heartbeat_notify\", \"4,10,2\": \"heartbeat_rep\", \"4,12,1\": \"heartbeat_unsubscribe_cmd\", \"4,12,2\": \"heartbeat_unsubscribe_rep\", \"1,1,8\": \"ncap_abandonment\", \"1,1,3\": \"ncap_announcement\", \"1,1,2\": \"ncap_departure\", \"1,8,1\": \"ncap_discovery_cmd\", \"1,8,2\": \"ncap_discovery_rep\", \"1,1,4\": \"ncap_tim_announcement\", \"1,1,5\": \"ncap_tim_departure\", \"1,9,1\": \"ncap_tim_discovery_cmd\", \"1,9,2\": \"ncap_tim_discovery_rep\", \"1,1,6\": \"ncap_tim_transducer_announcement\", \"1,1,7\": \"ncap_tim_transducer_departure\", \"1,10,1\": \"ncap_tim_transducer_discovery_cmd\", \"1,10,2\": \"ncap_tim_transducer_discovery_rep\", \"3,1,1\": \"query_teds_cmd\", \"3,1,2\": \"query_teds_rep\", \"3,2,1\": \"read_teds_cmd\", \"3,2,2\": \"read_teds_rep\", \"2,2,1\": \"sync_read_block1_cmd\", \"2,2,2\": \"sync_read_block1_rep\", \"2,6,1\": \"sync_read_block_cmd\", \"2,4,1\": \"sync_read_block_multi1tim_cmd\", \"2,4,2\": \"sync_read_block_multi1tim_rep\", \"2,6,2\": \"sync_read_block_rep\", \"2,1,1\": \"sync_read_cmd\", \"2,3,1\": \"sync_read_multi1tim_cmd\", \"2,3,2\": \"sync_read_multi1tim_rep\", \"2,5,1\": \"sync_read_multi_cmd\", \"2,5,2\": \"sync_read_multi_rep\", \"2,1,2\": \"sync_read_rep\", \"2,8,1\": \"sync_write_block1_cmd\", \"2,8,2\": \"sync_write_block1_rep\", \"2,10,1\": \"sync_write_block_multi1tim_cmd\", \"2,10,2\": \"sync_write_block_multi1tim_rep\", \"2,12,1\": \"sync_write_block_multi_cmd\", \"2,12,2\": \"sync_write_block_multi_rep\", \"2,7,1\": \"sync_write_cmd\", \"2,9,1\": \"sync_write_multi1tim_cmd\", \"2,9,2\": \"sync_write_multi1tim_rep\", \"2,11,1\": \"sync_write_multi_cmd\", \"2,11,2\": \"sync_write_multi_rep\", \"2,7,2\": \"sync_write_rep\", \"3,4,1\": \"update_teds_cmd\", \"3,4,2\": \"update_teds_rep\", \"3,3,1\": \"write_teds_cmd\", \"3,3,2\": \"write_teds_rep\"};\nvar nm=NAMES[h.join(',')]||('svc '+h.join(','));\nvar mt=h[2];var dir=mt===1?'REQ \\u2192':(mt===4?'NTF \\u2190':'REP \\u2190');\nvar enc=bin?'D0 ':'D0C';\nvar d=new Date();function z(n){return ('0'+n).slice(-2);}\nvar ts=z(d.getHours())+':'+z(d.getMinutes())+':'+z(d.getSeconds());\nvar line=ts+'  '+enc+'  '+dir+'  '+nm+'\\n            '+raw.substring(0,220);\nvar log=flow.get('msgmon')||[];log.unshift(line);if(log.length>40)log.length=40;flow.set('msgmon',log);\nmsg.payload=log.join('\\n');return msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 2600,
         "wires": [
             [
-                "8515346c52346c95"
+                "cb00000000000002"
+            ]
+        ]
+    },
+    {
+        "id": "cb00000000000004",
+        "type": "mqtt in",
+        "z": "0c7a731dc303bfda",
+        "name": "mon C",
+        "topic": "_1451.1.6/C/PTTEST/ncap0",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "39d5aa93d6951ccb",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 620,
+        "y": 2600,
+        "wires": [
+            [
+                "cb00000000000003"
+            ]
+        ]
+    },
+    {
+        "id": "cb00000000000005",
+        "type": "mqtt in",
+        "z": "0c7a731dc303bfda",
+        "name": "mon D0",
+        "topic": "_1451.1.6/D0/PTTEST/ncap0",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "39d5aa93d6951ccb",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 620,
+        "y": 2600,
+        "wires": [
+            [
+                "cb00000000000003"
             ]
         ]
     },
@@ -3566,7 +3635,7 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0 single read (Temp)",
+        "label": "D0 single read (Temp) (2,1)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -3614,8 +3683,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 820,
+        "x": 1980,
+        "y": 1300,
         "wires": [
             [
                 "adafa614399b6d2e",
@@ -3647,8 +3716,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1560,
-        "y": 940,
+        "x": 2900,
+        "y": 1420,
         "wires": []
     },
     {
@@ -3663,34 +3732,9 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 650,
-        "y": 640,
+        "x": 1990,
+        "y": 1120,
         "wires": []
-    },
-    {
-        "id": "eb33ad749afe266f",
-        "type": "inject",
-        "z": "a4c183a95164db51",
-        "name": "HUMID-D0",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "dummy",
-        "payloadType": "str",
-        "x": 120,
-        "y": 100,
-        "wires": [
-            [
-                "d9da488c657a553f"
-            ]
-        ]
     },
     {
         "id": "d9da488c657a553f",
@@ -3702,7 +3746,7 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0 single read (Humid)",
+        "label": "D0 single read (Humid) (2,1)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -3793,8 +3837,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 820,
-        "y": 680,
+        "x": 2160,
+        "y": 1160,
         "wires": []
     },
     {
@@ -3819,8 +3863,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 990,
-        "y": 980,
+        "x": 2330,
+        "y": 1460,
         "wires": [
             [
                 "629390aa10a785d3"
@@ -3870,34 +3914,9 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1350,
-        "y": 1020,
+        "x": 2690,
+        "y": 1500,
         "wires": []
-    },
-    {
-        "id": "a2f6ddee3c612cd4",
-        "type": "inject",
-        "z": "a4c183a95164db51",
-        "name": "TEMP-TEDS-D0",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "dummy",
-        "payloadType": "str",
-        "x": 140,
-        "y": 220,
-        "wires": [
-            [
-                "34ec58c9942e20cd"
-            ]
-        ]
     },
     {
         "id": "34ec58c9942e20cd",
@@ -3909,7 +3928,7 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0 read TEDS (Temp)",
+        "label": "D0 read TEDS (Temp) (3,2)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -3928,31 +3947,6 @@
         ]
     },
     {
-        "id": "4565132da9b2025c",
-        "type": "inject",
-        "z": "a4c183a95164db51",
-        "name": "HUMID-TEDS-D0",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "dummy",
-        "payloadType": "str",
-        "x": 140,
-        "y": 260,
-        "wires": [
-            [
-                "7fa3e401202cf7ba"
-            ]
-        ]
-    },
-    {
         "id": "7fa3e401202cf7ba",
         "type": "ui_button",
         "z": "a4c183a95164db51",
@@ -3962,7 +3956,7 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0 read TEDS (Humid)",
+        "label": "D0 read TEDS (Humid) (3,2)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -4030,8 +4024,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1170,
-        "y": 860,
+        "x": 2510,
+        "y": 1340,
         "wires": []
     },
     {
@@ -4047,8 +4041,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1160,
-        "y": 740,
+        "x": 2500,
+        "y": 1220,
         "wires": []
     },
     {
@@ -4064,8 +4058,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1170,
-        "y": 700,
+        "x": 2510,
+        "y": 1180,
         "wires": []
     },
     {
@@ -4081,8 +4075,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1170,
-        "y": 780,
+        "x": 2510,
+        "y": 1260,
         "wires": []
     },
     {
@@ -4098,8 +4092,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1160,
-        "y": 820,
+        "x": 2500,
+        "y": 1300,
         "wires": []
     },
     {
@@ -4124,8 +4118,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 810,
-        "y": 1000,
+        "x": 2150,
+        "y": 1480,
         "wires": [
             [
                 "2409118d90faf447"
@@ -4149,8 +4143,8 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "",
-        "x": 1340,
-        "y": 1100,
+        "x": 2680,
+        "y": 1580,
         "wires": []
     },
     {
@@ -4181,8 +4175,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 640,
-        "y": 680,
+        "x": 1980,
+        "y": 1160,
         "wires": [
             [
                 "bf918d6a9f2f1804"
@@ -4237,31 +4231,6 @@
         ]
     },
     {
-        "id": "7dcf7aab1270427a",
-        "type": "inject",
-        "z": "a4c183a95164db51",
-        "name": "SERVO-TEDS-D0",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "dummy",
-        "payloadType": "str",
-        "x": 150,
-        "y": 300,
-        "wires": [
-            [
-                "f80a154ce518e260"
-            ]
-        ]
-    },
-    {
         "id": "f80a154ce518e260",
         "type": "ui_button",
         "z": "a4c183a95164db51",
@@ -4271,7 +4240,7 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0 read TEDS (Servo)",
+        "label": "D0 read TEDS (Servo) (3,2)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -4309,56 +4278,6 @@
         ]
     },
     {
-        "id": "a1d4162d14ea31a5",
-        "type": "inject",
-        "z": "a4c183a95164db51",
-        "name": "SERVO-D0",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "dummy",
-        "payloadType": "str",
-        "x": 130,
-        "y": 140,
-        "wires": [
-            [
-                "f09eb6e12bda2bff"
-            ]
-        ]
-    },
-    {
-        "id": "7d4a94c667a80419",
-        "type": "inject",
-        "z": "a4c183a95164db51",
-        "name": "SECURITY-TEDS-D0",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "dummy",
-        "payloadType": "str",
-        "x": 160,
-        "y": 340,
-        "wires": [
-            [
-                "b67efba2521a75b3"
-            ]
-        ]
-    },
-    {
         "id": "b67efba2521a75b3",
         "type": "ui_button",
         "z": "a4c183a95164db51",
@@ -4368,7 +4287,7 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0 read TEDS (Security)",
+        "label": "D0 read TEDS (Security) (3,2)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -4416,8 +4335,8 @@
         "syntax": "mustache",
         "template": "{{sample}}",
         "output": "str",
-        "x": 1160,
-        "y": 1020,
+        "x": 2500,
+        "y": 1500,
         "wires": [
             [
                 "9c09104671edbe28",
@@ -4436,8 +4355,8 @@
         "syntax": "mustache",
         "template": "{{sample}}",
         "output": "str",
-        "x": 1160,
-        "y": 940,
+        "x": 2500,
+        "y": 1420,
         "wires": [
             [
                 "dddcc4ff24cc83e2",
@@ -4456,8 +4375,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1010,
-        "y": 1100,
+        "x": 2350,
+        "y": 1580,
         "wires": [
             [
                 "4f84dd09a1e8ca24"
@@ -4475,87 +4394,12 @@
         "syntax": "mustache",
         "template": "{{teds}}",
         "output": "str",
-        "x": 1160,
-        "y": 1100,
+        "x": 2500,
+        "y": 1580,
         "wires": [
             [
                 "db422cf5094a66ef",
                 "6c44b6a7e4ae2ddd"
-            ]
-        ]
-    },
-    {
-        "id": "7a301d0ea33df5e1",
-        "type": "inject",
-        "z": "a4c183a95164db51",
-        "name": "Chan TEDS",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "3",
-        "payloadType": "num",
-        "x": 130,
-        "y": 440,
-        "wires": [
-            [
-                "83f14fb1506b84e0"
-            ]
-        ]
-    },
-    {
-        "id": "65942ddc9b1256e6",
-        "type": "inject",
-        "z": "a4c183a95164db51",
-        "name": "Meta TEDS",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "1",
-        "payloadType": "num",
-        "x": 130,
-        "y": 400,
-        "wires": [
-            [
-                "43eb5e963ed23654"
-            ]
-        ]
-    },
-    {
-        "id": "3b4c7a68dd2e3877",
-        "type": "inject",
-        "z": "a4c183a95164db51",
-        "name": "Name TEDS",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "12",
-        "payloadType": "num",
-        "x": 130,
-        "y": 480,
-        "wires": [
-            [
-                "299d20ad096d1f15"
             ]
         ]
     },
@@ -4569,7 +4413,7 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0 read TEDS (Channel)",
+        "label": "D0 read TEDS (Channel) (3,2)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -4597,7 +4441,7 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0 read TEDS (Meta)",
+        "label": "D0 read TEDS (Meta) (3,2)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -4625,7 +4469,7 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0 read TEDS (Name)",
+        "label": "D0 read TEDS (Name) (3,2)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -4682,8 +4526,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 810,
-        "y": 780,
+        "x": 2150,
+        "y": 1260,
         "wires": [
             [
                 "8d33ac0fce4f74f3"
@@ -4704,8 +4548,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 960,
-        "y": 780,
+        "x": 2300,
+        "y": 1260,
         "wires": [
             [
                 "30fd5a99a9e5d16e",
@@ -4729,34 +4573,9 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 990,
-        "y": 1160,
+        "x": 2330,
+        "y": 1640,
         "wires": []
-    },
-    {
-        "id": "88230c72eb91f6de",
-        "type": "inject",
-        "z": "a4c183a95164db51",
-        "name": "Phy TEDS",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "13",
-        "payloadType": "num",
-        "x": 120,
-        "y": 520,
-        "wires": [
-            [
-                "db1b9b21bbad0810"
-            ]
-        ]
     },
     {
         "id": "db1b9b21bbad0810",
@@ -4768,7 +4587,7 @@
         "width": "3",
         "height": "1",
         "passthru": true,
-        "label": "D0 read TEDS (Phys)",
+        "label": "D0 read TEDS (Phys) (3,2)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -4799,8 +4618,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1330,
-        "y": 900,
+        "x": 2670,
+        "y": 1380,
         "wires": []
     },
     {
@@ -4816,8 +4635,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1340,
-        "y": 980,
+        "x": 2680,
+        "y": 1460,
         "wires": []
     },
     {
@@ -4833,8 +4652,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1330,
-        "y": 1060,
+        "x": 2670,
+        "y": 1540,
         "wires": []
     },
     {
@@ -4848,8 +4667,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1350,
-        "y": 940,
+        "x": 2690,
+        "y": 1420,
         "wires": [
             [
                 "4a76375d90ee0a70"
@@ -4886,8 +4705,8 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 180,
-        "y": 880,
+        "x": 1520,
+        "y": 1360,
         "wires": [
             [
                 "74be0c85ff4645ea",
@@ -4906,38 +4725,13 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
-        "y": 820,
+        "x": 1780,
+        "y": 1300,
         "wires": [
             [
                 "dc076277db143607",
                 "c7583948860ccdb6",
                 "611ded86214b1bb3"
-            ]
-        ]
-    },
-    {
-        "id": "00a1510000000003",
-        "type": "inject",
-        "z": "a4c183a95164db51",
-        "name": "D0 settings",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "x": 130,
-        "y": 580,
-        "wires": [
-            [
-                "00a1510000000002"
             ]
         ]
     },
@@ -5040,6 +4834,7 @@
         "name": "D0 NCAP discovery",
         "func": "var APP=global.get('APP'),NCAP=global.get('NCAP'),T0=global.get('T0'),T1=global.get('T1'),T2=global.get('T2');\nfunction hx(s){s=String(s).replace(/^0x/,'');var b=[];for(var k=0;k<s.length;k+=2){b.push(parseInt(s.substr(k,2),16));}return b;}\nfunction u16(n){return [(n>>8)&255,n&255];}\nfunction u32(n){return [(n>>>24)&255,(n>>16)&255,(n>>8)&255,n&255];}\nfunction s0(s){var b=[];for(var k=0;k<s.length;k++){b.push(s.charCodeAt(k)&255);}b.push(0);return b;}\nvar Z8=[0,0,0,0,0,0,0,0];\nvar a=[1,8,1,0,0].concat(hx(APP));\nvar L=a.length-6;a[3]=(L>>8)&255;a[4]=L&255;\nmsg.topic=global.get('reqTopicD0');\nmsg.payload=Buffer.from(a);\nreturn msg;\n",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -5119,7 +4914,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 150,
+        "x": 140,
         "y": 1400,
         "wires": [
             [
@@ -5260,7 +5055,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 140,
+        "x": 130,
         "y": 1560,
         "wires": [
             [
@@ -5373,8 +5168,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
-        "y": 1200,
+        "x": 1800,
+        "y": 1680,
         "wires": [
             [
                 "00a1510000000014"
@@ -5397,8 +5192,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 690,
-        "y": 1180,
+        "x": 2030,
+        "y": 1660,
         "wires": []
     },
     {
@@ -5439,8 +5234,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 680,
-        "y": 1220,
+        "x": 2020,
+        "y": 1700,
         "wires": [
             []
         ]
@@ -5511,7 +5306,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 150,
+        "x": 160,
         "y": 1360,
         "wires": [
             [
@@ -5558,7 +5353,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 140,
+        "x": 170,
         "y": 1440,
         "wires": [
             [
@@ -5626,7 +5421,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 160,
+        "x": 140,
         "y": 2300,
         "wires": [
             [
@@ -5674,7 +5469,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 160,
+        "x": 140,
         "y": 2360,
         "wires": [
             [
@@ -5722,7 +5517,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 160,
+        "x": 140,
         "y": 2400,
         "wires": [
             [
@@ -5770,7 +5565,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 170,
+        "x": 150,
         "y": 1720,
         "wires": [
             [
@@ -5914,7 +5709,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 150,
+        "x": 130,
         "y": 1860,
         "wires": [
             [
@@ -5962,7 +5757,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 180,
+        "x": 170,
         "y": 1900,
         "wires": [
             [
@@ -6010,7 +5805,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 180,
+        "x": 160,
         "y": 1940,
         "wires": [
             [
@@ -6058,7 +5853,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 170,
+        "x": 150,
         "y": 1980,
         "wires": [
             [
@@ -6106,7 +5901,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 180,
+        "x": 170,
         "y": 2020,
         "wires": [
             [
@@ -6202,7 +5997,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 170,
+        "x": 160,
         "y": 2120,
         "wires": [
             [
@@ -6250,7 +6045,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 190,
+        "x": 170,
         "y": 2180,
         "wires": [
             [
@@ -6298,7 +6093,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 190,
+        "x": 170,
         "y": 2240,
         "wires": [
             [
@@ -7495,7 +7290,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,1,0,0",
+        "payload": "2,1,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,1,0,0",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -7522,7 +7317,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,2,0,0",
+        "payload": "2,1,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,2,0,0",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -7549,7 +7344,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,3,0,0",
+        "payload": "2,1,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,3,0,0",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -7576,7 +7371,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,4,0,0",
+        "payload": "2,1,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,4,0,0",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -7647,7 +7442,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,1,0,0",
+        "payload": "2,1,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,1,0,0",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -7674,7 +7469,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,2,0,0",
+        "payload": "2,1,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,2,0,0",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -7701,7 +7496,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,3,0,0",
+        "payload": "2,1,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,3,0,0",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -7728,7 +7523,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "2,1,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,4,0,0",
+        "payload": "2,1,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,4,0,0",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -7822,7 +7617,7 @@
         "type": "function",
         "z": "9ac7a3893df687ef",
         "name": "Gauge write 03",
-        "func": "// Gauge actuator -> 1451.1.6 sync_write (2,7,1) to NCAP -> M5 gauge channel (ch4)\nvar v = parseInt(msg.payload, 10);\nif (isNaN(v)) return null;\nv = Math.max(0, Math.min(100, v));\nmsg.payload = '2,7,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,4,0,' + v;\nreturn msg;",
+        "func": "// Gauge actuator -> 1451.1.6 sync_write (2,7,1) to NCAP -> M5 gauge channel (ch4)\nvar v = parseInt(msg.payload, 10);\nif (isNaN(v)) return null;\nv = Math.max(0, Math.min(100, v));\nmsg.payload = '2,7,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,4,0,' + v;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -7897,7 +7692,7 @@
         "type": "function",
         "z": "9ac7a3893df687ef",
         "name": "Gauge write 04",
-        "func": "// Gauge actuator -> 1451.1.6 sync_write (2,7,1) to NCAP -> M5 gauge channel (ch4)\nvar v = parseInt(msg.payload, 10);\nif (isNaN(v)) return null;\nv = Math.max(0, Math.min(100, v));\nmsg.payload = '2,7,1,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,4,0,' + v;\nreturn msg;",
+        "func": "// Gauge actuator -> 1451.1.6 sync_write (2,7,1) to NCAP -> M5 gauge channel (ch4)\nvar v = parseInt(msg.payload, 10);\nif (isNaN(v)) return null;\nv = Math.max(0, Math.min(100, v));\nmsg.payload = '2,7,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f04,4,0,' + v;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -7975,7 +7770,7 @@
         "width": 0,
         "height": 0,
         "passthru": true,
-        "label": "D0 single read (Temp)",
+        "label": "D0 single read (Temp) (2,1)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -8650,100 +8445,6 @@
                 "3c7846a5d04959e3",
                 "5bbecfef8939ef31",
                 "cd4dcc3f6c74380f"
-            ]
-        ]
-    },
-    {
-        "id": "cb00000000000001",
-        "type": "ui_group",
-        "name": "Message monitor (sent / received)",
-        "tab": "86483328.1e604",
-        "order": 80,
-        "disp": true,
-        "width": "12",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "cb00000000000002",
-        "type": "ui_template",
-        "z": "0c7a731dc303bfda",
-        "group": "cb00000000000001",
-        "name": "msg log",
-        "order": 1,
-        "width": "12",
-        "height": "9",
-        "format": "<div style=\"font-family:monospace;font-size:11px;white-space:pre-wrap;line-height:1.35;height:400px;overflow-y:auto;width:100%;text-align:left\">{{msg.payload}}</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1100,
-        "y": 2600,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "cb00000000000003",
-        "type": "function",
-        "z": "0c7a731dc303bfda",
-        "name": "msg monitor fmt",
-        "func": "var p=msg.payload,bin=Buffer.isBuffer(p),h,raw;\nif(bin){if(p.length<3)return null;h=[p[0],p[1],p[2]];raw='0x'+p.toString('hex');}\nelse{var f=(''+p).split(',');if(f.length<3)return null;h=[parseInt(f[0]),parseInt(f[1]),parseInt(f[2])];raw=''+p;}\nvar NAMES={\"2,14,4\": \"async_read_block1_cbk\", \"2,13,1\": \"async_read_block1_cmd\", \"2,13,2\": \"async_read_block1_rep\", \"2,18,4\": \"async_read_block_multi1tim_cbk\", \"2,17,1\": \"async_read_block_multi1tim_cmd\", \"2,17,2\": \"async_read_block_multi1tim_rep\", \"2,20,4\": \"async_read_block_multi_cbk\", \"2,19,1\": \"async_read_block_multi_cmd\", \"2,19,2\": \"async_read_block_multi_rep\", \"2,16,4\": \"async_read_stream1_cbk\", \"2,15,1\": \"async_read_stream1_cmd\", \"2,15,2\": \"async_read_stream1_rep\", \"4,1,4\": \"event_notify\", \"4,1,1\": \"event_subscribe_cmd\", \"4,4,1\": \"event_subscribe_multich_cmd\", \"4,4,2\": \"event_subscribe_multich_rep\", \"4,7,1\": \"event_subscribe_multitim_cmd\", \"4,7,2\": \"event_subscribe_multitim_rep\", \"4,1,2\": \"event_subscribe_rep\", \"4,3,1\": \"event_unsubscribe_cmd\", \"4,6,1\": \"event_unsubscribe_multich_cmd\", \"4,6,2\": \"event_unsubscribe_multich_rep\", \"4,9,1\": \"event_unsubscribe_multitim_cmd\", \"4,9,2\": \"event_unsubscribe_multitim_rep\", \"4,3,2\": \"event_unsubscribe_rep\", \"4,10,1\": \"heartbeat_cmd\", \"4,10,4\": \"heartbeat_notify\", \"4,10,2\": \"heartbeat_rep\", \"4,12,1\": \"heartbeat_unsubscribe_cmd\", \"4,12,2\": \"heartbeat_unsubscribe_rep\", \"1,1,8\": \"ncap_abandonment\", \"1,1,3\": \"ncap_announcement\", \"1,1,2\": \"ncap_departure\", \"1,8,1\": \"ncap_discovery_cmd\", \"1,8,2\": \"ncap_discovery_rep\", \"1,1,4\": \"ncap_tim_announcement\", \"1,1,5\": \"ncap_tim_departure\", \"1,9,1\": \"ncap_tim_discovery_cmd\", \"1,9,2\": \"ncap_tim_discovery_rep\", \"1,1,6\": \"ncap_tim_transducer_announcement\", \"1,1,7\": \"ncap_tim_transducer_departure\", \"1,10,1\": \"ncap_tim_transducer_discovery_cmd\", \"1,10,2\": \"ncap_tim_transducer_discovery_rep\", \"3,1,1\": \"query_teds_cmd\", \"3,1,2\": \"query_teds_rep\", \"3,2,1\": \"read_teds_cmd\", \"3,2,2\": \"read_teds_rep\", \"2,2,1\": \"sync_read_block1_cmd\", \"2,2,2\": \"sync_read_block1_rep\", \"2,6,1\": \"sync_read_block_cmd\", \"2,4,1\": \"sync_read_block_multi1tim_cmd\", \"2,4,2\": \"sync_read_block_multi1tim_rep\", \"2,6,2\": \"sync_read_block_rep\", \"2,1,1\": \"sync_read_cmd\", \"2,3,1\": \"sync_read_multi1tim_cmd\", \"2,3,2\": \"sync_read_multi1tim_rep\", \"2,5,1\": \"sync_read_multi_cmd\", \"2,5,2\": \"sync_read_multi_rep\", \"2,1,2\": \"sync_read_rep\", \"2,8,1\": \"sync_write_block1_cmd\", \"2,8,2\": \"sync_write_block1_rep\", \"2,10,1\": \"sync_write_block_multi1tim_cmd\", \"2,10,2\": \"sync_write_block_multi1tim_rep\", \"2,12,1\": \"sync_write_block_multi_cmd\", \"2,12,2\": \"sync_write_block_multi_rep\", \"2,7,1\": \"sync_write_cmd\", \"2,9,1\": \"sync_write_multi1tim_cmd\", \"2,9,2\": \"sync_write_multi1tim_rep\", \"2,11,1\": \"sync_write_multi_cmd\", \"2,11,2\": \"sync_write_multi_rep\", \"2,7,2\": \"sync_write_rep\", \"3,4,1\": \"update_teds_cmd\", \"3,4,2\": \"update_teds_rep\", \"3,3,1\": \"write_teds_cmd\", \"3,3,2\": \"write_teds_rep\"};\nvar nm=NAMES[h.join(',')]||('svc '+h.join(','));\nvar mt=h[2];var dir=mt===1?'REQ \\u2192':(mt===4?'NTF \\u2190':'REP \\u2190');\nvar enc=bin?'D0 ':'D0C';\nvar d=new Date();function z(n){return ('0'+n).slice(-2);}\nvar ts=z(d.getHours())+':'+z(d.getMinutes())+':'+z(d.getSeconds());\nvar line=ts+'  '+enc+'  '+dir+'  '+nm+'\\n            '+raw.substring(0,220);\nvar log=flow.get('msgmon')||[];log.unshift(line);if(log.length>40)log.length=40;flow.set('msgmon',log);\nmsg.payload=log.join('\\n');return msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 2600,
-        "wires": [
-            [
-                "cb00000000000002"
-            ]
-        ]
-    },
-    {
-        "id": "cb00000000000004",
-        "type": "mqtt in",
-        "z": "0c7a731dc303bfda",
-        "name": "mon C",
-        "topic": "_1451.1.6/C/PTTEST/ncap0",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "39d5aa93d6951ccb",
-        "nl": false,
-        "rap": false,
-        "rh": 0,
-        "inputs": 0,
-        "x": 620,
-        "y": 2600,
-        "wires": [
-            [
-                "cb00000000000003"
-            ]
-        ]
-    },
-    {
-        "id": "cb00000000000005",
-        "type": "mqtt in",
-        "z": "0c7a731dc303bfda",
-        "name": "mon D0",
-        "topic": "_1451.1.6/D0/PTTEST/ncap0",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "39d5aa93d6951ccb",
-        "nl": false,
-        "rap": false,
-        "rh": 0,
-        "inputs": 0,
-        "x": 620,
-        "y": 2600,
-        "wires": [
-            [
-                "cb00000000000003"
             ]
         ]
     }
