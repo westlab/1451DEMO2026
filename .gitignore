@@ -47,3 +47,6 @@ _label_targets.py
 _add_tim4.py
 _m5_gauges.py
 _drop_tim01.py
+
+# generated firmware prompt — out of management scope
+M5_FIRMWARE_PROMPT.md
