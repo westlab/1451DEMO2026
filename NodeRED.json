@@ -893,7 +893,7 @@
         "topic": "",
         "topicType": "str",
         "x": 170,
-        "y": 1120,
+        "y": 540,
         "wires": [
             [
                 "cc00000000000001"
@@ -924,7 +924,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1270,
+        "x": 2610,
         "y": 680,
         "wires": []
     },
@@ -940,7 +940,7 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 160,
+        "x": 1500,
         "y": 420,
         "wires": [
             [
@@ -974,7 +974,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1450,
+        "x": 2790,
         "y": 600,
         "wires": []
     },
@@ -1000,7 +1000,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 870,
+        "x": 2210,
         "y": 620,
         "wires": [
             [
@@ -1010,24 +1010,6 @@
                 "ffcaa2ef7d546ca5"
             ]
         ]
-    },
-    {
-        "id": "510bc89faa4516fe",
-        "type": "mqtt out",
-        "z": "0c7a731dc303bfda",
-        "name": "",
-        "topic": "_1451.1.6/C/PTTEST/ncap0",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "39d5aa93d6951ccb",
-        "x": 940,
-        "y": 160,
-        "wires": []
     },
     {
         "id": "e6e810e6bca9657f",
@@ -1044,8 +1026,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 910,
-        "y": 120,
+        "x": 950,
+        "y": 840,
         "wires": []
     },
     {
@@ -1063,7 +1045,7 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1180,
+        "x": 2520,
         "y": 480,
         "wires": []
     },
@@ -1078,11 +1060,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 610,
-        "y": 120,
+        "x": 590,
+        "y": 840,
         "wires": [
             [
-                "510bc89faa4516fe",
+                "00a1510000000019",
                 "e6e810e6bca9657f",
                 "e11c12ee81eab931"
             ]
@@ -1156,8 +1138,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 890,
-        "y": 80,
+        "x": 930,
+        "y": 800,
         "wires": []
     },
     {
@@ -1172,7 +1154,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1160,
+        "x": 2500,
         "y": 440,
         "wires": []
     },
@@ -1187,7 +1169,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 480,
+        "x": 1820,
         "y": 420,
         "wires": [
             [
@@ -1209,7 +1191,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1150,
+        "x": 2490,
         "y": 320,
         "wires": []
     },
@@ -1226,7 +1208,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1160,
+        "x": 2500,
         "y": 280,
         "wires": []
     },
@@ -1243,7 +1225,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1160,
+        "x": 2500,
         "y": 360,
         "wires": []
     },
@@ -1260,7 +1242,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1150,
+        "x": 2490,
         "y": 400,
         "wires": []
     },
@@ -1286,7 +1268,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 690,
+        "x": 2030,
         "y": 680,
         "wires": [
             [
@@ -1308,7 +1290,7 @@
         "syntax": "mustache",
         "template": "{{sample}}",
         "output": "str",
-        "x": 1060,
+        "x": 2400,
         "y": 580,
         "wires": [
             [
@@ -1328,7 +1310,7 @@
         "syntax": "mustache",
         "template": "{{teds}}",
         "output": "str",
-        "x": 870,
+        "x": 2210,
         "y": 720,
         "wires": [
             [
@@ -1350,7 +1332,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "TEDSTEXT",
-        "x": 1070,
+        "x": 2410,
         "y": 740,
         "wires": []
     },
@@ -1375,7 +1357,7 @@
         "topic": "",
         "topicType": "str",
         "x": 160,
-        "y": 1080,
+        "y": 500,
         "wires": [
             [
                 "cc00000000000004"
@@ -1402,7 +1384,7 @@
         "step": 1,
         "className": "",
         "x": 90,
-        "y": 120,
+        "y": 840,
         "wires": [
             [
                 "c3fa091a3f412a45",
@@ -1415,14 +1397,14 @@
         "type": "function",
         "z": "0c7a731dc303bfda",
         "name": "SyncWriteCmd",
-        "func": "msg.payload = '2,7,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,4,0,'+\n    + msg.payload;\nreturn msg;",
+        "func": "msg.payload = '2,7,1,0,0x2400250026002700280029003a030f0f,0x2400250026002700280029003a010f0f,0x2400250026002700280029003a020f03,4,0,'+\n    + msg.payload;\nmsg.topic=global.get('reqTopicC');\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 120,
+        "x": 420,
+        "y": 840,
         "wires": [
             [
                 "f4dc1efa4ddec667"
@@ -1441,7 +1423,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 490,
+        "x": 1830,
         "y": 360,
         "wires": []
     },
@@ -1512,7 +1494,7 @@
         "syntax": "mustache",
         "template": "{{sample}}",
         "output": "str",
-        "x": 1060,
+        "x": 2400,
         "y": 660,
         "wires": [
             [
@@ -1534,7 +1516,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1250,
+        "x": 2590,
         "y": 560,
         "wires": []
     },
@@ -1551,7 +1533,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1260,
+        "x": 2600,
         "y": 640,
         "wires": []
     },
@@ -1568,7 +1550,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1050,
+        "x": 2390,
         "y": 700,
         "wires": []
     },
@@ -1594,7 +1576,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 690,
+        "x": 2030,
         "y": 420,
         "wires": [
             [
@@ -1616,7 +1598,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 900,
+        "x": 2240,
         "y": 420,
         "wires": [
             [
@@ -1640,7 +1622,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1270,
+        "x": 2610,
         "y": 600,
         "wires": [
             [
@@ -1665,8 +1647,8 @@
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
-        "x": 110,
-        "y": 60,
+        "x": 130,
+        "y": 280,
         "wires": [
             [
                 "00a1510000000017"
@@ -1748,8 +1730,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 390,
-        "y": 60,
+        "x": 410,
+        "y": 280,
         "wires": [
             []
         ]
@@ -1768,8 +1750,8 @@
         "correl": "",
         "expiry": "",
         "broker": "39d5aa93d6951ccb",
-        "x": 1450,
-        "y": 1640,
+        "x": 1570,
+        "y": 800,
         "wires": []
     },
     {
@@ -1784,7 +1766,7 @@
         "finalize": "",
         "libs": [],
         "x": 440,
-        "y": 940,
+        "y": 360,
         "wires": [
             [
                 "00a1510000000019"
@@ -1812,7 +1794,7 @@
         "topic": "",
         "topicType": "str",
         "x": 160,
-        "y": 940,
+        "y": 360,
         "wires": [
             [
                 "00a151000000001a"
@@ -1831,7 +1813,7 @@
         "finalize": "",
         "libs": [],
         "x": 430,
-        "y": 980,
+        "y": 400,
         "wires": [
             [
                 "00a1510000000019"
@@ -1859,7 +1841,7 @@
         "topic": "",
         "topicType": "str",
         "x": 150,
-        "y": 980,
+        "y": 400,
         "wires": [
             [
                 "00a151000000001c"
@@ -1878,7 +1860,7 @@
         "finalize": "",
         "libs": [],
         "x": 440,
-        "y": 1020,
+        "y": 440,
         "wires": [
             [
                 "00a1510000000019"
@@ -1906,7 +1888,7 @@
         "topic": "",
         "topicType": "str",
         "x": 160,
-        "y": 1020,
+        "y": 440,
         "wires": [
             [
                 "00a151000000001e"
@@ -1925,7 +1907,7 @@
         "finalize": "",
         "libs": [],
         "x": 430,
-        "y": 1280,
+        "y": 700,
         "wires": [
             [
                 "00a1510000000019"
@@ -1953,7 +1935,7 @@
         "topic": "",
         "topicType": "str",
         "x": 150,
-        "y": 1280,
+        "y": 700,
         "wires": [
             [
                 "00a1510000000020"
@@ -1972,7 +1954,7 @@
         "finalize": "",
         "libs": [],
         "x": 420,
-        "y": 1320,
+        "y": 740,
         "wires": [
             [
                 "00a1510000000019"
@@ -2000,7 +1982,7 @@
         "topic": "",
         "topicType": "str",
         "x": 140,
-        "y": 1320,
+        "y": 740,
         "wires": [
             [
                 "00a1510000000022"
@@ -2112,7 +2094,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
+        "x": 1850,
         "y": 800,
         "wires": [
             [
@@ -2136,7 +2118,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 720,
+        "x": 2060,
         "y": 780,
         "wires": []
     },
@@ -2178,7 +2160,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 710,
+        "x": 2050,
         "y": 820,
         "wires": [
             []
@@ -2207,8 +2189,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 380,
-        "y": 160,
+        "x": 420,
+        "y": 880,
         "wires": []
     },
     {
@@ -2459,7 +2441,7 @@
         "finalize": "",
         "libs": [],
         "x": 440,
-        "y": 1160,
+        "y": 580,
         "wires": [
             [
                 "00a1510000000019"
@@ -2486,7 +2468,7 @@
         "topic": "",
         "topicType": "str",
         "x": 150,
-        "y": 1160,
+        "y": 580,
         "wires": [
             [
                 "c900000000000009"
@@ -2506,7 +2488,7 @@
         "finalize": "",
         "libs": [],
         "x": 440,
-        "y": 1200,
+        "y": 620,
         "wires": [
             [
                 "00a1510000000019"
@@ -2533,7 +2515,7 @@
         "topic": "",
         "topicType": "str",
         "x": 170,
-        "y": 1200,
+        "y": 620,
         "wires": [
             [
                 "c90000000000000b"
@@ -2553,7 +2535,7 @@
         "finalize": "",
         "libs": [],
         "x": 430,
-        "y": 1240,
+        "y": 660,
         "wires": [
             [
                 "00a1510000000019"
@@ -2580,7 +2562,7 @@
         "topic": "",
         "topicType": "str",
         "x": 160,
-        "y": 1240,
+        "y": 660,
         "wires": [
             [
                 "c90000000000000d"
@@ -3495,7 +3477,7 @@
         "finalize": "",
         "libs": [],
         "x": 450,
-        "y": 1120,
+        "y": 540,
         "wires": [
             [
                 "00a1510000000019"
@@ -3555,7 +3537,7 @@
         "finalize": "",
         "libs": [],
         "x": 450,
-        "y": 1080,
+        "y": 500,
         "wires": [
             [
                 "00a1510000000019"
