@@ -13,40 +13,14 @@ P1451.0D2.5.pdf
 flows.live.prev.json
 NodeRED.json.bak
 
-# non-essential scripts: kept locally, not part of the NCAP + Node-RED deliverable
+# non-essential: old monolithic NCAP + reference model (kept local only)
 NCAP_legacy.py
 ReferenceModel/
-_build_gauge_actuator.py
-_build_m5_reqres.py
-_build_m5_tab.py
-_build_stop_buttons.py
-_tidy_layout.py
-pub.py
-sub.py
-chanTEDSgen.py
-genCRCLEN.py
-genSecurityTEDS.py
-buzzer.py
-servo.py
-swled.py
-swsimple.py
-potsimple.py
-tmphmd.py
-_build_full_svc_ui.py
-_build_d0_svc_ui.py
-_build_relabel_monitor.py
-_fix_cop_length.py
-_rebuild_legacy.py
-_arrange_d0.py
-_unify_d0_encode.py
-_dup_monitor_timesync.py
-_split_d0_d0c.py
-_split_m5_tim.py
-_func_groups.py
-_label_targets.py
-_add_tim4.py
-_m5_gauges.py
-_drop_tim01.py
+
+# One-off Node-RED build helpers left at the repo ROOT stay local.
+# The curated, documented set is kept under Debug/ and IS tracked
+# (the leading slash anchors this rule to the repo root only).
+/_*.py
 
 # generated firmware prompt — out of management scope
 M5_FIRMWARE_PROMPT.md
