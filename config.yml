@@ -1,7 +1,9 @@
 ### localhost
 #mqtthost: 127.0.0.1
-### hivemq
-mqtthost: broker.hivemq.com
+### local LAN broker (offline demo) -- M5 firmware secrets.h must use the SAME IP
+mqtthost: 10.42.0.1
+### hivemq (public; needs internet on BOTH the Pi and the M5 units)
+#mqtthost: broker.hivemq.com
 ### coe@jp
 #mqtthost: plugfest.west.sd.keio.ac.jp
 #username: plugfest

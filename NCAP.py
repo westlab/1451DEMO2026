@@ -146,21 +146,29 @@ class Hardware:
         self._m5 = {}            # deviceId -> {'temp','humid','co2','gauge','online','ts'}
         self._m5_pub = None      # set by NCAP.run(): publish(topic, payload) callable
         self._m5_prefix = ''     # same as above: 'm5iot/' etc.
+        import random
+        self._random = random
         if not pseudo:
             # ---- Real hardware (Raspberry Pi) initialization --------- #
-            import RPi.GPIO as GPIO
-            import dht11
-            self._gpio = GPIO
-            GPIO.setwarnings(True)
-            GPIO.setmode(GPIO.BCM)
-            GPIO.setup(4, GPIO.OUT)          # servo: GPIO4
-            self._servo = GPIO.PWM(4, 50)
-            self._servo.start(0.0)
-            self._dht = dht11.DHT11(pin=15)  # DHT11: GPIO15
-            print('Hardware: real (DHT11 pin15, servo GPIO4)')
+            #  DHT11/servo are OPTIONAL. On an M5-only setup (no DHT11 wired,
+            #  or the RPi.GPIO/dht11 libs not installed) we degrade gracefully
+            #  so the M5 ENV(SCD41) MQTT bridge still runs; those local
+            #  readers/actuators then just return None / no-op.
+            try:
+                import RPi.GPIO as GPIO
+                import dht11
+                self._gpio = GPIO
+                GPIO.setwarnings(True)
+                GPIO.setmode(GPIO.BCM)
+                GPIO.setup(4, GPIO.OUT)          # servo: GPIO4
+                self._servo = GPIO.PWM(4, 50)
+                self._servo.start(0.0)
+                self._dht = dht11.DHT11(pin=15)  # DHT11: GPIO15
+                print('Hardware: real (DHT11 pin15, servo GPIO4)')
+            except Exception as e:
+                print('Hardware: real, but DHT11/GPIO unavailable (%s) '
+                      '-- M5 ENV(SCD41) bridge only' % e)
         else:
-            import random
-            self._random = random
             print('Hardware: pseudo (no GPIO)')
 
     # ------------------------------------------------------------------ #
@@ -173,6 +181,8 @@ class Hardware:
             self._dht_cache = (self._random.randrange(100, 300) / 10 + CK_TRANS,
                                self._random.randrange(200, 700) / 10)
             return
+        if self._dht is None:
+            return                       # no DHT11 on this host -> leave cache (None)
         r = self._dht.read()
         if r.is_valid():
             self._dht_cache = (r.temperature + CK_TRANS, r.humidity)
@@ -196,7 +206,7 @@ class Hardware:
     # ---- Write (actuator) methods ----------------------------------- #
     def servo(self, value):
         deg = float(value)
-        if self.pseudo:
+        if self.pseudo or self._servo is None:
             print('++++ pseudo servo <-', deg)
             return
         self._servo.ChangeDutyCycle(deg / 25 + 2.4)
@@ -236,14 +246,11 @@ class Hardware:
         self._m5.setdefault(deviceId, {})['online'] = (str(text).strip().lower() == 'online')
 
     def _m5_get(self, deviceId, key):
-        v = self._m5.get(deviceId, {}).get(key)
-        if v is not None:
-            return v
-        # Return dummy values so the -p demo runs even if the real M5 is not connected
-        if self.pseudo:
-            base = {'temp': 250, 'humid': 400, 'co2': 6000, 'gauge': 500}[key]
-            return (base + self._random.randrange(-30, 30)) / 10.0
-        return None
+        # The M5 ENV(SCD41) units are always REAL sensors over MQTT, so never
+        # fabricate values here -- even under -p. If no telemetry has arrived,
+        # return None ("no data") instead of a fake number, so a disconnected
+        # M5 is obvious on the dashboard rather than masked by dummy values.
+        return self._m5.get(deviceId, {}).get(key)
 
     def m5_temp(self, deviceId):
         t = self._m5_get(deviceId, 'temp')
