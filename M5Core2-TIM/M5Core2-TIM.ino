@@ -29,7 +29,7 @@
 
 // ===================== CONFIG (edit DEVICE_ID per board) =====================
 #ifndef MQTT_HOST
-#define MQTT_HOST           "broker.hivemq.com"   // must match host config.yml mqtthost
+#define MQTT_HOST           "10.42.0.1"   // LAN broker (offline demo); must match config.yml mqtthost. Override in secrets.h if needed.
 #endif
 #ifndef MQTT_PORT
 #define MQTT_PORT           1883
